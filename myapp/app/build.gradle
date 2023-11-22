@@ -27,10 +27,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8' 
 
     // 소스 파일을 작성할 때 사용할 자바 버전
-    //sourceCompatibility = '17'
+    sourceCompatibility = '17'
 
     // 자바 클래스를 실행시킬 JVM의 최소 버전
-    //targetCompatibility = '17'
+    targetCompatibility = '17'
 }
 
 // eclipse 프로젝트 이름을 설정하기
@@ -39,9 +39,9 @@ eclipse {
         name = "myapp"
     }
     jdt {
-      sourceCompatibility = 21
-      targetCompatibility = 21
-      javaRuntimeName = "JavaSE-21"
+      sourceCompatibility = 17
+      targetCompatibility = 17
+      javaRuntimeName = "JavaSE-17"
     }
 }
 
@@ -67,7 +67,7 @@ dependencies {
 // 자바 그레이들 플러그인
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
