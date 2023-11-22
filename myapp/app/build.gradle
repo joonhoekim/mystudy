@@ -11,10 +11,7 @@ plugins {
     //따라서 따로 java plugin을 추가할 필요가 없다.
     
     //application 플러그인 주석처리한 이유는 저 플러그인이 메인 메서드 하나 있는 단일 어플리케이션을 대상으로 한 플러그인이기 때문이다.
-    //id 'application'
-    
-    //application 없으니 필요한 하위 플러그인java 추가
-    id 'java'
+    id 'application'
 
     //이클립스 IDE 관련 작업을 수행할 수 있는 플러그인
     id 'eclipse'
@@ -71,12 +68,10 @@ java {
     }
 }
 
-//application plugin 주석처리하였으므로 여기도 주석처리한다.
-// application {
-//     // Define the main class for the application.
-//     //mainClass = 'com.eomcs.App'
-//     mainClass = 'Hello'
-// }
+application {
+     // Define the main class for the application.
+    mainClass = 'bitcamp.myapp.App'
+}
 
 //단위테스트를 어떤 도구로 실행할지 설정
 tasks.named('test') {
