@@ -1,20 +1,20 @@
 package com.eomcs.lang.ex04;
 
-//# 배열 - 배열을 선언하는 방법 
+// # 배열 - 배열을 선언하는 방법
 // 배열?
 // - 같은 종류의 메모리를 쉽게 만드는 방법
 //
 // - 문법
-//        메모리종류[] 메모리이름 = new 메모리종류[개수]
-//        데이터타입[] 변수명 = new 데이터타입[개수];
-//        ex) int[] arr = new int[5];
+// 메모리종류[] 메모리이름 = new 메모리종류[개수]
+// 데이터타입[] 변수명 = new 데이터타입[개수];
+// ex) int[] arr = new int[5];
 //
-// - C언어 스타일 
-//        데이터타입 변수명[] = new 데이터타입[개수];
-//        ex) int arr[] = new int[5];
+// - C언어 스타일
+// 데이터타입 변수명[] = new 데이터타입[개수];
+// ex) int arr[] = new int[5];
 //
 // 배열의 개수는 int 타입의 최대 값과 같다.
-// 즉 2147483647 개 이다. 
+// 즉 2_147_483_647 개 이다. (21억, 2.1billion)
 //
 public class Exam0510 {
   public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Exam0510 {
     int i1, i2, i3, i4, i5;
 
     // 배열 선언
-    int[] arr1 = new int[5]; // OK!
+    int[] arr1 = new int[5]; // OK! 더 선호되는 Java-Style.
     int arr2[] = new int[5]; // OK! C-style.
 
     // 배열의 크기는 int 타입의 최대 값에서 2를 뺀 값이다.
