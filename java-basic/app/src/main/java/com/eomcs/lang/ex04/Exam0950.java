@@ -1,7 +1,7 @@
 package com.eomcs.lang.ex04;
 
-//# 형변환 - 명시적 형변환이 불가능한 경우 
-// 
+// # 형변환 - 명시적 형변환이 불가능한 경우
+//
 public class Exam0950 {
   public static void main(String[] args) {
 
@@ -13,12 +13,12 @@ public class Exam0950 {
 
     // 예) 정수, 부동소수점 ==/==> boolean
     boolean bool;
-    //    bool = (boolean) 1; // 컴파일 오류!
+    // bool = (boolean) 1; // 컴파일 오류!
 
     // 예) 문자열 ==/==> 정수, 부동소수점, 문자, boolean
-    //    boolean v1 = (boolean) "true"; // 컴파일 오류!
-    //    char v2 = (char) "가"; // 컴파일 오류!
-    //    int v3 = (int) "123"; // 컴파일 오류!
-    //    float v4 = (int) "3.14f"; // 컴파일 오류!
+    // boolean v1 = (boolean) "true"; // 컴파일 오류!
+    // char v2 = (char) "가"; // 컴파일 오류!
+    // int v3 = (int) "123"; // 컴파일 오류!
+    // float v4 = (int) "3.14f"; // 컴파일 오류!
   }
 }
