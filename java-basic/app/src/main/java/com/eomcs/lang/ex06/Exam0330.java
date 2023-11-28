@@ -21,6 +21,7 @@ public class Exam0330 {
       x++;
       y = 1;
     }
+
     System.out.println("종료!!");
   }
 }

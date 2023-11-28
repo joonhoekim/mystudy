@@ -26,4 +26,5 @@ public class Exam0631 {
     System.out.println(i);
 
   }
+
 }

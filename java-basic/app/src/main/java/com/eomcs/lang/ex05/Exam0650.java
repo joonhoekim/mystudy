@@ -14,11 +14,13 @@ public class Exam0650 {
 
     System.out.println(i); // 4
 
-    System.out.println(++i); 
+    System.out.println(++i);
     // i = i + 1
     // System.out.println(5)
 
     System.out.println(i); // 5
+    // (i=i+1) 또한 값을 반환하는 표현식이므로 아래와 같이 쓰는 것도 동일하다.
+    System.out.println(i = i + 1);
 
   }
 }

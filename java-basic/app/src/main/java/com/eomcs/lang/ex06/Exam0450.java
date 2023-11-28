@@ -4,6 +4,16 @@ package com.eomcs.lang.ex06;
 //
 public class Exam0450 {
   public static void main(String[] args) {
+
+    // 정석적인 레퍼런스 변수 생성 및 인스턴스 생성
+    // int[] arr;
+    // arr = new int[4];
+    // arr[0] = 1;
+    //
+    // String[] str;
+    // str = new String[5];
+    // str[1] = "hello world";
+
     String[] names = {"홍길동", "임꺽정", "유관순", "윤봉길", "안중근"};
 
     // 배열의 처음부터 끝까지 값을 꺼내는 것이라면
