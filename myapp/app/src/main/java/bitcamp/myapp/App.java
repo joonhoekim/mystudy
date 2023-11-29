@@ -36,39 +36,41 @@ public class App {
     System.out.println(line1);
 
     String menuString;
-    int menuNumber = 0;
 
+    loop:
     for (; ; ) {
       //여기서 변수를 생성해도 JVM이 똑똑해서 변수를 반복할 때마다 만들지는 않는다.
       System.out.print("> ");
       menuString = keyScan.nextLine();
-
-      if (menuString.equals("menu")) {
-        System.out.println(line1);
-        System.out.println(ANSI_BOLD_RED + appTitle + ANSI_CLEAR);
-        // \n = LF = 0xOA in UTF-8
-        System.out.println(menu1);
-        System.out.println(menu2);
-        System.out.println(menu3);
-        System.out.println(ANSI_RED + menu4 + ANSI_CLEAR);
-        System.out.println(line1);
-      } else {
-        menuNumber = Integer.valueOf(menuString);
-
-        if (menuNumber == 1) {
+      switch (menuString) {
+        case "1":
           System.out.println("과제입니다.");
-        } else if (menuNumber == 2) {
-          System.out.println("게시글입니다.");
-        } else if (menuNumber == 3) {
-          System.out.println("도움말입니다.");
-        } else if (menuNumber == 4) {
-          System.out.println("종료입니다.");
           break;
-        } else {
-          System.out.println("옳지 않은 번호입니다.");
+        case "2":
+          System.out.println("게시글입니다.");
+          break;
+        case "3":
+          System.out.println("도움말입니다.");
+          break;
+        case "4":
+          System.out.println("종료입니다.");
+          break loop;
+        case "menu": {
+          System.out.println(line1);
+          System.out.println(ANSI_BOLD_RED + appTitle + ANSI_CLEAR);
+          System.out.println(menu1);
+          System.out.println(menu2);
+          System.out.println(menu3);
+          System.out.println(ANSI_RED + menu4 + ANSI_CLEAR);
+          System.out.println(line1);
+          break;
         }
+        default:
+          System.out.println("옳지 않은 번호입니다.");
+          break;
       }
     }
     keyScan.close(); //close가 있는 도구(메서드)도 있고 없는 것도 있다.
+
   }
 }
