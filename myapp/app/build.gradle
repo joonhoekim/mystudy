@@ -9,7 +9,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     //실행할 수 있는 java application을 생성하는 도구이다. 이 플러그인을 추가하면 자바 플러그인이 자동으로 추가된다.
     //따라서 따로 java plugin을 추가할 필요가 없다.
-    
+
     //application 플러그인 주석처리한 이유는 저 플러그인이 메인 메서드 하나 있는 단일 어플리케이션을 대상으로 한 플러그인이기 때문이다.
     id 'application'
 
@@ -21,7 +21,7 @@ plugins {
 tasks.withType(JavaCompile) {
     // 프로젝트의 소스 파일 인코딩을 gradle에게 알려준다.
     // $javac -encoding UTF-8 ..
-    options.encoding = 'UTF-8' 
+    options.encoding = 'UTF-8'
 
     // 소스 파일을 작성할 때 사용할 자바 버전
     sourceCompatibility = '17'
@@ -36,9 +36,9 @@ eclipse {
         name = "myapp"
     }
     jdt {
-      sourceCompatibility = 17
-      targetCompatibility = 17
-      javaRuntimeName = "JavaSE-17"
+        sourceCompatibility = 17
+        targetCompatibility = 17
+        javaRuntimeName = "JavaSE-17"
     }
 }
 
@@ -69,7 +69,7 @@ java {
 }
 
 application {
-     // Define the main class for the application.
+    // Define the main class for the application.
     mainClass = 'bitcamp.myapp.App'
 }
 
@@ -77,4 +77,9 @@ application {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+//gradle에서 표준 입력 스트림이 키보드가 아니다. 그래서 추가한 설정이다.
+run {
+    standardInput = System.in
 }

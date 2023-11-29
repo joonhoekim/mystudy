@@ -1,9 +1,15 @@
 package bitcamp.myapp;
 
+import java.io.InputStream;
+import java.util.Scanner;
+
 public class App {
 
 
   public static void main(String[] args) {
+    InputStream in = System.in;
+    Scanner keyScan = new Scanner(in);
+
     //ANSI Escape Code !!
     final String ANSI_CLEAR = "\033[0m";
     final String ANSI_BOLD_RED = "\033[1;31m";
@@ -27,5 +33,28 @@ public class App {
     System.out.println(menu3);
     System.out.println(ANSI_RED + menu4 + ANSI_CLEAR);
     System.out.println(line1);
+
+    int menuNumber = 0;
+    while (menuNumber != 4) {
+      System.out.print("> ");
+      menuNumber = keyScan.nextInt();
+      //keyScan.nextLine();
+      switch (menuNumber) {
+        case 1:
+          System.out.println("과제입니다.");
+          break;
+        case 2:
+          System.out.println("게시글입니다.");
+          break;
+        case 3:
+          System.out.println("도움말입니다.");
+          break;
+        case 4:
+          System.out.println("종료합니다.");
+          break;
+        default:
+          System.out.println("알맞은 메뉴 번호를 입력해주세요.");
+      }
+    }
   }
 }
