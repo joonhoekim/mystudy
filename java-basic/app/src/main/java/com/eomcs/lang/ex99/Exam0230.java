@@ -3,8 +3,9 @@ package com.eomcs.lang.ex99;
 //# 키보드 입력 받기 - int, float, boolean 값 읽기
 //
 public class Exam0230 {
-  public static void main(String[] args) { 
+  public static void main(String[] args) {
     java.util.Scanner keyScan = new java.util.Scanner(System.in);
+
 
     System.out.print("int: ");
     int i = keyScan.nextInt();
@@ -16,6 +17,11 @@ public class Exam0230 {
     // => 스페이스(space), 탭, 줄바꿈 코드를 말한다.
     // 예) aaa    bbb cc ==> aaa, bbb, cc
     // 중간에 여러 개의 공백이 들어가더라도 한 개의 공백으로 간주한다.
+
+    // 이런건 왜 쓰나?
+    // String str = keyScan.nextLine();
+    // int i1 = Integer.valueOf(str);
+    // 이렇게 하기 귀찮으니까!!
 
     System.out.print("float: ");
     float f = keyScan.nextFloat();
