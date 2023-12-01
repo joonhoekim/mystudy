@@ -1,151 +1,17 @@
 package bitcamp.myapp;
 
-import java.util.Scanner;
-
 public class App {
 
-  // 애플리케이션 클래스 App을 실행할 때 다음 변수를 미리 준비해 둔다.
-  static final String ANSI_CLEAR = "\033[0m";
-  static final String ANSI_BOLD_RED = "\033[1;31m";
-  static final String ANSI_RED = "\033[0;31m";
-  static final String APP_TITLE = ANSI_BOLD_RED + "[과제관리 시스템]" + ANSI_CLEAR;
-  static final String[] MENUS = {
-      "1. 과제",
-      "2. 게시글",
-      "3. 도움말",
-      ANSI_RED + "4. 종료" + ANSI_CLEAR
-  };
-
   public static void main(String[] args) {
+    MainMenu.execute();
+    Prompt.close();
+    //Prompt.keyIn.close(); 으로 하지 말자. 어떤 자원인지 App은 모른다고 가정하자.
+    //Information Expert 원칙을 지키자.
+    //구체적인 지시를 내려야 한다는 것은 잘못된 것이다. 왜냐? 지시를 받는 쪽이 전문가이기 때문에. 책임을 갖기 때문에.
+    //자원의 해제 책임도 그 자원을 가지고 있는 클래스의 책임이다.
+    //만약 이렇게 안하면,
+    //keyIn 이라는 스캐너 객체(정확히는 레퍼런스) 이름이 바뀌면 App도 다 바꿔야 하는데
+    //이런 게 누적되면 유지보수가 어려워진다.
 
-    printMenu();
-
-    java.util.Scanner keyIn = new java.util.Scanner(System.in);
-
-    loop:
-    while (true) {
-      String input = prompt("메인 ", keyIn);
-
-      switch (input) {
-        case "1":
-          onAssignment(keyIn);
-          break;
-        case "2":
-          onBoard(keyIn);
-        case "3":
-          System.out.println("도움말입니다.");
-          break;
-        case "4":
-          System.out.println("종료합니다.");
-          break loop;
-        case "menu":
-          // 코드를 기능 단위로 묶어 메서드로 정의하면
-          // 메서드의 이름을 통해 해당 기능을 쉽게 유추할 수 있어 유지보수에 좋다.
-          printMenu();
-          break;
-        default:
-          System.out.println("메뉴 번호가 옳지 않습니다.");
-      }
-    }
-
-    keyIn.close();
   }
-
-  static void printMenu() {
-    // ANSI 코드와 App 제목, 메뉴를 저장한 변수를 메서드 안에 두는 대신에
-    // 클래스 블록 안에 두면
-    // printMenu()를 호출할 때마다 변수를 만들기 않기 때문에 실행 속도나 메모리 부분에서
-    // 훨씬 효율적이다.
-    // 보통 메서드 호출될 때 마다 값이 바뀌는 변수가 아니라 고정 값을 갖는 변수인 경우
-    // 메서드 밖에 두는 것이 좋다.
-    //
-    System.out.println(APP_TITLE);
-    System.out.println();
-    for (String menu : MENUS) {
-      System.out.println(menu);
-    }
-  }
-
-  static String prompt(String title, Scanner keyIn) {
-    System.out.printf("%s> ", title);
-    return keyIn.nextLine();
-  }
-
-  static void onAssignment(Scanner keyIn) {
-    System.out.println("[과제]");
-    System.out.println("1. 등록");
-    System.out.println("2. 조회");
-    System.out.println("3. 변경");
-    System.out.println("4. 삭제");
-    System.out.println("0. 이전");
-
-    while (true) {
-      String input = prompt("메인 > 과제 ", keyIn);
-
-      switch (input) {
-        case "1":
-          System.out.println("등록입니다.");
-          break;
-        case "2":
-          System.out.println("조회입니다.");
-          break;
-        case "3":
-          System.out.println("변경입니다.");
-          break;
-        case "4":
-          System.out.println("삭제입니다.");
-          break;
-        case "0":
-          return; //return -> 메소드 호출을 종료하고 돌아간다.
-        case "menu":
-          System.out.println("[과제]");
-          System.out.println("1. 등록");
-          System.out.println("2. 조회");
-          System.out.println("3. 변경");
-          System.out.println("4. 삭제");
-          System.out.println("0. 이전");
-          break;
-        default:
-          System.out.println("메뉴 번호가 옳지 않습니다!");
-      }
-    }
-  }
-
-  static void onBoard(Scanner keyIn) {
-    printBoardMenu();
-
-    while (true) {
-      String input = prompt("메뉴 > 게시글", keyIn);
-      switch (input) {
-        case "1":
-          System.out.println("등록입니다.");
-          break;
-        case "2":
-          System.out.println("조회입니다.");
-          break;
-        case "3":
-          System.out.println("변경입니다.");
-          break;
-        case "4":
-          System.out.println("삭제입니다.");
-        case "0":
-          return;
-        case "menu":
-          printBoardMenu();
-          break;
-        default:
-          System.out.println("메뉴 번호가 옳지 않습니다!");
-      }
-    }
-  }
-
-  static void printBoardMenu() {
-    System.out.println("[게시글]");
-    System.out.println("1. 등록");
-    System.out.println("2. 조회");
-    System.out.println("3. 변경");
-    System.out.println("4. 삭제");
-    System.out.println("0. 이전");
-  }
-
 }
