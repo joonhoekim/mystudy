@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex02;
+package com.eomcs.oop.ex02.Back;
 
 //0) 낱개 변수 사용
 //1) 성적 데이터를 저장할 사용자 정의 데이터 타입을 만든다.

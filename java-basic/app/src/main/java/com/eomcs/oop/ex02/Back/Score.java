@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex02;
+package com.eomcs.oop.ex02.Back;
 
 class Score {
 

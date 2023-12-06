@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex02;
+package com.eomcs.oop.ex02.Back;
 
 //0) 낱개 변수 사용
 //

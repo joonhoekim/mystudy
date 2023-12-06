@@ -23,7 +23,7 @@ public class MainMenu {
 
   static void execute() {
     printMenu();
-
+    loop:
     while (true) {
       String input = Prompt.input("메인> ");
 
@@ -39,9 +39,9 @@ public class MainMenu {
           break;
         case "4":
           System.out.println("종료합니다.");
-          return;
+          break loop;
         case "menu":
-          printMenu();
+          MainMenu.printMenu();
           break;
         default:
           System.out.println("메뉴 번호가 옳지 않습니다.");

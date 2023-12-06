@@ -3,6 +3,7 @@ package bitcamp.myapp;
 public class AssignmentMenu {
 
   static Assignment assignment = new Assignment();
+  // Q. 왜 Assignment() 인가? 그런 메서드가 없는데? A. 아니다 있다. 기본 생성자가 있다!!
 
   static void printMenu() {
     System.out.println("[과제]");
@@ -15,7 +16,6 @@ public class AssignmentMenu {
 
   static void execute() {
     printMenu();
-
     while (true) {
       String input = Prompt.input("메인/과제> ");
 
@@ -23,52 +23,58 @@ public class AssignmentMenu {
         case "1":
           add();
           break;
+
         case "2":
           view();
           break;
+
         case "3":
           modify();
           break;
+
         case "4":
           delete();
           break;
+
         case "0":
           return;
+
         case "menu":
           printMenu();
           break;
+
         default:
           System.out.println("메뉴 번호가 옳지 않습니다!");
       }
     }
   }
 
-  static void add() {
-    System.out.println("과제 등록:");
+
+  void add() {
+    System.out.println("과제 등록: ");
     assignment.title = Prompt.input("과제명? ");
     assignment.content = Prompt.input("내용? ");
     assignment.deadline = Prompt.input("제출 마감일? ");
-
   }
 
-  static void view() {
-    System.out.println("과제 조회:");
+  void view() {
+    System.out.println("과제 조회: ");
     System.out.printf("과제명: %s\n", assignment.title);
     System.out.printf("내용: %s\n", assignment.content);
-    System.out.printf("제출 마감일: %s\n", assignment.deadline);
-
+    System.out.printf("제출 마감일: : %s\n", assignment.deadline);
   }
 
-  static void modify() {
-    System.out.println("과제 변경:");
+  void modify() {
+    System.out.println("과제 변경: ");
+    //title = Prompt.input("과제명:(" + title + ")?:");
     assignment.title = Prompt.input("과제명(%s)? ", assignment.title);
     assignment.content = Prompt.input("내용(%s)? ", assignment.content);
-    assignment.deadline = Prompt.input("제출 마감일(%s)? ", assignment.deadline);
-
+    assignment.deadline = Prompt.input("제출 마감(%s)? ",
+        assignment.deadline);
   }
 
-  static void delete() {
-    System.out.println("과제 삭제:");
+  void delete() {
+    System.out.println("삭제입니다.");
     assignment.title = "";
     assignment.content = "";
     assignment.deadline = "";

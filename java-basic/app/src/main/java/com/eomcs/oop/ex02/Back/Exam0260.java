@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex02;
+package com.eomcs.oop.ex02.Back;
 
 // # 관련된 기능(메서드)을 묶어 분류하기
 // 1) 분류 전

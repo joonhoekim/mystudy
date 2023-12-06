@@ -46,8 +46,8 @@ public class BoardMenu {
     System.out.println("게시글 등록:");
     board.title = Prompt.input("제목? ");
     board.content = Prompt.input("내용? ");
-    board.writer = Prompt.input("작성자? ");
-    board.createdDate = Prompt.input("작성일? ");
+    board.writer = Prompt.input("작성자?: ");
+    board.createdDate = Prompt.input("작성일?: ");
   }
 
   static void view() {
@@ -59,18 +59,20 @@ public class BoardMenu {
   }
 
   static void modify() {
-    System.out.println("게시글 변경:");
-    board.title = Prompt.input("제목(%s)? ", board.title);
-    board.content = Prompt.input("내용(%s)? ", board.content);
-    board.writer = Prompt.input("작성자(%s)? ", board.writer);
-    board.createdDate = Prompt.input("작성일(%s)? ", board.createdDate);
+    System.out.println("게시글 수정:");
+    board.title = Prompt.input("제목(%s): ", board.title);
+    board.content = Prompt.input("내용(%s): ", board.content);
+    board.writer = Prompt.input("작성자(%s): ", board.writer);
+    board.createdDate = Prompt.input("작성일(%s): ", board.createdDate);
+
   }
 
   static void delete() {
-    System.out.println("게시글 삭제:");
+    System.out.println("게시글 삭제됨");
     board.title = "";
     board.content = "";
     board.writer = "";
     board.createdDate = "";
   }
+
 }

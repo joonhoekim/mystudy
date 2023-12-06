@@ -6,8 +6,10 @@ public class Prompt {
 
   static Scanner keyIn = new Scanner(System.in);
 
+
   static String input(String title, Object... args) {
-    System.out.print(String.format(title, args));
+    System.out.printf(title, args);
+    //위 printf 는 print(String.format(title, args)) 와 같다?
     return keyIn.nextLine();
   }
 
