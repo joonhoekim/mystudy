@@ -5,10 +5,16 @@ import java.util.Scanner;
 
 public class Prompt {
 
+  //지금 당장은 필요하지 않지만 확장성을 위해 Methoad Area -> Heap 영역으로 보낸다. 즉 인스턴스필드, 인스턴스메서드로 전환한다.
+  //System.in이 아니어도 사용가능하도록 변경한다.
   Scanner keyIn;
 
   public Prompt(InputStream in) {
-    keyIn = new Scanner(in);
+    this.keyIn = new Scanner(in);
+  }
+
+  public void close() {
+    keyIn.close();
   }
 
   public String input(String title, Object... args) {
@@ -16,22 +22,20 @@ public class Prompt {
     return this.keyIn.nextLine();
   }
 
-  public int inputInt(String title, Object... args) {
-    String str = this.input(title, args);
+  int inputInt(String title, Object... args) {
+    String str = input(title, args);
     return Integer.parseInt(str);
   }
 
-  public float inputFloat(String title, Object... args) {
-    String str = this.input(title, args);
+  float inputFloat(String title, Object... args) {
+    String str = input(title, args);
     return Float.parseFloat(str);
   }
 
-  public boolean inputBoolean(String title, Object... args) {
-    String str = this.input(title, args);
+  boolean inputBoolean(String title, Object... args) {
+    String str = input(title, args);
     return Boolean.parseBoolean(str);
   }
 
-  public void close() {
-    this.keyIn.close();
-  }
+
 }

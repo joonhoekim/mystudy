@@ -2,8 +2,9 @@ package bitcamp.myapp.vo;
 
 public class Member {
 
-  public String email;
   public String name;
+  public String email;
   public String password;
-  public String createdDate;
+  public String dateSignIn;
+
 }
