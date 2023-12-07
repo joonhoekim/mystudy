@@ -30,13 +30,15 @@ public class MainMenu {
 
       switch (input) {
         case "1":
+          //과제 메뉴 실행
           AssignmentMenu.execute();
           break;
         case "2":
+          //게시판 메뉴 실행
           BoardMenu.execute();
           break;
         case "3":
-          //회원 기능 실행
+          //회원 메뉴 실행
           MemberMenu.execute();
         case "4":
           System.out.println("도움말입니다.");

@@ -69,11 +69,10 @@ public class MemberMenu {
     Member member = new Member();
 
     System.out.println("회원정보 등록:");
-    String temp = Prompt.input("[테스트용 일괄입력] 내용? ");
-    member.name = temp;
-    member.email = temp;
-    member.password = temp;
-    member.dateSignIn = temp;
+    member.name = Prompt.input("이름? ");
+    member.email = Prompt.input("이메일? ");
+    member.password = Prompt.input("비밀번호? ");
+    member.dateSignIn = Prompt.input("가입일? ");
     members[length++] = member;
 
 //    member.title = Prompt.input("제목? ");
@@ -89,9 +88,9 @@ public class MemberMenu {
       System.out.println("회원 정보가 없습니다.");
       return;
     }
-    System.out.printf("%-20s\t%10s\t%s\n", "이메일", "이름", "가입일");
+    System.out.printf("%-20s\t%30s\t%s\n", "이메일", "이름", "가입일");
     for (int i = 0; i < length; i++) {
-      System.out.printf("%-20s\t%10s\t%s\n", members[i].email, members[i].name,
+      System.out.printf("%-20s\t%30s\t%s\n", members[i].email, members[i].name,
           members[i].dateSignIn);
     }
     System.out.println("----------------------");
@@ -140,11 +139,10 @@ public class MemberMenu {
 
     //인스턴스에 값을 넣어준다.
     Member member = new Member();
-    String temp = Prompt.input("[테스트용 일괄입력] 내용? ");
-    member.name = temp;
-    member.email = temp;
-    member.password = temp;
-    member.dateSignIn = temp;
+    member.name = Prompt.input("새 이름?");
+    member.email = Prompt.input("새 이메일?");
+    member.password = Prompt.input("새 암호?");
+    member.dateSignIn = Prompt.input("새 가입일?");
 
     members[index] = member; //인스턴스 주소를 건네준다.
     //기존에 members[index]가 가리키고 있던 인스턴스는 가비지가 된다.
