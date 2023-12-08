@@ -14,8 +14,9 @@ public class Exam0110 {
     // => static이 붙지 않는다.
     int v1; // 4바이트 int 값을 저장할 메모리를 만들라는 명령!
     boolean v2; // true/false 논리값을 저장할 메모리를 만들라는 명령!
-    // 이 명령은 new 명령을 실행할 때 비로서 실행된다.
+    // 인스턴스 변수 선언은 new 명령을 실행할 때 비로소 실행된다.
   }
+  // 중첩된 클래스(Nested class)
 
   public static void main(String[] args) {
 
