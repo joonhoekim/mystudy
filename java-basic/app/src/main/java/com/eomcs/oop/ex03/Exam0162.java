@@ -24,9 +24,9 @@ public class Exam0162 {
 
     // Member와 관련된 상수라면
     // Member 클래스에 선언하는 것이 유지보수에 더 낫다.
-    //    final int GUEST = 0;
-    //    final int MEMBER = 1;
-    //    final int MANAGER = 2;
+    // final int GUEST = 0;
+    // final int MEMBER = 1;
+    // final int MANAGER = 2;
 
     Member m4 = new Member();
     m4.id = "aaa";
@@ -43,13 +43,8 @@ public class Exam0162 {
     m6.id = "ccc";
     m6.password = "1111";
     m6.type = Member.MEMBER;
+
   }
 }
-
-
-
-
-
-
 
 

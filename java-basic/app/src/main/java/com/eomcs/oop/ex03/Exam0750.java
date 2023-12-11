@@ -3,7 +3,7 @@ package com.eomcs.oop.ex03;
 
 public class Exam0750 {
 
-  static class A {
+  public static class A {
     int a;
     int b;
     int c;
