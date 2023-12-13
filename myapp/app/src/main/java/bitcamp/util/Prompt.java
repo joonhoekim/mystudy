@@ -8,7 +8,6 @@ public class Prompt {
   Scanner keyIn;
 
   public Prompt(InputStream in) {
-
     keyIn = new Scanner(in);
   }
 
