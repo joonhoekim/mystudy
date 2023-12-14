@@ -4,14 +4,15 @@ import bitcamp.myapp.menu.Menu;
 import bitcamp.myapp.menu.MenuHandler;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
+import bitcamp.util.ObjectRepository;
 
 public class MemberAddHandler implements MenuHandler {
 
-  MemberRepository memberRepository;
+  ObjectRepository objectRepository;
   Prompt prompt;
 
-  public MemberAddHandler(MemberRepository memberRepository, Prompt prompt) {
-    this.memberRepository = memberRepository;
+  public MemberAddHandler(ObjectRepository objectRepository, Prompt prompt) {
+    this.objectRepository = objectRepository;
     this.prompt = prompt;
   }
 
@@ -25,6 +26,6 @@ public class MemberAddHandler implements MenuHandler {
     member.email = prompt.input("이메일? ");
     member.name = prompt.input("이름? ");
     member.createdDate = prompt.input("가입일? ");
-    this.memberRepository.add(member);
+    this.objectRepository.add(member);
   }
 }

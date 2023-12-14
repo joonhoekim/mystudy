@@ -13,10 +13,10 @@ import bitcamp.myapp.handler.board.BoardViewHandler;
 import bitcamp.myapp.handler.help.HelpHandler;
 import bitcamp.myapp.handler.member.MemberAddHandler;
 import bitcamp.myapp.handler.member.MemberListHandler;
-import bitcamp.myapp.handler.member.MemberRepository;
 import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.myapp.menu.MenuGroup;
 import bitcamp.myapp.menu.MenuItem;
+import bitcamp.util.ObjectRepository;
 import bitcamp.util.Prompt;
 
 public class App {
@@ -67,7 +67,7 @@ public class App {
     assignmentMenu.add(new MenuItem("삭제", new AssignmentAddHandler(assignmentRepository, prompt)));
     mainMenu.add(assignmentMenu);
 
-    MemberRepository memberRepository = new MemberRepository();
+    ObjectRepository memberRepository = new ObjectRepository();
     MenuGroup memberMenu = new MenuGroup("과제");
     memberMenu.add(new MenuItem("등록", new MemberAddHandler(memberRepository, prompt)));
     memberMenu.add(new MenuItem("목록", new MemberListHandler(memberRepository)));
