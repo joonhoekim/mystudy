@@ -7,6 +7,7 @@ public class Score2 extends Score {
   // 새 필드를 추가한다.
   public int music;
   public int art;
+  private int kor;
 
 
   // 기존 코드를 변경한다. => 기존의 메서드 재정의 => 오버라이딩(overriding)
@@ -16,10 +17,3 @@ public class Score2 extends Score {
     this.aver = this.sum / 5f;
   }
 }
-
-
-
-
-
-
-

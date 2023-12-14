@@ -26,7 +26,7 @@ public class Exam0111 {
     System.out.println("-----------------------------------");
 
     // => 바이트 배열을 가지고 String 인스턴스 초기화시키기
-    byte[] bytes = {
+    byte[] bytes = { //ISO 8859-1 
         (byte)0x48, // H 
         (byte)0x65, // e
         (byte)0x6c, // l

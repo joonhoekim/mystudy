@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6c182742-7754-4e52-a6c6-bd2c6ddd699d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../app-18/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentAddHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentModifyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentRemoveHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/assignment/AssignmentViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/help/HelpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberAddHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberModifyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberRemoveHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/util/ObjectRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentAddHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentModifyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentRemoveHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/assignment/AssignmentViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardAddHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardModifyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardRemoveHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/board/BoardViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/help/HelpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberAddHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberListHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberModifyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberRemoveHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/handler/member/MemberViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/menu/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/menu/MenuGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/menu/MenuHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/menu/MenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/vo/Assignment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/vo/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/myapp/vo/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/util/AnsiEscape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/java/bitcamp/util/Prompt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/main/resources/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/test/java/bitcamp/myapp/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybackup/app18completed(CompositePattern)/src/test/resources/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/Exam0111.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/Exam0111.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/singleton/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/singleton/Car1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/singleton/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex04/singleton/Test1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex05/d/Score2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-basic/app/src/main/java/com/eomcs/oop/ex05/d/Score2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-17/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app-17/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-17/src/main/java/bitcamp/myapp/handler/board/BoardListHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app-17/src/main/java/bitcamp/myapp/handler/board/BoardListHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardAddHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardAddHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardListHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardListHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardModifyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardModifyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardRemoveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardRemoveHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/BoardViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/board/BoardViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/AssignmentMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/MemberMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/MenuGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/menu/MenuGroup.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2ZX1gksov3QdtZCyYMEzVZVMjjF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jh/git/mystudy/myapp/app-18"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c182742-7754-4e52-a6c6-bd2c6ddd699d" name="Changes" comment="" />
+      <created>1702553723546</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702553723546</updated>
+    </task>
+    <servers />
+  </component>
+</project>
