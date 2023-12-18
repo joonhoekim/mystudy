@@ -5,5 +5,7 @@ package com.eomcs.oop.ex07.d;
 // => 추상 클래스로 선언하면 인스턴스 생성을 막을 수 있다.
 // => 즉 서브 클래스를 정의할 때 상속 받아 쓰는 용도로 한정할 수 있다.
 public abstract class Sorter {
-  public void sort(int[] values) {};
+  public void sort(int[] values) {
+    System.out.println("hi");
+  };
 }

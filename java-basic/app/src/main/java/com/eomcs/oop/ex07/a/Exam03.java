@@ -29,9 +29,10 @@ class A3Sub extends A3 {
 }
 
 
-class A3SubSUb extends A3Sub {
-  public void m3() {
-    System.out.println("A3SubSub.m3() 호출됨!");
+class A3SubSub extends A3Sub {
+  @Override
+  public void m2() {
+    System.out.println("A3SubSub.m2() 호출됨!");
   }
 }
 
@@ -49,6 +50,10 @@ public class Exam03 {
     // 오버라이딩 규칙에 따라
     // - 레퍼런스가 실제 가리키는 객체의 클래스에서부터 메서드를 찾는다.
     obj.m1();
+
+    A3Sub obj2 = new A3SubSub();
+    obj2.m2();
+    System.out.println("thisthisthis");
 
     // 참고!
     //

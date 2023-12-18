@@ -19,7 +19,7 @@ public class Exam02 {
     // 왜?
     // - MergeSort는 Sorter를 상속 받아 만들었다.
     // - 따라서 이 클래스를 사용하는 개발자 쪽에서는 Sorter를 상속 받았으니,
-    //   당연히 정렬을 수행하기 위해 sort(int[]) 메서드를 호출할 것이다.
+    // 당연히 정렬을 수행하기 위해 sort(int[]) 메서드를 호출할 것이다.
     // - 그러나 MergeSort 클래스는 sort(int[]) 메서드를 오버라이딩 하지 않았다.
     // - 개발자가 sort(int[])를 오버라이딩 하는 것을 놓쳤거나 일부러 하지 않은 것이다.
     //
@@ -32,27 +32,24 @@ public class Exam02 {
 
     // 당연히 파라미터로 넘어 오는 클래스는 Sorter의 서브 클래스일 것이다.
     // (Sorter는 추상 클래스이기 때문에 인스턴스를 생성할 수 없다.
-    //  따라서 Sorter의 인스턴스가 넘어올 수는 없다.)
+    // 따라서 Sorter의 인스턴스가 넘어올 수는 없다.)
     // 따라서 정렬을 수행하려면 Sorter에 정의된 sort()를 호출할 것이다.
     // 여기서 문제가 발생한다.
     // BubbleSort나 QuickSort 클래스는 sort()를 오버라이딩 하였다.
-    // 그러나 MergeSort는 sort() 오버라이딩 하지 않았다.
+    // 그러나 MergeSort는 sort() 오버라이딩 하지 않았다. (오버로드됨)
     // 따라서 파라미터로 넘어 오는 객체가 MergeSort 라면
     // 다음 메서드를 호출하는 것은 아무런 의미가 없다.
     sorter.sort(values);
+    // ㄴ 서브클래스 머지소트에 없으니 슈퍼클래스를 찾아간다.
 
     // 해결책?
     // => Sorter의 서브 클래스들이 반드시 sort() 메서드를 구현하도록 강제하라!
 
-    for (int  value : values) {
+    for (int value : values) {
       System.out.print(value + ",");
     }
     System.out.println();
   }
 }
-
-
-
-
 
 

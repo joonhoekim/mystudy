@@ -19,15 +19,9 @@ public class Exam01 {
 
   static void display(Sorter sorter, int[] values) {
     sorter.sort(values);
-    for (int  value : values) {
+    for (int value : values) {
       System.out.print(value + ",");
     }
     System.out.println();
   }
 }
-
-
-
-
-
-
