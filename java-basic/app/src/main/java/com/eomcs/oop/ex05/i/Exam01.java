@@ -1,4 +1,4 @@
-// 상속 - 다중 상속
+vvfz// 상속 - 다중 상속
 package com.eomcs.oop.ex05.i;
 
 public class Exam01 {

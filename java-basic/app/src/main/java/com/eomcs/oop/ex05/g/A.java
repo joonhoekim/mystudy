@@ -19,5 +19,3 @@ public class A /*extends Object*/ {
     this.v1 = 100;
   }
 }
-
-

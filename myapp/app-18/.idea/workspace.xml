@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a96893f0-3d16-47b5-b276-ba72c1a2c77f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-19/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app-19/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app-19/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app-19/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberAddHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberAddHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/myapp/handler/member/MemberRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/bitcamp/util/ObjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/bitcamp/util/ObjectRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
