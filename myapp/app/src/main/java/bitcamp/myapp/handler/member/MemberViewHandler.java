@@ -1,36 +1,30 @@
 package bitcamp.myapp.handler.member;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class MemberViewHandler implements MenuHandler {
+public class MemberViewHandler extends AbstractMenuHandler {
 
-  Prompt prompt;
-  MemberRepository memberRepository;
+  private ArrayList<Member> objectRepository;
 
-  public MemberViewHandler(Prompt prompt, MemberRepository memberRepository) {
-    this.prompt = prompt;
-    this.memberRepository = memberRepository;
+  public MemberViewHandler(ArrayList<Member> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf("%s 조회:", menu.getTitle());
-    int index = this.prompt.inputInt("번호? ");
+  protected void action() {
 
-    //get에서는 유효성 검사를 하고 있다. 유효하지 않으면 null을 반환한다.
-    Member member = this.memberRepository.get(index);
+    int index = this.prompt.inputInt("번호? ");
+    Member member = this.objectRepository.get(index);
     if (member == null) {
-      System.out.println("게시글 번호가 유효하지 않습니다.");
+      System.out.println("회원 번호가 유효하지 않습니다.");
       return;
     }
-
-    //레퍼런스가 갖고 있떤 인스턴스 주소를 할당 받아왔으니 그걸 보여주면 된다.
-    member = this.memberRepository.members[index];
-    System.out.printf("제목: %s\n", member.email);
-    System.out.printf("내용: %s\n", member.name);
-    System.out.printf("작성자: %s\n", member.createdDate);
+    System.out.printf("이메일: %s\n", member.getEmail());
+    System.out.printf("이름: %s\n", member.getName());
+    System.out.printf("가입일: %s\n", member.getCreatedDate());
   }
 }

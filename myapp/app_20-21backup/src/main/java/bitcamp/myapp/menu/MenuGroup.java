@@ -8,8 +8,8 @@ import bitcamp.util.Prompt;
 public class MenuGroup implements Menu { //Menu 인터페이스를 구현하는 클래스 중 하나
 
   //각 제목들
-  String title;
-  Menu[] menus = new Menu[10]; // 일단 메뉴를 배열구조로 10개 만들었다.
+  private String title;
+  private Menu[] menus = new Menu[10]; // 일단 메뉴를 배열구조로 10개 만들었다.
 
   int menuSize; //이전 단계의 length처럼 menus 배열에서 몇 개를 채웠는지를 세 주는 인스턴스 필드가 필요하다.
 

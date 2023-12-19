@@ -1,27 +1,29 @@
 package bitcamp.myapp.handler.assignment;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Assignment;
+import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class AssignmentListHandler implements MenuHandler {
+public class AssignmentListHandler extends AbstractMenuHandler {
 
-  //  Prompt prompt;
-  AssignmentRepository assignmentRepository;
+  private ArrayList<Assignment> objectRepository;
 
-  public AssignmentListHandler(AssignmentRepository assignmentRepository) {
-    //this.prompt = prompt;
-    this.assignmentRepository = assignmentRepository;
+  public AssignmentListHandler(ArrayList<Assignment> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf("%s 목록:", menu.getTitle());
+  protected void action() {
+    //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
+    System.out.printf("%-20s\t%s\n", "과제", "제출마감일");
 
-    System.out.printf("%-20s | %10s | %15s\n", "TITLE", "WRITER", "DATE");
-    for (Assignment assignment : this.assignmentRepository.assignments) {
-      System.out.printf("%-20s | %10s | %15s\n", assignment.title, assignment.content,
-          assignment.deadline);
+    Assignment[] assignments = new Assignment[this.objectRepository.size()];
+    this.objectRepository.toArray(assignments);
+
+    for (Assignment assignment : assignments) {
+      System.out.printf("%-20s\t%s\n", assignment.getTitle(), assignment.getDeadline());
     }
   }
 }

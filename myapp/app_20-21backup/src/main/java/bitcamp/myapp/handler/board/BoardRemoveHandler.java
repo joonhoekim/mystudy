@@ -6,8 +6,8 @@ import bitcamp.util.Prompt;
 
 public class BoardRemoveHandler implements MenuHandler {
 
-  Prompt prompt;
-  BoardRepository boardRepository;
+  private Prompt prompt;
+  private BoardRepository boardRepository;
 
   public BoardRemoveHandler(Prompt prompt, BoardRepository boardRepository) {
     this.prompt = prompt;

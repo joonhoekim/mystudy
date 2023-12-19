@@ -12,12 +12,12 @@ class Car {
 
   // 예1) 인스턴스 생성과정이 복잡할 경우
   // - 직접 인스턴스를 생성하기 보다는
-  //   인스턴스를 생성해주는 메서드를 사용하여 인스턴스를 만드는 것이
-  //   유지보수할 때 편하다.
+  // 인스턴스를 생성해주는 메서드를 사용하여 인스턴스를 만드는 것이
+  // 유지보수할 때 편하다.
   // - 즉 인스턴스를 생성해 주는 메서드를 통해
-  //   인스턴스를 생성하면 인스턴스를 사용하고픈 개발자는 코드가 간결해진다
-  //   이런 설계 방식에 대해 이름을 붙였으니
-  //   그 이름도 유명한 "factory method" 설계 패턴이다.
+  // 인스턴스를 생성하면 인스턴스를 사용하고픈 개발자는 코드가 간결해진다
+  // 이런 설계 방식에 대해 이름을 붙였으니
+  // 그 이름도 유명한 "factory method" 설계 패턴이다.
   //
   public static Car create(String name) {
 
@@ -46,29 +46,36 @@ class Car {
   }
 }
 
+
 public class Exam0221 {
 
   public static void main(String[] args) {
 
-    //    Car c1 = new Car(); // 컴파일 오류!
+    // Car c1 = new Car(); // 컴파일 오류!
     // 생성자가 private이기 때문에 다른 클래스에서 호출할 수 없다.
     // 따라서 인스턴스를 생성할 수 없다.
     //
     // 그럼 왜 생성자를 private으로 만들었는가?
     // => 개발자가 직접 인스턴스를 생성하면 너무 복잡하니,
-    //    다른 메서드를 통해 인스턴스를 생성하라는 의미다!
+    // 다른 메서드를 통해 인스턴스를 생성하라는 의미다!
     //
     Car c2 = Car.create("티코"); // 팩토리 일을 하는 메서드를 통해 인스턴스를 생성한다.
 
-    System.out.printf("%s,%s,%d,%d\n",
-        c2.model, c2.maker, c2.cc, c2.valve);
+    System.out.printf("%s,%s,%d,%d\n", c2.model, c2.maker, c2.cc, c2.valve);
+
+
+    long a = 10000000000L;
+
+
+    byte byteValue = 10;
+    float floatValue = 2.5F;
+    double doubleValue = 2.5;
+    byte result1 = (byte) (byteValue + byteValue); // 값을 연산할 때는 int로 가져와뿐다.
+    int result2 = 5 + byteValue;
+    float result3 = 5 + floatValue;
+    double result = 5 + doubleValue;
 
   }
 }
-
-
-
-
-
 
 

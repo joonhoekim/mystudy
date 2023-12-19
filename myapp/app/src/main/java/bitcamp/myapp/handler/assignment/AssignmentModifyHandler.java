@@ -1,43 +1,36 @@
 package bitcamp.myapp.handler.assignment;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Assignment;
 import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class AssignmentModifyHandler implements MenuHandler {
+public class AssignmentModifyHandler extends AbstractMenuHandler {
 
-  Prompt prompt;
-  AssignmentRepository assignmentRepository;
+  private ArrayList<Assignment> objectRepository;
 
-  public AssignmentModifyHandler(Prompt prompt, AssignmentRepository assignmentRepository) {
-    this.prompt = prompt;
-    this.assignmentRepository = assignmentRepository;
+
+  public AssignmentModifyHandler(ArrayList<Assignment> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf("%s 수정:", menu.getTitle());
+  protected void action() {
+    //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
 
     int index = this.prompt.inputInt("번호? ");
-    if (index < 0 || index >= this.assignmentRepository.length) {
-      System.out.println("게시글 번호가 유효하지 않습니다.");
+    Assignment old = this.objectRepository.get(index);
+    if (old == null) {
+      System.out.println("과제 번호가 유효하지 않습니다.");
       return;
     }
 
-    //이 코드는 변수 이름 바뀌면 수정을 많이 해야한다. 별로다.
-//    Board oldBoard = this.boardRepository.boards[index];
-//    boardRepository.boards[index].title = this.prompt.input("수정할 제목: (%s)", oldBoard.title);
-//    boardRepository.boards[index].title = this.prompt.input("수정할 내용: (%s)", oldBoard.content);
-//    boardRepository.boards[index].title = this.prompt.input("수정할 작성자: (%s)", oldBoard.writer);
-//    boardRepository.boards[index].title = this.prompt.input("수정할 작성일: (%s)", oldBoard.createdDate);
+    Assignment assignment = new Assignment();
+    assignment.setTitle(this.prompt.input("과제명(%s)? ", old.getTitle()));
+    assignment.setContent(this.prompt.input("내용(%s)? ", old.getContent()));
+    assignment.setDeadline(this.prompt.input("제출 마감일(%s)? ", old.getDeadline()));
 
-    //코드 흐름을 완전히 이해했다면 이렇게 짜는게 낫다!! assignment 라는 변수 하나로 해결하게 된다.
-    Assignment assignment = this.assignmentRepository.assignments[index]; //레퍼런스가 같은 주소를 공유한다.
-    assignment.title = prompt.input("제목 뭘로 바꿀까요? (이전:%s)",
-        assignment.title); //input에서 이전 값을 보여주고 거기에 덮어쓴다.
-    assignment.content = prompt.input("내용 뭘로 바꿀까요? (이전:%s)", assignment.content);
-    assignment.deadline = prompt.input("마감일 언제로 바꿀까요? (이전:%s)", assignment.deadline);
-
+    this.objectRepository.set(index, assignment);
   }
 }

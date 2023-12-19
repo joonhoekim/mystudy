@@ -1,31 +1,35 @@
 package bitcamp.myapp.handler.board;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Board;
+import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class BoardListHandler implements MenuHandler {
+// 게시글의 '목록' 메뉴를 선택했을 때 작업을 수행하는 클래스
+// - 반드시 MenuHandler 규칙에 따라 클래스를 작성해야 한다.
+//
+public class BoardListHandler extends AbstractMenuHandler {
 
-  //  Prompt prompt;
-  BoardRepository boardRepository;
+  private ArrayList<Board> objectRepository;
 
-  public BoardListHandler(BoardRepository boardRepository) {
-    //this.prompt = prompt;
-    this.boardRepository = boardRepository;
+  public BoardListHandler(ArrayList<Board> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf("%s:\n", menu.getTitle());
-    System.out.printf("%-20s | %10s | %15s\n", "TITLE", "WRITER", "DATE");
-//    for (Board board : this.boardRepository.boards) {
-//      System.out.printf("%-20s | %10s | %15s\n", board.title, board.writer, board.createdDate);
-//    }
-    // 여기서 Enhanced for Loop 못 쓴다!! Enhanced for Loop은 배열 전체를 다 돈다!!
-    // 내용 채워넣지 않은 부분이 있는 배열은 어디까지 돌지를 수동 설정하여 반복문 돌려야 한다!!
-    for (int i = 0; i < this.boardRepository.length; i++) {
-      Board board = this.boardRepository.boards[i];
-      System.out.printf("%-20s | %10s | %15s\n", board.title, board.writer, board.createdDate);
+  protected void action() {
+    //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
+    //super.action(menu);
+    System.out.printf("%-20s\t%10s\t%s\n", "Title", "Writer", "Date");
+
+    Board[] boards = this.objectRepository.toArray(new Board[0]);
+
+    for (Board board : boards) {
+      System.out.printf("%-20s\t%10s\t%s\n",
+          board.getTitle(),
+          board.getWriter(),
+          board.getCreatedDate());
     }
   }
 }

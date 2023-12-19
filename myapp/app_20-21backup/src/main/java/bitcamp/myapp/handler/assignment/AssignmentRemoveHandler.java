@@ -6,8 +6,8 @@ import bitcamp.util.Prompt;
 
 public class AssignmentRemoveHandler implements MenuHandler {
 
-  Prompt prompt;
-  AssignmentRepository assignmentRepository;
+  private Prompt prompt;
+  private AssignmentRepository assignmentRepository;
 
   public AssignmentRemoveHandler(Prompt prompt, AssignmentRepository assignmentRepository) {
     this.prompt = prompt;

@@ -1,45 +1,32 @@
 package bitcamp.myapp.handler.board;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class BoardAddHandler implements MenuHandler {
+// 게시글의 '등록' 메뉴를 선택했을 때 작업을 수행하는 클래스
+// - 반드시 MenuHandler 규칙에 따라 클래스를 작성해야 한다.
+//
+public class BoardAddHandler extends AbstractMenuHandler {
 
-  BoardRepository boardRepository;
-  Prompt prompt;
+  //private Prompt prompt;
+  private ArrayList<Board> objectRepository;
 
-  public BoardAddHandler(BoardRepository boardRepository, Prompt prompt) {
-    this.boardRepository = boardRepository;
-    this.prompt = prompt;
+  public BoardAddHandler(ArrayList<Board> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
-  public void action(Menu menu) {
-    //Define BoardAddHandle's action()
-    System.out.printf("[%s]:",
-        menu.getTitle()); //getTitle()은 인터페이스에서 약속되어 있고, menuItem 클래스에서 구현되어 있다.
-
-    if (this.boardRepository.length == this.boardRepository.boards.length) {
-      //리파지토리 객체 내 변수(int length), 객체 내 배열의 길이를 비교해서 배열 공간 다 찼는지 확인한다.
-      //만약 같다면 배열 길이를 50% 증가시킨 새 배열 만들어서 값을 복사해두고, 그 레퍼런스가 가진 주소를 받는다.
-      int oldSize = this.boardRepository.boards.length;
-      int newSize = oldSize + (oldSize >> 1);
-
-      Board[] arr = new Board[newSize];
-      System.arraycopy(this.boardRepository.boards, 0, arr, 0, oldSize);
-
-      this.boardRepository.boards = arr;
-    }
-
+  @Override //재정의하니까, 슈퍼클래스에서 만든 프린트메뉴하는 부분이 없어짐. 그래서 슈퍼클래스의 코드는 유지하돼 기능을 추가하는 방법이, 슈퍼클래스의 메서드를
+  protected void action() {
+    //super.action(menu); 매번 이래하기 힘들다! 까먹기도 쉽다!
     Board board = new Board();
-    board.title = this.prompt.input("제목? ");
-    board.content = this.prompt.input("내용? ");
-    board.writer = this.prompt.input("작성자? ");
-    board.createdDate = this.prompt.input("작성일? ");
+    board.setTitle(this.prompt.input("제목? "));
+    board.setContent(this.prompt.input("내용? "));
+    board.setWriter(this.prompt.input("작성자? "));
+    board.setCreatedDate(this.prompt.input("작성일? "));
 
-    this.boardRepository.boards[this.boardRepository.length++] = board;
+    objectRepository.add(board);
   }
-
-
 }

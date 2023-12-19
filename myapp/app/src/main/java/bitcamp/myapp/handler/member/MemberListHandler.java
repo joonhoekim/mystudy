@@ -1,31 +1,30 @@
 package bitcamp.myapp.handler.member;
 
-import bitcamp.myapp.menu.Menu;
-import bitcamp.myapp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Member;
+import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
-public class MemberListHandler implements MenuHandler {
+public class MemberListHandler extends AbstractMenuHandler {
 
-  //  Prompt prompt;
-  MemberRepository memberRepository;
+  private ArrayList<Member> objectRepository;
 
-  public MemberListHandler(MemberRepository memberRepository) {
-    //this.prompt = prompt;
-    this.memberRepository = memberRepository;
+  public MemberListHandler(ArrayList<Member> objectRepository, Prompt prompt) {
+    super(prompt);
+    this.objectRepository = objectRepository;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf("%s 목록:", menu.getTitle());
+  protected void action() {
 
-    //빈 부분을 제거한 배열을 받는다.
-    Member[] members = this.memberRepository.toArray();
+    System.out.printf("%-10s\t%30s\t%s\n", "이름", "이메일", "가입일");
 
-    //빈 부분이 없다면 null 체크를 하지 않는 Enhanced for Loop 쓸 수 있다.
-    System.out.printf("%-20s | %10s | %15s\n", "EMAIL", "NAME", "SIGN-IN DATE");
+    Member[] members = new Member[this.objectRepository.size()];
+    this.objectRepository.toArray(members);
+
     for (Member member : members) {
-      System.out.printf("%-20s | %10s | %15s\n", member.email, member.name,
-          member.createdDate);
+      System.out.printf("%-10s\t%30s\t%s\n", member.getName(), member.getEmail(),
+          member.getCreatedDate());
     }
   }
 }
