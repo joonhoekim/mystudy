@@ -26,10 +26,11 @@ public class BoardListHandler extends AbstractMenuHandler {
     Board[] boards = this.objectRepository.toArray(new Board[0]);
 
     for (Board board : boards) {
-      System.out.printf("%-20s\t%10s\t%s\n",
+      System.out.printf("%-20s\t%10s\t%3$tY-%3$tm-%td-%3$tH\n",
           board.getTitle(),
           board.getWriter(),
-          board.getCreatedDate());
+          board.getCreatedDate()
+      );
     }
   }
 }
