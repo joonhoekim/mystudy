@@ -29,19 +29,21 @@ public class AssignmentModifyHandler extends AbstractMenuHandler {
       assignment.setDeadline(
           this.prompt.inputDate("제출 마감일(%s)?(YYYY-MM-DD): ", old.getDeadline()));
       this.objectRepository.set(index, assignment);
-    } catch (NumberFormatException e) {
+    }
+    // 예외 처리를 얼마나 자세히 할 것인지는 선택의 문제.
+    catch (NumberFormatException e) {
       //ArrayList Exception
       //throw new RuntimeException(e);
       System.out.println("숫자를 입력하세요.");
       return;
     } catch (IndexOutOfBoundsException e) {
-      System.out.println("과제번호 유효하지 않음.");
+      System.out.println("유효한 번호가 아니에요.");
       return;
     } catch (IllegalArgumentException e) {
-      System.out.println("마감일제대루입력해주세여요");
+      System.out.println("날짜를 맞게 입력해주세요.");
     } catch (Exception e) {
       //위에서 예외를 캐치하지 못한 경우
-      System.out.println("변경에 실패했습니다. 다시 시도해주세요.");
+      System.out.println("처리에 실패했습니다. 다시 시도해주세요.");
       System.out.println(e);
     }
 

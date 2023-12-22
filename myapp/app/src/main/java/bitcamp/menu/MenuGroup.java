@@ -27,10 +27,16 @@ public class MenuGroup extends AbstractMenu {
         break;
       }
 
-      int menuNo = Integer.parseInt(input);
-      if (menuNo < 1 || menuNo > this.menuSize) {
-        System.out.println("메뉴 번호가 옳지 않습니다.");
-        continue;
+      int menuNo = 0;
+      try {
+        menuNo = Integer.parseInt(input);
+        if (menuNo < 1 || menuNo > this.menuSize) {
+          System.out.println("메뉴 번호가 옳지 않습니다.");
+          continue;
+        }
+      } catch (NumberFormatException e) {
+        //throw new RuntimeException(e);
+        System.out.println("오류: " + e);
       }
 
       this.menus[menuNo - 1].execute(prompt);

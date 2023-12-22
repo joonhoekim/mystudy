@@ -16,6 +16,7 @@ public class AssignmentListHandler extends AbstractMenuHandler {
 
   @Override
   protected void action() {
+    //여긴 예외 뜰 것이 없어보임!
     //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
     System.out.printf("%-20s\t%s\n", "과제", "제출마감일");
 

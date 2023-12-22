@@ -22,8 +22,6 @@ public class BoardDeleteHandler extends AbstractMenuHandler {
     //근데 이것도 문제 생기기 쉽다! 그래서 추상 클래스에서 오버로딩을 이용한다.
 
     int index = this.prompt.inputInt("번호? ");
-    if (this.objectRepository.remove(index) == null) {
-      System.out.println("게시글 번호가 유효하지 않습니다.");
-    }
+    this.objectRepository.remove(index);
   }
 }
