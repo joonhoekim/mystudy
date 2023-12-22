@@ -17,13 +17,19 @@ public class AssignmentAddHandler extends AbstractMenuHandler {
 
   @Override
   protected void action() {
-//    System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
-    //AbstractMenuHandler에 선언된 action() 추상 메서드를 구현한다.
-    Assignment assignment = new Assignment();
-    assignment.setTitle(this.prompt.input("과제명? "));
-    assignment.setContent(this.prompt.input("내용? "));
-    assignment.setDeadline(this.prompt.inputDate("제출 마감일? (YYYY-MM-DD): "));
 
-    this.objectRepository.add(assignment);
+    try {
+//    System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
+      //AbstractMenuHandler에 선언된 action() 추상 메서드를 구현한다.
+      Assignment assignment = new Assignment();
+      assignment.setTitle(this.prompt.input("과제명? "));
+      assignment.setContent(this.prompt.input("내용? "));
+      assignment.setDeadline(this.prompt.inputDate("제출 마감일? (YYYY-MM-DD): "));
+
+      this.objectRepository.add(assignment);
+    } catch (Exception e) {
+      System.out.println("과제입력중오류발생했읍니다. 마감일을제대로입력하시기바랍니다.");
+    }
+
   }
 }

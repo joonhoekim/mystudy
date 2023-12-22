@@ -19,19 +19,31 @@ public class AssignmentModifyHandler extends AbstractMenuHandler {
   protected void action() {
     //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
 
-    int index = this.prompt.inputInt("번호? ");
-    Assignment old = this.objectRepository.get(index);
-    if (old == null) {
-      System.out.println("과제 번호가 유효하지 않습니다.");
+    try {
+      Assignment old;
+      int index = this.prompt.inputInt("번호? ");
+      old = this.objectRepository.get(index);
+      Assignment assignment = new Assignment();
+      assignment.setTitle(this.prompt.input("과제명(%s)? ", old.getTitle()));
+      assignment.setContent(this.prompt.input("내용(%s)? ", old.getContent()));
+      assignment.setDeadline(
+          this.prompt.inputDate("제출 마감일(%s)?(YYYY-MM-DD): ", old.getDeadline()));
+      this.objectRepository.set(index, assignment);
+    } catch (NumberFormatException e) {
+      //ArrayList Exception
+      //throw new RuntimeException(e);
+      System.out.println("숫자를 입력하세요.");
       return;
+    } catch (IndexOutOfBoundsException e) {
+      System.out.println("과제번호 유효하지 않음.");
+      return;
+    } catch (IllegalArgumentException e) {
+      System.out.println("마감일제대루입력해주세여요");
+    } catch (Exception e) {
+      //위에서 예외를 캐치하지 못한 경우
+      System.out.println("변경에 실패했습니다. 다시 시도해주세요.");
+      System.out.println(e);
     }
 
-    Assignment assignment = new Assignment();
-    assignment.setTitle(this.prompt.input("과제명(%s)? ", old.getTitle()));
-    assignment.setContent(this.prompt.input("내용(%s)? ", old.getContent()));
-    assignment.setDeadline(
-        this.prompt.inputDate("제출 마감일(%s)?(YYYY-MM-DD): ", old.getDeadline()));
-
-    this.objectRepository.set(index, assignment);
   }
 }

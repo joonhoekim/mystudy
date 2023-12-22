@@ -76,8 +76,19 @@ public class App {
 
     mainMenu.add(new MenuItem("도움말", new HelpHandler(prompt)));
 
-    mainMenu.execute(prompt);
+    //프로그램을 실행하다가 어느 지점에서 예외가 발생하면 해당 지점에서 적절한 조치를 취하는게 맞다.
+    //다만 혹시라도 적절한 조치를 받지 못하는 예외가 있을 경우 그 예외가 JVM에게 가지 않도록 하기 위해 main()에서도 예외를 처리해줘야 한다.
+    //main()에서도 막지 않으면 JVM에게 보고될 것이고
+    //JVM은 개발자나 알아볼 메세지를 출력하며 종료할 것이고
+    //그러면 클라이언트들은 화가 많이 날 것이다.
+    while (true) {
+      try {
+        mainMenu.execute(prompt);
+        prompt.close();
+      } catch (Exception e) {
+        System.out.println("예외가 발생하였습니다. 잠시 후 다시 시도하시기 바랍니다.");
+      }
+    }
 
-    prompt.close();
   }
 }
