@@ -24,12 +24,15 @@ public class Exam0151 {
 
     @Override
     public boolean equals(Object obj) {
-      if (this == obj)
+      if (this == obj) {
         return true;
-      if (obj == null)
+      }
+      if (obj == null) {
         return false;
-      if (getClass() != obj.getClass())
+      }
+      if (getClass() != obj.getClass()) {
         return false;
+      }
       Student other = (Student) obj;
       return age == other.age && Objects.equals(name, other.name) && working == other.working;
     }
@@ -60,8 +63,7 @@ public class Exam0151 {
     Object[] list = set.toArray();
     for (Object obj : list) {
       Student student = (Student) obj;
-      System.out.printf("%s, %d, %s\n",
-          student.name, student.age, student.working ? "재직중" : "실업중");
+      System.out.printf("%s, %d, %s\n", student.name, student.age, student.working ? "재직중" : "실업중");
     }
 
     // 인스턴스가 다르더라도 인스턴스의 필드 값이 같을 경우
@@ -73,10 +75,5 @@ public class Exam0151 {
   }
 
 }
-
-
-
-
-
 
 

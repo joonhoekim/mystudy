@@ -13,16 +13,7 @@ public interface Spec {
   public abstract void m1();
 
   // 물론 다음과 같이 public 과 abstract를 모두 생략할 수 있다.
-  //  void m1();
+  // void m2();
 }
-
-
-
-
-
-
-
-
-
 
 

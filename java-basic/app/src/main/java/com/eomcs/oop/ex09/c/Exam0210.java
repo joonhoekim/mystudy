@@ -18,11 +18,15 @@ public class Exam0210 {
   class ProtocolImpl implements ProtocolA, ProtocolB {
     // ProtocolA 규칙 준수!
     @Override
-    public void rule1() {System.out.println("rule1()");}
+    public void rule1() {
+      System.out.println("rule1()");
+    }
 
     // ProtocolB 규칙 준수!
     @Override
-    public void rule2() {System.out.println("rule2()");}
+    public void rule2() {
+      System.out.println("rule2()");
+    }
   }
 
   void test() {
@@ -36,21 +40,16 @@ public class Exam0210 {
     // 2) 메서드 호출
     // - 해당 인터페이스의 규칙에 따라서만 호출할 수 있다.
     b.rule2(); // OK
-    //    b.rule1(); // 컴파일 오류!
+    // b.rule1(); // 컴파일 오류!
     System.out.println("-------------------------------");
 
     a.rule1(); // OK!
-    //    a.rule2(); // 컴파일 오류!
+    // a.rule2(); // 컴파일 오류!
   }
 
   public static void main(String[] args) {
     new Exam0210().test();
   }
 }
-
-
-
-
-
 
 

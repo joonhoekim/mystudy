@@ -16,6 +16,7 @@ public class Exam0310 {
 
     Date d3 = new Date(System.currentTimeMillis());
     System.out.println(d3);
+    // System.currentTimeMillis() => 기준시부터 지금까지 지난 밀리초
 
     Date d4 = new Date(123, 0, 19);
     System.out.println(d4);
@@ -23,6 +24,7 @@ public class Exam0310 {
     // java.sql.Date
     java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis());
     System.out.println(d5);
+    // 이 클래스는 위 java.util.Date 의 서브클래스인데 출력이 좀 더 깔끔하다.
 
     // 간접적으로 객체를 생성하기
     java.sql.Date d6 = java.sql.Date.valueOf("2023-1-19");

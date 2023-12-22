@@ -26,20 +26,24 @@ public class Exam0153 {
 
     @Override
     public boolean equals(Object obj) {
-      if (this == obj)
+      if (this == obj) {
         return true;
-      if (obj == null)
+      }
+      if (obj == null) {
         return false;
-      if (getClass() != obj.getClass())
+      }
+      if (getClass() != obj.getClass()) {
         return false;
+      }
       MyKey2 other = (MyKey2) obj;
       return Objects.equals(contents, other.contents);
     }
 
 
   }
+
   public static void main(String[] args) {
-    HashMap<MyKey2,Student> map = new HashMap<>();
+    HashMap<MyKey2, Student> map = new HashMap<>();
 
     MyKey2 k1 = new MyKey2("ok");
     MyKey2 k2 = new MyKey2("no");
@@ -64,6 +68,9 @@ public class Exam0153 {
     // equals() 비교 결과도 true 이기 때문에
     // HashMap 클래스에서는 서로 같은 key라고 간주한다.
 
+    // 위와 같이 같은 값을 가진 키는 같은 해쉬값을 갖게 만들고, equals()에서 true를 받게 하려면
+    // 오버라이딩을 해줘야 한다.
+
     System.out.println(k3 == k6); // 인스턴스는 다르다.
     System.out.printf("k3(%s), k6(%s)\n", k3, k6);
     System.out.println(k3.hashCode()); // hash code는 같다.
@@ -71,10 +78,5 @@ public class Exam0153 {
     System.out.println(k3.equals(k6)); // equals()의 비교 결과도 같다.
   }
 }
-
-
-
-
-
 
 

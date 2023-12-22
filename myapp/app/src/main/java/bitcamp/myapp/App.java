@@ -27,6 +27,10 @@ import java.util.ArrayList;
 public class App {
 
   public static void main(String[] args) throws Exception {
+
+    float f = 9_000_000_000_000_000_000L; //9 * 10^18 ... 2^63
+    int i = 1_000_000_000; // 2.147 * 10^9 ... 2^31
+
     Prompt prompt = new Prompt(System.in);
 
     ArrayList<Board> boardRepository = new ArrayList<>();

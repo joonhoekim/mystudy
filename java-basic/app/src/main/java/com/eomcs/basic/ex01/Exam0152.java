@@ -20,7 +20,7 @@ public class Exam0152 {
   }
 
   public static void main(String[] args) {
-    HashMap<MyKey,Student> map = new HashMap<>();
+    HashMap<MyKey, Student> map = new HashMap<>();
 
     MyKey k1 = new MyKey("ok");
     MyKey k2 = new MyKey("no");
@@ -50,6 +50,7 @@ public class Exam0152 {
     // hashCode()의 리턴 값이 다르고, equals() 비교 결과도 false 라면
     // HashMap 클래스에서는 서로 다른 key로 간주한다.
 
+
     System.out.println(k3 == k6); // 인스턴스는 다르다.
     System.out.printf("k3(%s), k6(%s)\n", k3, k6);
     System.out.println(k3.hashCode()); // hash code는 다르다.
@@ -59,10 +60,5 @@ public class Exam0152 {
   }
 
 }
-
-
-
-
-
 
 

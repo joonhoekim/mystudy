@@ -1,21 +1,17 @@
 // String - mutable vs immutable 객체
-
-// StringBuilder StringBuffer 면접에서 나와서 학습!
-// StringBuffer vs StringBuilder
-
 package com.eomcs.basic.ex02;
 
-public class Exam0161 {
+public class Exam0162 {
   public static void main(String[] args) {
     // StringBuffer 객체는 mutable 객체이다.
     // 인스턴스의 데이터를 변경할 수 있다.
     // 원래의 문자열을 변경하고 싶을 때 사용하는 클래스이다.
     //
-    StringBuilder strBuilder = new StringBuilder("Hello");
-    System.out.println(strBuilder);
+    StringBuffer buf = new StringBuffer("Hello");
+    System.out.println(buf);
 
-    strBuilder.replace(2, 4, "xxxx");// 원본을 바꾼다.
-    System.out.println(strBuilder);
+    buf.replace(2, 4, "xxxx");// 원본을 바꾼다.
+    System.out.println(buf);
 
     // println() 메서드에 넘겨주는 파라미터 값이 String 타입이 아닐 경우,
     // println() 메서드 내부에서 해당 값에 대해 toString() 호출하여

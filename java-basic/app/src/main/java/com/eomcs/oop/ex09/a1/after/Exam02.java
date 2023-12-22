@@ -8,7 +8,7 @@ public class Exam02 {
     work(new JubuWorker());
     work(new WhiteWorker());
 
-    //    work(new HulWorker()); // HulWorker는 공식적으로 Worker 규칙을 따르지 않는다.
+    // work(new HulWorker()); // HulWorker는 공식적으로 Worker 규칙을 따르지 않는다.
     // => 인터페이스에 선언된 메서드를 갖고 있다고 해결될 문제가 아니다.
     // => 반드시 클래스 선언부에 인터페이스를 구현한다고 표시해야 한다.
   }
@@ -16,15 +16,10 @@ public class Exam02 {
   // 작업자에게 일을 시키는 메서드
   static void work(Worker worker) {
     worker.execute();
+    // 파라미터로 Worker 객체를 받는다.
+    // (사실은 Worker 인터페이스를 구현한 클래스의 인스턴스 주소를 가진 레퍼런스 변수를 받는다.)
+    // 말이 너무 길다고 그냥 저래 줄인거다.
   }
 }
-
-
-
-
-
-
-
-
 
 
