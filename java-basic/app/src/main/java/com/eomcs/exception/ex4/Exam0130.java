@@ -26,11 +26,12 @@ public class Exam0130 {
     m4();
   }
 
-  static void m4() /*throws RuntimeException*/ {
+  static void m4() /* throws RuntimeException */ {
     // RuntimeException을 상위 호출자에게 전달할 때는
     // Error 의 경우처럼
     // 굳이 메서드 선언부에 지정하지 않아도 된다.
     throw new RuntimeException("m4()에서 예외 발생!");
+
   }
 
   public static void main(String[] args) {
