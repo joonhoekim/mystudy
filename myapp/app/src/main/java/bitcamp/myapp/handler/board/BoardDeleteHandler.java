@@ -16,11 +16,6 @@ public class BoardDeleteHandler extends AbstractMenuHandler {
 
   @Override
   protected void action() {
-    //이제 추상클래스로 아래 공통 코드의 중복을 해소했음.
-    //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
-    //    super.action(menu);
-    //근데 이것도 문제 생기기 쉽다! 그래서 추상 클래스에서 오버로딩을 이용한다.
-
     int index = this.prompt.inputInt("번호? ");
     this.objectRepository.remove(index);
   }

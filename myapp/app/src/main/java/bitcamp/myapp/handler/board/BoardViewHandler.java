@@ -19,20 +19,11 @@ public class BoardViewHandler extends AbstractMenuHandler {
 
   @Override
   protected void action() {
-    //System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
-    //super.action(menu);
-    //위 문장은, 슈퍼클래스의 기능을 유지한 채로 (앞에서 수행한 다음에) 밑에 기능을 추가한다는 의미
-    //근데, 이 조차도 중복됨...!! 매번 super.action(menu);를 적어야 함.
-    //깜빡했을 때, 그리고 수정할 때 모든 코드를 수정해야 하는 문제가 발생한다!
-
     int index = this.prompt.inputInt("번호? ");
     Board board = this.objectRepository.get(index);
-
     System.out.printf("제목: %s\n", board.getTitle());
     System.out.printf("내용: %s\n", board.getContent());
     System.out.printf("작성자: %s\n", board.getWriter());
-    System.out.printf("작성일: %tY-%1$tm-%1$td\n",
-        board.getCreatedDate()
-    );
+    System.out.printf("작성일: %1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS\n", board.getCreatedDate());
   }
 }

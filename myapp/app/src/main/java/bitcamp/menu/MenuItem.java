@@ -21,17 +21,12 @@ public class MenuItem extends AbstractMenu {
   }
 
   public void execute(Prompt prompt) {
-
-    //여기다가 트라이 캐치 처리하세요!! 그럼 중복 안돼잖아!!
-    //이 객체지향이 너무나도 아릅답다!!!!!!!!!
-    //나는 요거밖에 안배워봤는데 왤케 멋있냐?
-
-    try {
-      if (this.menuHandler != null) {
+    if (this.menuHandler != null) {
+      try {
         this.menuHandler.action(this);
+      } catch (Exception e) {
+        System.out.println("실행 오류!");
       }
-    } catch (Exception e) {
-      System.out.println("예외가 발생했음: " + e);
     }
   }
 }

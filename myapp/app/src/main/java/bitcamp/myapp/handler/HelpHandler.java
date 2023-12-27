@@ -7,11 +7,10 @@ public class HelpHandler extends AbstractMenuHandler {
 
   public HelpHandler(Prompt prompt) {
     super(prompt);
-    //this.objectRepository = objectRepository;
   }
 
   @Override
   protected void action() {
-    //TODO
+    System.out.println("도움말입니다.");
   }
 }
