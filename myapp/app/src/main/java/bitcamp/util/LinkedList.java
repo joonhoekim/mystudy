@@ -1,14 +1,11 @@
 package bitcamp.util;
 
-public class LinkedList<E> {
+import java.util.Arrays;
+
+public class LinkedList<E> extends AbstractList<E> {
 
   private Node<E> first;
   private Node<E> last;
-  private int size;
-
-  public int size() {
-    return size;
-  }
 
   public void add(E value) {
     Node<E> node = new Node<>();
@@ -103,14 +100,14 @@ public class LinkedList<E> {
       throw new IndexOutOfBoundsException("무효한 인덱스입니다.");
     }
 
-    E old = null;
+    Node<E> deleted = null;
 
     if (size == 1) {
-      old = first.value;
+      deleted = first; // 삭제할 노드 보관
       first = last = null;
 
     } else if (index == 0) {
-      old = first.value;
+      deleted = first; // 삭제할 노드 보관
       first = first.next;
 
     } else {
@@ -119,7 +116,7 @@ public class LinkedList<E> {
       while (++cursor < index) {
         currNode = currNode.next;
       }
-      old = currNode.next.value;
+      deleted = currNode.next; // 삭제할 노드 보관
       currNode.next = currNode.next.next;
 
       if (index == (size - 1)) {
@@ -128,33 +125,58 @@ public class LinkedList<E> {
     }
 
     size--;
+
+    E old = deleted.value;
+    deleted.value = null; // 가비지가 되기 전에 다른 객체를 참조하던 것을 제거한다.
+    deleted.next = null; // 가비지가 되기 전에 다른 객체를 참조하던 것을 제거한다.
     return old;
   }
 
-  public boolean remove(E value) { //값 비교해서 찾은다음에 remove(index) 해도 되는데, 훈련을 위해 별도로 작성해보자.
+  public boolean remove(E value) {
     Node prevNode = null;
     Node node = first;
-    Node cursor = first;
 
     while (node != null) {
       if (node.value.equals(value)) {
         break;
       }
+      prevNode = node;
+      node = node.next;
     }
 
     if (node == null) {
       return false;
     }
 
-    if (node == first) { // 찾은 노드가 첫번쨰인 경우
+    if (node == first) {
       first = first.next;
+      if (first == null) {
+        last = null;
+      }
+
     } else {
       prevNode.next = node.next;
     }
 
-    prevNode.next = prevNode.next.next;
     size--;
     return true;
+  }
+
+  public E[] toArray(final E[] arr) {
+    E[] values = arr;
+    if (values.length < size) {
+      values = Arrays.copyOf(arr, size);
+    }
+
+    int i = 0;
+    Node<E> node = first;
+
+    while (node != null) {
+      values[i++] = node.value;
+      node = node.next;
+    }
+
+    return values;
   }
 
   private static class Node<E> {
