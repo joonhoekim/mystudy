@@ -1,5 +1,6 @@
 package bitcamp.menu;
 
+import bitcamp.util.Iterator;
 import bitcamp.util.LinkedList;
 import bitcamp.util.List;
 import bitcamp.util.Prompt;
@@ -58,12 +59,21 @@ public class MenuGroup extends AbstractMenu {
 
   private void printMenu() {
     System.out.printf("[%s]\n", this.getTitle());
-
-    for (int i = 0; i < this.menus.size(); i++) {
-      System.out.printf("%d. %s\n", (i + 1), menus.get(i).getTitle());
+// 아래에 Iterator 디자인패턴 적용하면? 아래와 같이 traverse 가능하다.
+    Iterator<Menu> iterator = this.menus.iterator();
+    int i = 1;
+    while (iterator.hasNext()) {
+      Menu menu = iterator.next();
+      System.out.printf("%d. %s\n", (i++), menu.getTitle());
     }
-
     System.out.printf("0. %s\n", "이전");
+
+// 이터래이터 적용 전
+//    for (int i = 0; i < this.menus.size(); i++) {
+//      System.out.printf("%d. %s\n", (i + 1), menus.get(i).getTitle());
+//    }
+//
+//    System.out.printf("0. %s\n", "이전");
   }
 
   public void add(Menu menu) {
