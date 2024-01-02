@@ -1,9 +1,9 @@
-//static nested class : import static 사용 전
+// static nested class : import static 사용 전
 package com.eomcs.oop.ex11.b;
 
 import com.eomcs.oop.ex11.b.sub.M;
 
-class D {
+class D { // 필드, 메서드, 클래스 모두 스태틱
   static int v1;
 
   static void m1() {}
@@ -14,6 +14,7 @@ class D {
     }
   }
 }
+
 
 public class Exam0410 {
 

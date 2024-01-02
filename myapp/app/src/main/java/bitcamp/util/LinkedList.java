@@ -64,6 +64,11 @@ public class LinkedList<E> extends AbstractList<E> {
     return old;
   }
 
+  @Override
+  public Iterator<E> iterator() {
+    return null;
+  }
+
   public void add(int index, E value) {
     if (index < 0 || index > size) {
       throw new IndexOutOfBoundsException("무효한 인덱스입니다.");
@@ -179,14 +184,58 @@ public class LinkedList<E> extends AbstractList<E> {
     return values;
   }
 
-  @Override
-  public Iterator<E> iterator() {
-    return new LinkedListIterator<E>(this);
-  }
+  //1) 패키지 멤버 클래스로 이터레이터 인터페이스 구현하기
+//  @Override
+//  public Iterator<E> iterator() {
+//    return new LinkedListIterator<E>(this);
+//  }
 
-  private static class Node<E> {
+  //2) 스태틱 중첨 클래스로 Iterator 구현하기
+
+  //2) 스태틱 네스티드 클래스로 이터레이터 인터페이스 구현하기
+
+  //람다문법: 추상메서드만 딱 하나 있는 인터페이스 -> Function Interface (함수같은 인터페이스)
+  //람다문법은 익명 클래스를 사용한 로컬 클래스 다음으로 발전한 개념
+
+//  @Override
+//  public Iterator<E> iterator() {
+//    return new IteratorImpl<>(this);
+//  }
+//
+//  private static class Node<E> {
+//
+//    E value;
+//    Node<E> next;
+//  }
+//
+//  public class IteratorImpl<E> implements Iterator<E> {
+//
+//    LinkedList<E> list;
+//    int cursor;
+//
+//    public IteratorImpl(LinkedList<E> list) {
+//      this.list = list;
+//    }
+//
+//    @Override
+//    public boolean hasNext() {
+//      return cursor >= 0 && cursor < list.size();
+//    }
+//
+//    @Override
+//    public E next() {
+//      return list.get(cursor++);
+//    }
+//  }
+
+  //3) Non-static Nested Class
+
+  //저장 옵션 바꾸기 뭐해서 일단 여기 둡니다..
+  private class Node<E> {
 
     E value;
     Node<E> next;
   }
+
+
 }
