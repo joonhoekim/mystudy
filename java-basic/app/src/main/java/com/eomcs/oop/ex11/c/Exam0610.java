@@ -4,19 +4,28 @@ package com.eomcs.oop.ex11.c;
 class G {
   int v1 = 1;
   int v2 = 2;
-  int v3 = 3; 
+  int v3 = 3;
 
-  class X {
+  class X { // inner class
     int v1 = 10;
     int v2 = 20;
 
+    // 이렇게 변환된다.
+    G this$0;
+
+    X(G obj) {
+      this$0 = obj;
+    }
+    // 이렇게 변환된다.
+
     void m1(int v1) {
 
-      // 중첩 클래스의 메서드에서 필드를 사용하기 
+      // 중첩 클래스의 메서드에서 필드를 사용하기
       System.out.println("G 객체:");
       System.out.printf("G.this.v1 = %d\n", G.this.v1);
       System.out.printf("G.this.v2 = %d\n", G.this.v2);
       System.out.printf("G.this.v3 = %d\n", G.this.v3);
+      System.out.printf("G.this.v3 = %d\n", this$0.v3);
 
       System.out.println("-------------------------");
 
@@ -35,6 +44,7 @@ class G {
     }
   }
 }
+
 
 public class Exam0610 {
 

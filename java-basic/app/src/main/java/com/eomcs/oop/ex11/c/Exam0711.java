@@ -1,10 +1,13 @@
-// inner class 응용 I : 1단계 - 스태틱 중첩 클래스 사용 
+// inner class 응용 I : 1단계 - 스태틱 중첩 클래스 사용
 package com.eomcs.oop.ex11.c;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Exam0711 {
+
+
+  // 실무 개발같은 느낌이 드는 예제다
 
   public static void main(String[] args) {
     Musics1 m1 = new Musics1();
@@ -16,8 +19,8 @@ public class Exam0711 {
     m2.add("xxx.mp3");
     m2.add("yyy.mp3");
 
-    // Player가 사용할 Musics 객체를 넘기기 위해 
-    // 개발자가 직접 해당 생성자를 호출해 줘야 한다. 
+    // Player가 사용할 Musics 객체를 넘기기 위해
+    // 개발자가 직접 해당 생성자를 호출해 줘야 한다.
     Musics1.Player p1 = new Musics1.Player(m1);
     Musics1.Player p2 = new Musics1.Player(m2);
 
@@ -46,7 +49,7 @@ class Musics1 {
     // 다음과 같이 바깥 클래스의 인스턴스 주소를 저장하는 변수를 개발자가 직접 선언해 줘야 한다.
     Musics1 musics;
 
-    // 또한 바깥 클래스의 인스턴스 주소를 받는 파라미터를 
+    // 또한 바깥 클래스의 인스턴스 주소를 받는 파라미터를
     // 개발자가 직접 생성자에 선언해 줘야 한다.
     public Player(Musics1 musics) {
       this.musics = musics;
