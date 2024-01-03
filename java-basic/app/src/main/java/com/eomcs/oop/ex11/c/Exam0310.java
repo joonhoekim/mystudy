@@ -6,7 +6,8 @@ class C {
   static void m1() {
     // this. 가 생략된 경우다. 스태틱은 this 못쓰니 이런 거 불가
     // this. 가 생략된다는 걸 모르면 암기해야 하는 고통이 생긴다!!!!
-    X x = new X();
+    // X x = new X();
+    // X x = this.new X();
 
 
     // 스태틱 멤버는 인스턴스 멤버를 사용할 수 없다.
@@ -33,7 +34,8 @@ class C {
 
     obj.test();
 
-    X obj2 = new X(); // 인스턴스 필드나 메서드와 마찬가지로 this를 생략할 수 있다.
+    // X obj2 = new X(); // 인스턴스 필드나 메서드와 마찬가지로 this를 생략할 수 있다.
+    X obj2 = this.new X(); // 인스턴스 필드나 메서드와 마찬가지로 this를 생략할 수 있다.
     obj2.test();
   }
 

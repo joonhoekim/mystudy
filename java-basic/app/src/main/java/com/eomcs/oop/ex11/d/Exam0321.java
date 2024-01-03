@@ -17,15 +17,16 @@ class D2 {
         System.out.printf("v1 = %d\n", D2.this.v1); // D2의 인스턴스 변수
 
         // 바깥 메서드의 로컬 변수를 사용할 때는
-        // 자신의 변수인양 사용하면 된다.
+        // 자신의 변수인양 사용하면 된다. (개별 필드)
         System.out.printf("v2 = %d\n", v2); // D2.m1()의 로컬 변수
       }
     }
 
-    X obj = new X();
+    X obj = new X(); // ==> X obj = new X(this, v2);
     obj.f();
   }
 }
+
 
 public class Exam0321 {
 

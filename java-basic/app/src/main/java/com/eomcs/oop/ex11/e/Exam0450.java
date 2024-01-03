@@ -11,6 +11,7 @@ class My {
   }
 }
 
+
 public class Exam0450 {
   // 인터페이스의 경우 static으로 선언하지 않아도 스태틱 멤버에서 사용할 수 있다.
   interface A {
@@ -50,12 +51,26 @@ public class Exam0450 {
     return () -> System.out.println("Hello3!");
   }
 
+  static A createLambda() {
+    return () -> {
+      System.out.println("Hello3!");
+    };
+  }
+
+  // 인터페이스에서 추상 메서드가 단 하나만 있을 때, 함수와 같은 인터페이스라고 하여
+  // functional interface라고 하는데
+  // functional interface인 경우에는 람다문법을 쓸 수 있다.
+
   static A create4() {
     return My::m1;
   }
+  // 컴파일러는 위 문장을 다음과 같이 바꾼다.
+  // return () -> My.m1();
 
   static A create5() {
     return new My()::m2;
+    // 이게 메서드 레퍼런스라고 한다.
+    // return () -> new My().m2;
   }
 
   public static void main(String[] args) {

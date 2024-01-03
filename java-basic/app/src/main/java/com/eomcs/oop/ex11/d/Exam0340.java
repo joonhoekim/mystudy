@@ -26,14 +26,17 @@ public class Exam0340 {
     class A implements Runner {
       // 컴파일러는 바깥 클래스의 객체 주소를 받을 필드는 추가한다.
       // 또한 바깥 클래스의 객체 주소를 받는 생성자를 추가한다.
-      /*
-       * Exam0340 outer; // 바깥 클래스의 주소를 받을 필드
-       *
-       * String paramName; // run() 메서드에서 사용할 로컬 변수을 값을 받을 필드
-       *
-       * public A(Exam0365 obj, String str) { outer = obj; paramName = str;}
-       *
-       */
+
+      Exam0340 outer; // 바깥 클래스의 주소를 받을 필드
+
+      String paramName; // run() 메서드에서 사용할 로컬 변수을 값을 받을 필드
+
+      public A(Exam0365 obj, String str) {
+        outer = obj;
+        paramName = str;
+      }
+
+
 
       @Override
       public void run() {

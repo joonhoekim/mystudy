@@ -7,6 +7,7 @@ import java.util.List;
 public class Exam0713 {
 
   public static void main(String[] args) {
+    Player ppp;
     Musics3 m1 = new Musics3();
     m1.add("aaa.mp3");
     m1.add("bbb.mp3");

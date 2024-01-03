@@ -5,18 +5,18 @@ class D22 {
   int v1 = 1;
 
   void m1() {
-    //    int v1 = 10;
+    int v1 = 10;
 
     class X {
-      //      int v1 = 100;
+      int v1 = 100;
 
       void f() {
-        //        int v1 = 1000;
+        // int v1 = 1000;
         System.out.printf("v1 = %d\n", v1);
         // this 를 생략하면 다음 순서로 변수를 찾는다.
         // 1) 로컬 변수
         // 2) 인스턴스 변수
-        // 3) 메서드에 선언된 로컬 변수
+        // 3) 메서드에 선언된 로컬 변수 << 요것이 추가됐다!
         // 4) 바깥 클래스의 인스턴스 변수 또는 스태틱 변수
       }
     }
@@ -25,6 +25,7 @@ class D22 {
     obj.f();
   }
 }
+
 
 public class Exam0322 {
 

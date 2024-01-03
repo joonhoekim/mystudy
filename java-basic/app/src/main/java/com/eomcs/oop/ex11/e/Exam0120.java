@@ -17,6 +17,13 @@ public class Exam0120 {
       }
     }
 
+    // A obj2 = new A() {
+    // @Override
+    // public void print() {
+    // System.out.println("Hello!");
+    // }
+    // };
+
     A obj = new My();
     obj.print();
   }

@@ -14,4 +14,20 @@ public class Exam0410 {
       System.out.println("Hello!");
     }
   };
+
 }
+
+// 컴파일 할 때 위의 문장은 다음의 문장으로 변환된다.
+// static class Exam0410$1 extends A {
+
+// @Override
+// public void print() {
+// System.out.println("Hello!");
+// }
+// }
+// A obj;
+// int v1;
+
+// static {
+// this.obj= new Exam0410$1();
+// }

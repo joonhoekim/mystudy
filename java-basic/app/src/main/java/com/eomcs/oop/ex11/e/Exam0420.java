@@ -15,3 +15,19 @@ public class Exam0420 {
     }
   };
 }
+
+// 컴파일 할 때 위의 문장은 다음의 문장으로 변환된다.
+// class Exam0410$1 extends A {
+// 아우터클래스 주소를 위한 레퍼런스 변수
+
+// @Override
+// public void print() {
+// System.out.println("Hello!");
+// }
+// }
+// A obj;
+// int v1;
+
+// static {
+// this.obj= new Exam0410$1( this );
+// }

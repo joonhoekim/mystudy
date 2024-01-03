@@ -25,6 +25,7 @@ class G {
       System.out.printf("G.this.v1 = %d\n", G.this.v1);
       System.out.printf("G.this.v2 = %d\n", G.this.v2);
       System.out.printf("G.this.v3 = %d\n", G.this.v3);
+      // 위 코드는 바깥클래스 주소받아 사용하는 문법이니 아래랑 같은거다. (구현체마다 다를 수 있음)
       System.out.printf("G.this.v3 = %d\n", this$0.v3);
 
       System.out.println("-------------------------");
