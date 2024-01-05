@@ -3,12 +3,17 @@ package bitcamp.myapp.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Member implements Serializable {
+public class Member implements Serializable, CsvString {
 
   private String email;
   private String name;
   private String password;
   private Date createdDate;
+
+  @Override
+  public String toCsvString() {
+    return String.format("%s,%s,%s,%s", email, name, password, createdDate.getTime());
+  }
 
   public String getEmail() {
     return email;

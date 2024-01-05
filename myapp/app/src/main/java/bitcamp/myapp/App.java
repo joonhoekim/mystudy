@@ -19,14 +19,13 @@ import bitcamp.myapp.handler.member.MemberModifyHandler;
 import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.myapp.vo.Assignment;
 import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.CsvString;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,24 +125,15 @@ public class App {
     return new ArrayList<E>(); //여기서 ArrayList, LinkedList 고정해버리는 것은 좋지 않다!!
   }
 
-//  <E> void loadData(String filepath, List<E> dataList) {
-//    try (ObjectInputStream in = new ObjectInputStream(
-//        new BufferedInputStream(new FileInputStream(filepath)))) {
-//
-//      List<E> list = (List<E>) in.readObject();
-//      dataList.addAll(list);
-//
-//    } catch (Exception e) {
-//      System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
-//      e.printStackTrace();
-//    }
-//  }
+  void saveData(String filepath,
+      List<? extends CsvString> dataList) { //아주 직관적이고 좋은 문법. 근데 implements는 안쓰고 extends로 통일함. 인터페이스 구현, 클래스 상속 모두 동일하게 extends로 조건 표현함
+    try (
+        FileWriter out = new FileWriter(filepath)
+    ) {
 
-  void saveData(String filepath, List<?> dataList) {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new BufferedOutputStream(new FileOutputStream(filepath)))) {
-
-      out.writeObject(dataList); //통째로 쓰기
+      for (CsvString csvObject : dataList) {
+        out.write(csvObject.toCsvString() + '\n');
+      }
 
     } catch (Exception e) {
       System.out.printf("%s 데이터 저장 중 오류 발생!\n", filepath);

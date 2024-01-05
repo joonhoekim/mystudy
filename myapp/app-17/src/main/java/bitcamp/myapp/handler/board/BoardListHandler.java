@@ -1,6 +1,5 @@
 package bitcamp.myapp.handler.board;
 
-
 import bitcamp.menu.Menu;
 import bitcamp.menu.MenuHandler;
 import bitcamp.myapp.vo.Board;
