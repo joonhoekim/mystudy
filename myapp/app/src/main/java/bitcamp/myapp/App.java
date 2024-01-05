@@ -1,9 +1,5 @@
 package bitcamp.myapp;
 
-import bitcamp.io.BufferedDataInputStream;
-import bitcamp.io.BufferedDataOutputStream;
-import bitcamp.io.DataInputStream;
-import bitcamp.io.DataOutputStream;
 import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.handler.HelpHandler;
 import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
@@ -25,7 +21,14 @@ import bitcamp.myapp.vo.Assignment;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
-import java.sql.Date;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,20 +107,16 @@ public class App {
   }
 
   void loadAssignment() {
-    try (BufferedDataInputStream in = new BufferedDataInputStream("assignment.data")) {
+    try (FileInputStream in0 = new FileInputStream("assignment.data");
+        BufferedInputStream in1 = new BufferedInputStream(in0);
+        ObjectInputStream in = new ObjectInputStream(in1)) {
 
-      long start = System.currentTimeMillis();
       int size = in.readInt();
 
       for (int i = 0; i < size; i++) {
-        Assignment assignment = new Assignment();
-        assignment.setTitle(in.readUTF());
-        assignment.setContent(in.readUTF());
-        assignment.setDeadline(Date.valueOf(in.readUTF()));
+        Assignment assignment = (Assignment) in.readObject();
         assignmentRepository.add(assignment);
       }
-      long end = System.currentTimeMillis();
-      System.out.printf("걸린 시간: %d\n", end - start);
 
     } catch (Exception e) {
       System.out.println("과제 데이터 로딩 중 오류 발생!");
@@ -126,18 +125,15 @@ public class App {
   }
 
   void saveAssignment() {
-    try (BufferedDataOutputStream out = new BufferedDataOutputStream("assignment.data")) {
-      long start = System.currentTimeMillis();
+    try (FileOutputStream out0 = new FileOutputStream("assignment.data");
+        BufferedOutputStream out1 = new BufferedOutputStream(out0);
+        ObjectOutputStream out = new ObjectOutputStream(out1)) {
+
       out.writeInt(assignmentRepository.size());
 
       for (Assignment assignment : assignmentRepository) {
-        out.writeUTF(assignment.getTitle());
-        out.writeUTF(assignment.getContent());
-        out.writeUTF(assignment.getDeadline().toString());
+        out.writeObject(assignment);
       }
-
-      long end = System.currentTimeMillis();
-      System.out.printf("걸린 시간: %d\n", end - start);
 
     } catch (Exception e) {
       System.out.println("과제 데이터 저장 중 오류 발생!");
@@ -146,10 +142,13 @@ public class App {
   }
 
   void loadMember() {
-    try (DataInputStream in = new DataInputStream("member.data")) {
+    try (DataInputStream in = new DataInputStream(
+        new BufferedInputStream(new FileInputStream("member.data")))) {
       int size = in.readShort();
 
-      for (int i = 0; i < size; i++) {
+      for (
+          int i = 0;
+          i < size; i++) {
         Member member = new Member();
         member.setName(in.readUTF());
         member.setEmail(in.readUTF());
@@ -164,7 +163,8 @@ public class App {
   }
 
   void saveMember() {
-    try (DataOutputStream out = new DataOutputStream("member.data")) {
+    try (DataOutputStream out = new DataOutputStream(
+        new BufferedOutputStream(new FileOutputStream("member.data")))) {
 
       out.writeShort(memberRepository.size());
 
@@ -182,7 +182,8 @@ public class App {
   }
 
   void loadBoard() {
-    try (DataInputStream in = new DataInputStream("board.data")) {
+    try (DataInputStream in = new DataInputStream(
+        new BufferedInputStream(new FileInputStream("board.data")))) {
       int size = in.readShort();
 
       for (int i = 0; i < size; i++) {
@@ -200,7 +201,8 @@ public class App {
   }
 
   void saveBoard() {
-    try (DataOutputStream out = new DataOutputStream("board.data")) {
+    try (DataOutputStream out = new DataOutputStream(
+        new BufferedOutputStream(new FileOutputStream("board.data")))) {
 
       out.writeShort(boardRepository.size());
 
@@ -218,7 +220,8 @@ public class App {
   }
 
   void loadGreeting() {
-    try (DataInputStream in = new DataInputStream("greeting.data")) {
+    try (DataInputStream in = new DataInputStream(
+        new BufferedInputStream(new FileInputStream("greeting.data")))) {
       int size = in.readShort();
 
       for (int i = 0; i < size; i++) {
@@ -236,7 +239,8 @@ public class App {
   }
 
   void saveGreeting() {
-    try (DataOutputStream out = new DataOutputStream("greeting.data")) {
+    try (DataOutputStream out = new DataOutputStream(
+        new BufferedOutputStream(new FileOutputStream("greeting.data")))) {
 
       out.writeShort(greetingRepository.size());
 
