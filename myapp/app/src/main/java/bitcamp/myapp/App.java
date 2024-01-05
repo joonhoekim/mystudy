@@ -37,19 +37,21 @@ public class App {
 
   Prompt prompt = new Prompt(System.in);
 
-  List<Board> boardRepository = new LinkedList<>();
-  List<Assignment> assignmentRepository = new LinkedList<>();
+  List<Board> boardRepository;
+  List<Assignment> assignmentRepository;
   List<Member> memberRepository = new ArrayList<>();
   List<Board> greetingRepository = new ArrayList<>();
 
   MenuGroup mainMenu;
 
   App() {
-    prepareMenu();
+
     loadAssignment();
     loadMember();
     loadBoard();
     loadGreeting();
+    prepareMenu();
+
   }
 
   public static void main(String[] args) throws Exception {
@@ -111,14 +113,10 @@ public class App {
         BufferedInputStream in1 = new BufferedInputStream(in0);
         ObjectInputStream in = new ObjectInputStream(in1)) {
 
-      int size = in.readInt();
-
-      for (int i = 0; i < size; i++) {
-        Assignment assignment = (Assignment) in.readObject();
-        assignmentRepository.add(assignment);
-      }
+      assignmentRepository = (List<Assignment>) in.readObject();
 
     } catch (Exception e) {
+      assignmentRepository = new LinkedList<>();
       System.out.println("과제 데이터 로딩 중 오류 발생!");
       e.printStackTrace();
     }
@@ -129,11 +127,12 @@ public class App {
         BufferedOutputStream out1 = new BufferedOutputStream(out0);
         ObjectOutputStream out = new ObjectOutputStream(out1)) {
 
-      out.writeInt(assignmentRepository.size());
-
-      for (Assignment assignment : assignmentRepository) {
-        out.writeObject(assignment);
-      }
+      out.writeObject(assignmentRepository); //통째로 쓰기
+//      out.writeInt(assignmentRepository.size());
+//
+//      for (Assignment assignment : assignmentRepository) {
+//        out.writeObject(assignment);
+//      }
 
     } catch (Exception e) {
       System.out.println("과제 데이터 저장 중 오류 발생!");
@@ -182,57 +181,37 @@ public class App {
   }
 
   void loadBoard() {
-    try (DataInputStream in = new DataInputStream(
+    try (ObjectInputStream in = new ObjectInputStream(
         new BufferedInputStream(new FileInputStream("board.data")))) {
-      int size = in.readShort();
+      boardRepository = (List<Board>) in.readObject();
 
-      for (int i = 0; i < size; i++) {
-        Board board = new Board();
-        board.setTitle(in.readUTF());
-        board.setContent(in.readUTF());
-        board.setWriter(in.readUTF());
-        board.setCreatedDate(new java.util.Date(in.readLong()));
-        boardRepository.add(board);
-      }
     } catch (Exception e) {
+
       System.out.println("게시글 데이터 로딩 중 오류 발생!");
       e.printStackTrace();
     }
   }
 
   void saveBoard() {
-    try (DataOutputStream out = new DataOutputStream(
+    try (ObjectOutputStream out = new ObjectOutputStream(
         new BufferedOutputStream(new FileOutputStream("board.data")))) {
+      out.writeObject(assignmentRepository); //통째로 쓰기
 
-      out.writeShort(boardRepository.size());
-
-      for (Board board : boardRepository) {
-        out.writeUTF(board.getTitle());
-        out.writeUTF(board.getContent());
-        out.writeUTF(board.getWriter());
-        out.writeLong(board.getCreatedDate().getTime());
-      }
 
     } catch (Exception e) {
+      boardRepository = new ArrayList<>();
       System.out.println("게시글 데이터 저장 중 오류 발생!");
       e.printStackTrace();
     }
   }
 
   void loadGreeting() {
-    try (DataInputStream in = new DataInputStream(
+    try (ObjectInputStream in = new ObjectInputStream(
         new BufferedInputStream(new FileInputStream("greeting.data")))) {
-      int size = in.readShort();
+      greetingRepository = (LinkedList<Board>) in.readObject();
 
-      for (int i = 0; i < size; i++) {
-        Board board = new Board();
-        board.setTitle(in.readUTF());
-        board.setContent(in.readUTF());
-        board.setWriter(in.readUTF());
-        board.setCreatedDate(new java.util.Date(in.readLong()));
-        greetingRepository.add(board);
-      }
     } catch (Exception e) {
+      greetingRepository = new LinkedList<>();
       System.out.println("가입인사 데이터 로딩 중 오류 발생!");
       e.printStackTrace();
     }
