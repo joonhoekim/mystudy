@@ -21,15 +21,15 @@ import bitcamp.myapp.vo.Assignment;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
-import com.google.gson.Gson;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.lang.reflect.Method;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class App {
 
@@ -43,10 +43,14 @@ public class App {
   MenuGroup mainMenu;
 
   App() {
-    assignmentRepository = loadData("assignment.csv", Assignment.class);
-    memberRepository = loadData("member.csv", Member.class);
-    boardRepository = loadData("board.csv", Board.class);
-    greetingRepository = loadData("greeting.csv", Board.class);
+//    loadData("assignment.data", assignmentRepository);
+//    loadData("member.data", memberRepository);
+//    loadData("board.data", boardRepository);
+//    loadData("greeting.data", greetingRepository);
+    assignmentRepository = loadData("assignment.data");
+    memberRepository = loadData("member.data");
+    boardRepository = loadData("board.data");
+    greetingRepository = loadData("greeting.data");
     prepareMenu();
   }
 
@@ -98,53 +102,43 @@ public class App {
         System.out.println("예외 발생!");
       }
     }
-    saveData("assignment.csv", assignmentRepository);
-    saveData("member.csv", memberRepository);
-    saveData("board.csv", boardRepository);
-    saveData("greeting.csv", greetingRepository);
+    saveData("assignment.data", assignmentRepository);
+    saveData("member.data", memberRepository);
+    saveData("board.data", boardRepository);
+    saveData("greeting.data", greetingRepository);
   }
 
+//  <E> void loadData(String filepath, List<E> dataList) {
+//    try (ObjectInputStream in = new ObjectInputStream(
+//        new BufferedInputStream(new FileInputStream(filepath)))) {
+//
+//      List<E> list = (List<E>) in.readObject();
+//      dataList.addAll(list);
+//
+//    } catch (Exception e) {
+//      System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
+//      e.printStackTrace();
+//    }
+//  }
 
-  <E> List<E> loadData(String filepath, Class<E> clazz) {
-    ArrayList<E> list = new ArrayList<>();
+  <E> List<E> loadData(String filepath) {
+    try (ObjectInputStream in = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(filepath)))) {
 
-    try (Scanner in = new Scanner(new FileReader(filepath))) {
-      //리플렉션의 사용방법...
-      // 1)클래스정보를 Class<E> clazz로 가져와서 Factory Method 또는 생성자를 알아낼 수 있다.
-      //Constructor<E> constructor = clazz.getConstructor();
-      Method factoryMethod = clazz.getMethod("createFromCsv", String.class);
-
-      System.out.println(clazz.getName());
-      try {
-        while (true) {
-          // 2) 생성자를 가지고 인스턴스를 생성한다.
-
-          E obj = (E) factoryMethod.invoke(null, in.nextLine());
-
-          // 3) 생선한 객체를 List에 저장한다. 복잡하기도 하지만 대단한걸...
-          // 예전에 이걸 어떻게 했지요? 싶은 걸 이렇게 하는 거였구나.
-          list.add(obj);
-        }
-      } catch (NoSuchElementException e) {
-
-        System.out.printf("%s loaded successfully\n", filepath);
-      }
+      return (List<E>) in.readObject();
 
     } catch (Exception e) {
       System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
-
+      e.printStackTrace();
     }
-    return list;
+    return new ArrayList<E>();
   }
 
-
   void saveData(String filepath, List<?> dataList) {
-    try (FileWriter out = new FileWriter(filepath)) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(new FileOutputStream(filepath)))) {
 
-      Gson gson = new Gson();
-      String gsonData = gson.toJson(dataList);
-      System.out.println(gsonData);
-      System.out.println("--------------------------");
+      out.writeObject(dataList);
 
     } catch (Exception e) {
       System.out.printf("%s 파일 저장 중 오류 발생!\n", filepath);

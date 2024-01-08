@@ -5,22 +5,9 @@ import java.sql.Date;
 
 public class Assignment implements Serializable {
 
-  private static final long serialVersionUID = 100L;
-
   private String title;
   private String content;
   private Date deadline;
-
-  //Factory Method
-  //이 메서드가 여기 있는것도 GRASP-Information Expert
-  public static Assignment createFromCsv(String csv) {
-    String[] values = csv.split(",");
-    Assignment obj = new Assignment();
-    obj.setTitle(values[0]);
-    obj.setContent(values[1]);
-    obj.setDeadline(Date.valueOf(values[2]));
-    return obj;
-  }
 
   public String getTitle() {
     return title;
