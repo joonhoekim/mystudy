@@ -1,4 +1,5 @@
 // 객체 --> JSON 문자열 : 다양한 타입의 객체를 목록에 포함하는 경우
+// 리스트는 어떤 객체인지 신경쓰지 않는다.
 package com.eomcs.openapi.json.gson;
 
 import java.sql.Date;
@@ -34,4 +35,3 @@ public class Exam0610 {
     System.out.println(jsonStr);
   }
 }
-

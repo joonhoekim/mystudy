@@ -11,10 +11,9 @@ public class Assignment implements Serializable {
   private String content;
   private Date deadline;
 
-  //Factory Method
-  //이 메서드가 여기 있는것도 GRASP-Information Expert
+  // 팩토리 메서드
   public static Assignment createFromCsv(String csv) {
-    String[] values = csv.split(",");
+    String[] values = csv.split(","); // "aaa,aaaa,2023-01-01" ==> {"aaa","aaaa","2023-1-1"}
     Assignment obj = new Assignment();
     obj.setTitle(values[0]);
     obj.setContent(values[1]);

@@ -16,6 +16,7 @@ public class Exam0110 {
     m.setPhoto("hong.gif");
     m.setTel("010-2222-1111");
     m.setRegisteredDate(new Date(System.currentTimeMillis()));
+    m.setSchool(new School("학사", "비트대학교"));
 
     // 2) JSON 처리 객체 준비
     ObjectMapper mapper = new ObjectMapper();
@@ -29,14 +30,12 @@ public class Exam0110 {
 
 // JSON 객체 형식 - { 객체 정보 }
 // => { "프로퍼티명" : 값, "프로퍼티명": 값, ...}
-// 
+//
 // 값:
 // - 문자열 => "값"
-// - 숫자   => 값
-// - 논리   => true, false
+// - 숫자 => 값
+// - 논리 => true, false
 //
 // 프로퍼티명은 반드시 문자열로 표현해야 한다.
-
-
 
 

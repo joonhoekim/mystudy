@@ -9,7 +9,8 @@ import com.google.gson.reflect.TypeToken;
 public class Exam0320 {
   public static void main(String[] args) {
 
-    String jsonStr = "[{\"no\":101,\"name\":\"홍길동\"},{\"no\":102,\"name\":\"임꺽정\"},{\"no\":103,\"name\":\"안창호\"}]";
+    String jsonStr =
+        "[{\"no\":101,\"name\":\"홍길동\"},{\"no\":102,\"name\":\"임꺽정\"},{\"no\":103,\"name\":\"안창호\"}]";
 
     // 1) TypeToken 클래스의 서브 클래스를 만든다.
     class MyTypeToken extends TypeToken<Collection<Member>> {
@@ -19,6 +20,8 @@ public class Exam0320 {
       // 타입 파라미터에 컬렉션 타입을 전달하는 목적 이외에는 다른 이유가 없다.
       // 그래서 서브 클래스에 뭔가를 추가할 필요가 없다.
     }
+
+    // 아래는 Reflection Class 를 이용한 것이다.
 
     // 2) TypeToken 객체 준비
     MyTypeToken typeToken = new MyTypeToken();
@@ -31,11 +34,10 @@ public class Exam0320 {
 
     for (Member m : list) {
       System.out.println(m);
+
+
     }
   }
 }
-
-
-
 
 

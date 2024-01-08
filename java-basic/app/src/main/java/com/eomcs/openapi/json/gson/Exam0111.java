@@ -20,14 +20,17 @@ public class Exam0111 {
 
     // 2) JSON 처리 객체 준비
 
-    //    GsonBuilder builder = new GsonBuilder();
-    //    builder.setDateFormat("yyyy-MM-dd");
-    //    Gson gson = builder.create();
+    // GsonBuilder builder = new GsonBuilder();
+    // builder.setDateFormat("yyyy-MM-dd");
+    // Gson gson = builder.create();
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     // 3) 객체의 값을 JSON 문자열로 얻기
     String jsonStr = gson.toJson(m);
+    // OMG reflectionAPI 이용하여 get/set으로 시작하는 메서드 가져와서
+    // 그렇게 게터로 가져와서 json으로 만든다...!!
+    // 변수의 이름까지도 가져온다~
 
     System.out.println(jsonStr);
   }
@@ -38,11 +41,9 @@ public class Exam0111 {
 //
 // 값:
 // - 문자열 => "값"
-// - 숫자   => 값
-// - 논리   => true, false
+// - 숫자 => 값
+// - 논리 => true, false
 //
 // 프로퍼티명은 반드시 문자열로 표현해야 한다.
-
-
 
 

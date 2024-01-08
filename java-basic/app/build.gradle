@@ -54,8 +54,13 @@ repositories {
 
 
 dependencies {
+
+	// Jackson Databind Libs
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
 	// JSON Libs
  	implementation 'com.google.code.gson:gson:2.10.1'
+ 	
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 
@@ -63,6 +68,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:32.1.1-jre'
+    
+    
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

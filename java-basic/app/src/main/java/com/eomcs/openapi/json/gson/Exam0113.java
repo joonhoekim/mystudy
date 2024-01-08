@@ -26,6 +26,9 @@ public class Exam0113 {
     m.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     // 2) JSON 처리 객체 준비
+    // 마침 JsonSerializer는 추상메서드가 하나인 인터페이스기에 적용가능할 줄 알았는데
+    // registerTypeAdapter에서 파라미터로 Object가 있기 때문에 functionable 하지 않다.
+
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     GsonBuilder builder = new GsonBuilder();
     builder.registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
@@ -49,11 +52,9 @@ public class Exam0113 {
 //
 // 값:
 // - 문자열 => "값"
-// - 숫자   => 값
-// - 논리   => true, false
+// - 숫자 => 값
+// - 논리 => true, false
 //
 // 프로퍼티명은 반드시 문자열로 표현해야 한다.
-
-
 
 
