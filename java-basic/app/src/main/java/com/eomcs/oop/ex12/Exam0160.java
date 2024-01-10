@@ -6,30 +6,58 @@ public class Exam0160 {
     void print();
   }
 
+  // 아래를 다시 익명클래스로 바꿀 수 있어야
   // 스태틱 필드
-  static A obj1 = () -> System.out.println("스태틱 필드");
+  // static A obj1 = () -> System.out.println("스태틱 필드");
+  //
+  // //인스턴스 필드
+  // A obj2 = () -> System.out.println("인스턴스 필드");
+  //
+  // public static void main(final String[] args) {
+  //
+  // // 로컬 변수
+  // A obj3 = () -> System.out.println("로컬 변수!");
+  //
+  // // 파라미터
+  // m1(() -> System.out.println("파라미터"));
+  //
+  // // 리턴 값
+  // A obj4 = m2();
+  // }
+  //
+  // static void m1(final A obj) {
+  // obj.print();
+  // }
+  //
+  // static A m2() {
+  // // 리턴 문장
+  // return () -> System.out.println("리턴 문장");
+  // }
 
-  //인스턴스 필드
-  A obj2 = () -> System.out.println("인스턴스 필드");
+  static A obj1=new A(){@Override public void print(){System.out.println("스태틱 필드");}};
+
+  // 인스턴스 필드
+  A obj2 = new A() { public void print(){{ System.out.println("인스턴스 필드");}};
 
   public static void main(final String[] args) {
 
     // 로컬 변수
-    A obj3 = () -> System.out.println("로컬 변수!");
+    A obj3 = new A() { public void print () { System.out.println("로컬 변수!");}};
 
     // 파라미터
-    m1(() -> System.out.println("파라미터"));
+    m1(new A() {public void print() { System.out.println("파라미터");}});
 
     // 리턴 값
-    A obj4 = m2();
+  A obj4 = m2();
   }
 
   static void m1(final A obj) {
     obj.print();
   }
 
-  static A m2() {
-    // 리턴 문장
-    return () -> System.out.println("리턴 문장");
-  }
-}
+static A m2() {
+  // 리턴 문장
+  return () -> System.out.println("리턴 문장");
+};
+
+

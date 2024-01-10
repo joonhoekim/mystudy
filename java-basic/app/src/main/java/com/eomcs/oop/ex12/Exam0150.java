@@ -8,6 +8,39 @@ public class Exam0150 {
   }
 
   public static void main(String[] args) {
+
+    // 익명클래스 생성
+    Calculator c0 = new Calculator() {
+
+      @Override
+      public int compute(int a, int b) {
+        // TODO Auto-generated method stub
+        return a + b;
+      }
+
+    };
+
+    // 람다식으로 변환
+    Calculator cLambda = (int a, int b) -> {
+      // TODO Auto-generated method stub
+      return a + b;
+    };
+
+    Calculator cLambda2 = (int a, int b) -> a + b; // return 키워드 생략은 필수임.
+
+    Calculator cDivide = new Calculator() {
+      @Override
+      public int compute(int a, int b) {
+        return a / b;
+      }
+    };
+
+    Calculator cDivideLambda = (int a, int b) -> {
+      return a / b;
+    };
+
+
+
     // 1) 리턴 값은 return 명령을 사용하여 처리한다.
     Calculator c1 = (a, b) -> {
       return a + b;
@@ -25,8 +58,8 @@ public class Exam0150 {
     System.out.println(c3.compute(10, 20));
 
     // 값을 리턴해야 하는데 람다 문장에서 값을 리턴하지 않으면 컴파일 오류!
-    //    Calculator c4 = (a, b) -> System.out.println(a + ",", b); // 컴파일 오류!
-    //    System.out.println(c4.compute(10, 20));
+    // Calculator c4 = (a, b) -> System.out.println(a + ",", b); // 컴파일 오류!
+    // System.out.println(c4.compute(10, 20));
   }
 
 }

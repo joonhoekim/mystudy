@@ -17,6 +17,17 @@ public class Exam0320 {
     // 파라미터와 리턴 값이 있는 메서드 구현하기
     test((a, b) -> a + b);
 
+    // 다시 익명 클래스로 바꾸기
+    test(new Calculator() {
+      @Override
+      public int compute(int a, int b) {
+        return a + b;
+      }
+    });
+
+    // 다시 람다식으로 바꾸기
+    test((a, b) -> a + b);
+
   }
 
 }

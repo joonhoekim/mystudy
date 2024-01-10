@@ -11,7 +11,7 @@ public class Exam0510 {
   // 예1) 제네릭의 타입 파라미터로 레퍼런스 배열을 생성할 수 없다.
   static <T> T[] create1() {
     T[] arr;
-    //    arr = new T[10]; // 컴파일 오류! new 명령어를 사용할 때 제네릭의 타입 파라미터를 사용할 수 없다.
+    // arr = new T[10]; // 컴파일 오류! new 명령어를 사용할 때 제네릭의 타입 파라미터를 사용할 수 없다.
     return null;
   }
 
@@ -31,14 +31,19 @@ public class Exam0510 {
   // 예4) 견본 배열에서 타입 정보를 추출하여 배열을 생성하기
   @SuppressWarnings("unchecked")
   static <T> T[] create4(T[] arr) {
-    Class<?> arrayTypeInfo = arr.getClass(); // 예) String[]
+    Class<?> arrayTypeInfo = arr.getClass(); // 예) String[] : class [Ljava.lang.String;
     System.out.println(arrayTypeInfo);
 
-    Class<?> arrayItemTypeInfo = arrayTypeInfo.getComponentType(); // 예) String
+    Class<?> arrayItemTypeInfo = arrayTypeInfo.getComponentType();
+    // 예) String : class java.lang.String
+
     System.out.println(arrayItemTypeInfo);
 
     return (T[]) Array.newInstance(arrayItemTypeInfo, 10);
   }
+  // 배열에 대해서 겟클래스하면 배열의 타입을 받으며, 배열에 저장된 아이템의 타입을 알아내려면 getComponentType() 해야 한다.
+  // 이런거 왜 하나? new 생성연산자는 제네릭 못쓰기에. 왜 못쓰나?
+  // 제네릭은 컴파일러를 위한 것이기 때문에 Object로 두고 컴파일러러에게 검사시키는 문법이라 못쓰는거다.
 
   public static void main(String[] args) {
     // 제네릭을 사용하는 메서드를 이용하여 배열 만들기
@@ -65,11 +70,5 @@ public class Exam0510 {
 
 
 }
-
-
-
-
-
-
 
 
