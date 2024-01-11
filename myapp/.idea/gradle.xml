@@ -8,7 +8,7 @@
         <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$USER_HOME$/.sdkman/candidates/gradle/8.5" />
-        <option name="gradleJvm" value="SDKMAN-CURRENT" />
+        <option name="gradleJvm" value="corretto-20" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
