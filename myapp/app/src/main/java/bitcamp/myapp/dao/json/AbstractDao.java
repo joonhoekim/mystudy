@@ -1,5 +1,6 @@
-package bitcamp.myapp.dao;
+package bitcamp.myapp.dao.json;
 
+import bitcamp.myapp.dao.DaoException;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
