@@ -23,14 +23,19 @@ import bitcamp.myapp.handler.member.MemberDeleteHandler;
 import bitcamp.myapp.handler.member.MemberListHandler;
 import bitcamp.myapp.handler.member.MemberModifyHandler;
 import bitcamp.myapp.handler.member.MemberViewHandler;
+import bitcamp.myapp.vo.Board;
 import bitcamp.util.Prompt;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
+import java.io.DataInput;
+import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +55,45 @@ public class ClientApp {
   }
 
   public static void main(String[] args) {
-    System.out.println(new File(".").getAbsolutePath());
-    new ClientApp().run();
+    //System.out.println(new File(".").getAbsolutePath());
+    System.out.println("[과제관리 시스템]");
+
+    //new ClientApp().run();
+
+    try {
+      // 1) 서버와 연결한 후 연결 정보를 준비한다.
+      // 연결 정보는 new Socket(서버주소, 포트번호)
+      // - 서버주소: IP Address / Domain Name 둘 다 가능
+      // - 포트번호: 연결할 포트 번호
+      // => 로컬 컴퓨터를 가리키는 주소가 있다. 이는 IP Address: 127.0.0.1 또는 도메인으로 localhost
+      System.out.println("서버 연결 중...");
+      Socket socket = new Socket("localhost", 8888);
+      System.out.println("서버에 연결 됨!");
+
+      //io steram 연결 / decorator pattern applied
+      DataInput in = new DataInputStream(socket.getInputStream());
+      DataOutput out = new DataOutputStream(socket.getOutputStream());
+
+      out.writeUTF("board");
+      out.writeUTF("finaAll");
+      out.writeUTF("");
+      System.out.println("서버에 데이터 보냈음");
+
+      String response = in.readUTF();
+      System.out.println(response);
+      ArrayList<Board> list = (ArrayList<Board>) new GsonBuilder().setDateFormat("yyyy-MM-dd")
+          .create()
+          .fromJson(response, TypeToken.getParameterized(ArrayList.class, Board.class));
+
+      for (Board board : list) {
+        System.out.println(board);
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.out.println("통신 예외 발생");
+    }
+
   }
 
   void prepareMenu() {

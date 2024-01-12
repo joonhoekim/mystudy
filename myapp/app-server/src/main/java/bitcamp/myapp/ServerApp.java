@@ -1,38 +1,18 @@
 package bitcamp.myapp;
 
-import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.dao.json.AssignmentDaoImpl;
 import bitcamp.myapp.dao.json.BoardDaoImpl;
 import bitcamp.myapp.dao.json.MemberDaoImpl;
-import bitcamp.myapp.handler.HelpHandler;
-import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
-import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
-import bitcamp.myapp.handler.assignment.AssignmentListHandler;
-import bitcamp.myapp.handler.assignment.AssignmentModifyHandler;
-import bitcamp.myapp.handler.assignment.AssignmentViewHandler;
-import bitcamp.myapp.handler.board.BoardAddHandler;
-import bitcamp.myapp.handler.board.BoardDeleteHandler;
-import bitcamp.myapp.handler.board.BoardListHandler;
-import bitcamp.myapp.handler.board.BoardModifyHandler;
-import bitcamp.myapp.handler.board.BoardViewHandler;
-import bitcamp.myapp.handler.member.MemberAddHandler;
-import bitcamp.myapp.handler.member.MemberDeleteHandler;
-import bitcamp.myapp.handler.member.MemberListHandler;
-import bitcamp.myapp.handler.member.MemberModifyHandler;
-import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.util.Prompt;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ServerApp {
 
@@ -43,95 +23,54 @@ public class ServerApp {
   AssignmentDao assignmentDao = new AssignmentDaoImpl("assignment.json");
   MemberDao memberDao = new MemberDaoImpl("member.json");
 
-  MenuGroup mainMenu;
-
-  ServerApp() {
-    prepareMenu();
-  }
-
   public static void main(String[] args) {
     System.out.println(new File(".").getAbsolutePath());
     new ServerApp().run();
   }
 
-  void prepareMenu() {
-    mainMenu = MenuGroup.getInstance("메인");
-
-    MenuGroup assignmentMenu = mainMenu.addGroup("과제");
-    assignmentMenu.addItem("등록", new AssignmentAddHandler(assignmentDao, prompt));
-    assignmentMenu.addItem("조회", new AssignmentViewHandler(assignmentDao, prompt));
-    assignmentMenu.addItem("변경", new AssignmentModifyHandler(assignmentDao, prompt));
-    assignmentMenu.addItem("삭제", new AssignmentDeleteHandler(assignmentDao, prompt));
-    assignmentMenu.addItem("목록", new AssignmentListHandler(assignmentDao, prompt));
-
-    MenuGroup boardMenu = mainMenu.addGroup("게시글");
-    boardMenu.addItem("등록", new BoardAddHandler(boardDao, prompt));
-    boardMenu.addItem("조회", new BoardViewHandler(boardDao, prompt));
-    boardMenu.addItem("변경", new BoardModifyHandler(boardDao, prompt));
-    boardMenu.addItem("삭제", new BoardDeleteHandler(boardDao, prompt));
-    boardMenu.addItem("목록", new BoardListHandler(boardDao, prompt));
-
-    MenuGroup memberMenu = mainMenu.addGroup("회원");
-    memberMenu.addItem("등록", new MemberAddHandler(memberDao, prompt));
-    memberMenu.addItem("조회", new MemberViewHandler(memberDao, prompt));
-    memberMenu.addItem("변경", new MemberModifyHandler(memberDao, prompt));
-    memberMenu.addItem("삭제", new MemberDeleteHandler(memberDao, prompt));
-    memberMenu.addItem("목록", new MemberListHandler(memberDao, prompt));
-
-    MenuGroup greetingMenu = mainMenu.addGroup("가입인사");
-    greetingMenu.addItem("등록", new BoardAddHandler(greetingDao, prompt));
-    greetingMenu.addItem("조회", new BoardViewHandler(greetingDao, prompt));
-    greetingMenu.addItem("변경", new BoardModifyHandler(greetingDao, prompt));
-    greetingMenu.addItem("삭제", new BoardDeleteHandler(greetingDao, prompt));
-    greetingMenu.addItem("목록", new BoardListHandler(greetingDao, prompt));
-
-    mainMenu.addItem("도움말", new HelpHandler(prompt));
-  }
-
   void run() {
-    while (true) {
-      try {
-        mainMenu.execute(prompt);
-        prompt.close();
-        break;
-      } catch (Exception e) {
-        System.out.println("예외 발생!");
-      }
-    }
-    // 원래 저장하는 단계가 여기 있었으나 개별 변경 작업마다 저장하도록 함.
-  }
+    System.out.println("[과제관리 서버 시스템]");
 
-  <E> List<E> loadData(String filepath, Class<E> clazz) {
+    try {
+      // 1) 네크워크 연결을 위해서, 랜카드의 연결 정보를 객체로 만들어서 준비한다.
+      // => 랜카드를 통해 네트워크와 연결되는 작업을 수행하는 것은 OS이다.
+      // => JVM은 OS가 작업하여 연결된 결과를 가져오는 것이다.
+      // 이는 new Server(portNumber) 형태인데, 포트 번호는 랜카드를 통해 데이터를 들여올 때 고유한 번호이다.
 
-    try (BufferedReader in = new BufferedReader(new FileReader(filepath))) {
+      ServerSocket serverSocket = new ServerSocket(8888);
+      System.out.println("서버 실행 중...");
 
-      // 파일에서 JSON 문자열을 모두 읽어서 버퍼에 저장한다.
-      StringBuilder strBuilder = new StringBuilder();
-      String str;
-      while ((str = in.readLine()) != null) {
-        strBuilder.append(str);
-      }
+      System.out.println("클라이언트 연결을 기다리는 중");
+      Socket socket = serverSocket.accept();
+      System.out.println("대기목록에서 클라이언트 연결정보를 꺼냈음!");
 
-      // 버퍼에 저장된 JSON 문자열을 가지고 컬렉션 객체를 생성한다.
-      return (List<E>) new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(
-          strBuilder.toString(),
-          TypeToken.getParameterized(ArrayList.class, clazz));
+      DataInputStream in = new DataInputStream(socket.getInputStream());
+      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+      System.out.println("IO Stream Ready!");
 
-    } catch (Exception e) {
-      System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
-      e.printStackTrace();
-    }
-    return new ArrayList<>();
-  }
+//      System.out.println("Waiting 10 sec");
+//      Thread.sleep(10000);
 
-  void saveData(String filepath, List<?> dataList) {
-    try (BufferedWriter out = new BufferedWriter(new FileWriter(filepath))) {
+      System.out.println("Client가 보낸 데이터 읽기 시작");
+      String dateName = in.readUTF();
+      String command = in.readUTF();
+      String value = in.readUTF();
+      System.out.printf("%s\n%s\n%s", dateName, command, value);
 
-      out.write(new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(dataList));
+//      System.out.println("10초 동안 잠시 기다립니다.");
+//      Thread.sleep(10000);
+
+      String json = new GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+          .toJson(boardDao.findAll());
+
+      out.writeUTF(json);
+      System.out.println("클라이언트에게 데이터를 전송했습니다.");
 
     } catch (Exception e) {
-      System.out.printf("%s 파일 저장 중 오류 발생!\n", filepath);
       e.printStackTrace();
+      System.out.println("통신 예외발생 ");
+
     }
   }
+
 }
