@@ -1,76 +1,140 @@
 package bitcamp.myapp;
 
-import bitcamp.myapp.dao.AssignmentDao;
-import bitcamp.myapp.dao.BoardDao;
-import bitcamp.myapp.dao.MemberDao;
+import bitcamp.RequestException;
 import bitcamp.myapp.dao.json.AssignmentDaoImpl;
 import bitcamp.myapp.dao.json.BoardDaoImpl;
 import bitcamp.myapp.dao.json.MemberDaoImpl;
-import bitcamp.util.Prompt;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class ServerApp {
 
-  Prompt prompt = new Prompt(System.in);
+  HashMap<String, Object> daoMap = new HashMap<>();
+  Gson gson;
 
-  BoardDao boardDao = new BoardDaoImpl("board.json");
-  BoardDao greetingDao = new BoardDaoImpl("greeting.json");
-  AssignmentDao assignmentDao = new AssignmentDaoImpl("assignment.json");
-  MemberDao memberDao = new MemberDaoImpl("member.json");
+  public ServerApp() {
+    daoMap.put("board", new BoardDaoImpl("board.json"));
+    daoMap.put("greeting", new BoardDaoImpl("greeting.json"));
+    daoMap.put("assignment", new AssignmentDaoImpl("assignment.json"));
+    daoMap.put("member", new MemberDaoImpl("member.json"));
+
+    gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+  }
 
   public static void main(String[] args) {
-    System.out.println(new File(".").getAbsolutePath());
     new ServerApp().run();
   }
 
   void run() {
-    System.out.println("[과제관리 서버 시스템]");
+    System.out.println("[과제관리 서버시스템]");
 
-    try {
-      // 1) 네크워크 연결을 위해서, 랜카드의 연결 정보를 객체로 만들어서 준비한다.
-      // => 랜카드를 통해 네트워크와 연결되는 작업을 수행하는 것은 OS이다.
-      // => JVM은 OS가 작업하여 연결된 결과를 가져오는 것이다.
-      // 이는 new Server(portNumber) 형태인데, 포트 번호는 랜카드를 통해 데이터를 들여올 때 고유한 번호이다.
+    try (ServerSocket serverSocket = new ServerSocket(8888)) {
+      System.out.println("서버 실행!");
 
-      ServerSocket serverSocket = new ServerSocket(8888);
-      System.out.println("서버 실행 중...");
-
-      System.out.println("클라이언트 연결을 기다리는 중");
-      Socket socket = serverSocket.accept();
-      System.out.println("대기목록에서 클라이언트 연결정보를 꺼냈음!");
-
-      DataInputStream in = new DataInputStream(socket.getInputStream());
-      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-      System.out.println("IO Stream Ready!");
-
-//      System.out.println("Waiting 10 sec");
-//      Thread.sleep(10000);
-
-      System.out.println("Client가 보낸 데이터 읽기 시작");
-      String dateName = in.readUTF();
-      String command = in.readUTF();
-      String value = in.readUTF();
-      System.out.printf("%s\n%s\n%s", dateName, command, value);
-
-//      System.out.println("10초 동안 잠시 기다립니다.");
-//      Thread.sleep(10000);
-
-      String json = new GsonBuilder().setDateFormat("yyyy-MM-dd").create()
-          .toJson(boardDao.findAll());
-
-      out.writeUTF(json);
-      System.out.println("클라이언트에게 데이터를 전송했습니다.");
+      while (true) {
+        service(serverSocket.accept());
+      }
 
     } catch (Exception e) {
+      System.out.println("통신 오류!");
       e.printStackTrace();
-      System.out.println("통신 예외발생 ");
-
     }
   }
 
+  void service(Socket socket) throws Exception {
+    //try-with-resource 문법을 적용하지 않으면, 해제 순서를 지켜야 하며, 각각의 close() 메서드 호출시에 try-catch-finally 문장을 작성해야 한다.
+    //try-catch-finally 중 finally 블럭에 close를 위한 각각의 try-catch 문장이 들어가게 된다는 것이다...
+    //그래서 try-with-resources 문법을 쓰는 것이 아주 편하다는 것을 알 수 있다... (컴파일러가 순서가 맞게끔 자동으로 만들어 줄 테니..)
+    try (Socket s = socket;
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
+      System.out.println("클라이언트와 연결됨!");
+      while (processRequest(in, out) != -1) {
+        System.out.println("----------------------------");
+      }
+      System.out.println("클라이언트와 연결 종료!");
+    } catch (Exception e) {
+      System.out.println("클라이언트 연결 오류!");
+      e.printStackTrace();
+    }
+  }
+
+  int processRequest(DataInputStream in, DataOutputStream out) throws IOException {
+
+    System.out.println("[클라이언트 요청]");
+    String dataName = in.readUTF();
+    System.out.println(dataName + " 읽었습니다.");
+    if (dataName.equals("quit")) {
+      out.writeUTF("Goodbye!");
+      return -1;
+    }
+    String command = in.readUTF();
+    String value = in.readUTF();
+
+    try {
+      Object dao = daoMap.get(dataName);
+      if (dao == null) {
+        throw new RequestException("요청 데이터가 없습니다!");
+      }
+      System.out.printf("데이터: %s\n", dataName);
+
+      Method commandHandler = findMethod(dao.getClass(), command);
+      System.out.printf("메서드: %s\n", commandHandler.getName());
+
+      Object[] args = getArguments(commandHandler, value);
+
+      Class<?> returnType = commandHandler.getReturnType();
+      System.out.printf("리턴: %s\n", returnType.getName());
+
+      // 메서드를 호출한다.
+      Object returnValue = commandHandler.invoke(dao, args);
+
+      out.writeUTF("200");
+      out.writeUTF(gson.toJson(returnValue));
+      System.out.println("클라이언트에게 응답 완료!");
+
+    } catch (RequestException e) {
+      out.writeUTF("400");
+      out.writeUTF(gson.toJson(e.getMessage()));
+
+    } catch (Exception e) { //invoke() e will be caught here.
+      out.writeUTF("500");
+      out.writeUTF(gson.toJson(e.getMessage()));
+    }
+
+    return 0;
+  }
+
+  Method findMethod(Class<?> clazz, String name) {
+    Method[] methods = clazz.getDeclaredMethods();
+    for (Method m : methods) {
+      if (m.getName().equals(name)) {
+        return m;
+      }
+    }
+    throw new RequestException("요청 메서드가 없습니다!");
+  }
+
+  Object[] getArguments(Method m, String json) {
+    Parameter[] params = m.getParameters();
+    System.out.printf("파라미터 개수: %d\n", params.length);
+
+    Object[] args = new Object[params.length];
+
+    if (params.length > 0) {
+      Class<?> paramType = params[0].getType();
+      Object paramValue = gson.fromJson(json, paramType);
+      args[0] = paramValue;
+    }
+
+    return args;
+  }
 }

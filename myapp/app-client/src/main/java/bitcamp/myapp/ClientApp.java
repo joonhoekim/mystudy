@@ -4,9 +4,9 @@ import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.json.AssignmentDaoImpl;
-import bitcamp.myapp.dao.json.BoardDaoImpl;
-import bitcamp.myapp.dao.json.MemberDaoImpl;
+import bitcamp.myapp.dao.network.AssignmentDaoImpl;
+import bitcamp.myapp.dao.network.BoardDaoImpl;
+import bitcamp.myapp.dao.network.MemberDaoImpl;
 import bitcamp.myapp.handler.HelpHandler;
 import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
 import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
@@ -23,77 +23,54 @@ import bitcamp.myapp.handler.member.MemberDeleteHandler;
 import bitcamp.myapp.handler.member.MemberListHandler;
 import bitcamp.myapp.handler.member.MemberModifyHandler;
 import bitcamp.myapp.handler.member.MemberViewHandler;
-import bitcamp.myapp.vo.Board;
 import bitcamp.util.Prompt;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataInput;
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientApp {
 
   Prompt prompt = new Prompt(System.in);
 
-  BoardDao boardDao = new BoardDaoImpl("board.json");
-  BoardDao greetingDao = new BoardDaoImpl("greeting.json");
-  AssignmentDao assignmentDao = new AssignmentDaoImpl("assignment.json");
-  MemberDao memberDao = new MemberDaoImpl("member.json");
+  BoardDao boardDao;
+  BoardDao greetingDao;
+  AssignmentDao assignmentDao;
+  MemberDao memberDao;
 
   MenuGroup mainMenu;
 
+  Socket socket;
+  DataInputStream in;
+  DataOutputStream out;
+
   ClientApp() {
+    prepareNetwork();
     prepareMenu();
   }
 
   public static void main(String[] args) {
-    //System.out.println(new File(".").getAbsolutePath());
     System.out.println("[과제관리 시스템]");
+    new ClientApp().run();
+  }
 
-    //new ClientApp().run();
-
+  void prepareNetwork() {
     try {
-      // 1) 서버와 연결한 후 연결 정보를 준비한다.
-      // 연결 정보는 new Socket(서버주소, 포트번호)
-      // - 서버주소: IP Address / Domain Name 둘 다 가능
-      // - 포트번호: 연결할 포트 번호
-      // => 로컬 컴퓨터를 가리키는 주소가 있다. 이는 IP Address: 127.0.0.1 또는 도메인으로 localhost
-      System.out.println("서버 연결 중...");
-      Socket socket = new Socket("localhost", 8888);
-      System.out.println("서버에 연결 됨!");
+      this.socket = new Socket("localhost", 8888);
+      System.out.println("서버와 연결되었음!");
 
-      //io steram 연결 / decorator pattern applied
-      DataInput in = new DataInputStream(socket.getInputStream());
-      DataOutput out = new DataOutputStream(socket.getOutputStream());
+      this.in = new DataInputStream(socket.getInputStream());
+      this.out = new DataOutputStream(socket.getOutputStream());
 
-      out.writeUTF("board");
-      out.writeUTF("finaAll");
-      out.writeUTF("");
-      System.out.println("서버에 데이터 보냈음");
-
-      String response = in.readUTF();
-      System.out.println(response);
-      ArrayList<Board> list = (ArrayList<Board>) new GsonBuilder().setDateFormat("yyyy-MM-dd")
-          .create()
-          .fromJson(response, TypeToken.getParameterized(ArrayList.class, Board.class));
-
-      for (Board board : list) {
-        System.out.println(board);
-      }
+      // 네트워크 DAO 구현체 준비
+      boardDao = new BoardDaoImpl("board", in, out);
+      greetingDao = new BoardDaoImpl("greeting", in, out);
+      assignmentDao = new AssignmentDaoImpl("assignment", in, out);
+      memberDao = new MemberDaoImpl("member", in, out);
 
     } catch (Exception e) {
+      System.out.println("통신 오류!");
       e.printStackTrace();
-      System.out.println("통신 예외 발생");
     }
-
   }
 
   void prepareMenu() {
@@ -134,46 +111,29 @@ public class ClientApp {
     while (true) {
       try {
         mainMenu.execute(prompt);
+
+        //서버와 연결을 끊고 종료하기
         prompt.close();
+        close();
+
         break;
       } catch (Exception e) {
         System.out.println("예외 발생!");
       }
     }
-    // 원래 저장하는 단계가 여기 있었으나 개별 변경 작업마다 저장하도록 함.
   }
 
-  <E> List<E> loadData(String filepath, Class<E> clazz) {
-
-    try (BufferedReader in = new BufferedReader(new FileReader(filepath))) {
-
-      // 파일에서 JSON 문자열을 모두 읽어서 버퍼에 저장한다.
-      StringBuilder strBuilder = new StringBuilder();
-      String str;
-      while ((str = in.readLine()) != null) {
-        strBuilder.append(str);
-      }
-
-      // 버퍼에 저장된 JSON 문자열을 가지고 컬렉션 객체를 생성한다.
-      return (List<E>) new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(
-          strBuilder.toString(),
-          TypeToken.getParameterized(ArrayList.class, clazz));
-
+  void close() {
+    try (Socket socket = this.socket;
+        DataInputStream in = this.in;
+        DataOutputStream out = this.out;) {
+      out.writeUTF("quit");
+      System.out.println("종료 요청함");
+      System.out.println("서버 응답: " + in.readUTF());
     } catch (Exception e) {
-      System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
       e.printStackTrace();
-    }
-    return new ArrayList<>();
-  }
-
-  void saveData(String filepath, List<?> dataList) {
-    try (BufferedWriter out = new BufferedWriter(new FileWriter(filepath))) {
-
-      out.write(new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(dataList));
-
-    } catch (Exception e) {
-      System.out.printf("%s 파일 저장 중 오류 발생!\n", filepath);
-      e.printStackTrace();
+      //서버와 연결이 끊어진 경우에 발생한 예외는 따로 처리할 것이 없다.
     }
   }
+
 }

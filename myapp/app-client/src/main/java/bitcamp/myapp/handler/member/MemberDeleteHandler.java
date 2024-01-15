@@ -15,7 +15,11 @@ public class MemberDeleteHandler extends AbstractMenuHandler {
 
   @Override
   protected void action() {
-    int index = this.prompt.inputInt("번호? ");
-    this.memberDao.delete(index);
+    int no = this.prompt.inputInt("번호? ");
+    if (memberDao.delete(no) == -1) {
+      System.out.println("회원 번호가 유효하지 않습니다!");
+    } else {
+      System.out.println("회원을 삭제했습니다.");
+    }
   }
 }

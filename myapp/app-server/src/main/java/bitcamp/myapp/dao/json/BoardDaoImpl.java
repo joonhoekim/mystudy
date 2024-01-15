@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BoardDaoImpl extends AbstractDao<Board> implements BoardDao {
 
-  private int lastKey = 0;
+  private int lastKey;
 
   public BoardDaoImpl(String filepath) {
     super(filepath);
@@ -15,12 +15,14 @@ public class BoardDaoImpl extends AbstractDao<Board> implements BoardDao {
     lastKey = list.getLast().getNo();
   }
 
+  @Override
   public void add(Board board) {
     board.setNo(++lastKey);
     this.list.add(board);
     saveData();
   }
 
+  @Override
   public int delete(int no) {
     int index = indexOf(no);
     if (index == -1) {
@@ -32,10 +34,12 @@ public class BoardDaoImpl extends AbstractDao<Board> implements BoardDao {
     return 1;
   }
 
+  @Override
   public List<Board> findAll() {
     return this.list.subList(0, list.size());
   }
 
+  @Override
   public Board findBy(int no) {
     int index = indexOf(no);
     if (index == -1) {
@@ -44,6 +48,7 @@ public class BoardDaoImpl extends AbstractDao<Board> implements BoardDao {
     return list.get(index);
   }
 
+  @Override
   public int update(Board board) {
     int index = indexOf(board.getNo());
     if (index == -1) {

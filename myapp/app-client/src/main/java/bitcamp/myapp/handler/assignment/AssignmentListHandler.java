@@ -4,6 +4,7 @@ import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.vo.Assignment;
 import bitcamp.util.Prompt;
+import java.util.List;
 
 public class AssignmentListHandler extends AbstractMenuHandler {
 
@@ -18,8 +19,12 @@ public class AssignmentListHandler extends AbstractMenuHandler {
   protected void action() {
     System.out.printf("%-4s\t%-20s\t%s\n", "번호", "과제", "제출마감일");
 
-    for (Assignment assignment : assignmentDao.findAll()) {
-      System.out.printf("%-4s\t%-20s\t%s\n", assignment.getNo(), assignment.getTitle(),
+    List<Assignment> list = assignmentDao.findAll();
+
+    for (Assignment assignment : list) {
+      System.out.printf("%-4d\t%-20s\t%s\n",
+          assignment.getNo(),
+          assignment.getTitle(),
           assignment.getDeadline());
     }
   }

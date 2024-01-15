@@ -23,7 +23,7 @@ public class AssignmentAddHandler extends AbstractMenuHandler {
       assignment.setContent(this.prompt.input("내용? "));
       assignment.setDeadline(this.prompt.inputDate("제출 마감일?(예: 2023-12-25) "));
 
-      this.assignmentDao.add(assignment);
+      assignmentDao.add(assignment);
 
     } catch (Exception e) {
       System.out.println("과제 입력 중 오류 발생!");
