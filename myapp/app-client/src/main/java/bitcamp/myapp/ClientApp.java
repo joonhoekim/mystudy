@@ -3,10 +3,8 @@ package bitcamp.myapp;
 import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.dao.BoardDao;
+import bitcamp.myapp.dao.DaoProxyGenerator;
 import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.network.AssignmentDaoImpl;
-import bitcamp.myapp.dao.network.BoardDaoImpl;
-import bitcamp.myapp.dao.network.MemberDaoImpl;
 import bitcamp.myapp.handler.HelpHandler;
 import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
 import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
@@ -62,10 +60,17 @@ public class ClientApp {
       this.out = new DataOutputStream(socket.getOutputStream());
 
       // 네트워크 DAO 구현체 준비
-      boardDao = new BoardDaoImpl("board", in, out);
-      greetingDao = new BoardDaoImpl("greeting", in, out);
-      assignmentDao = new AssignmentDaoImpl("assignment", in, out);
-      memberDao = new MemberDaoImpl("member", in, out);
+//      boardDao = new BoardDaoImpl("board", in, out);
+//      greetingDao = new BoardDaoImpl("greeting", in, out);
+//      assignmentDao = new AssignmentDaoImpl("assignment", in, out);
+//      memberDao = new MemberDaoImpl("member", in, out);
+
+      // 개별 DAO 구현체를 대체하는 ProxyGenerator 적용
+      DaoProxyGenerator daoProxyGenerator = new DaoProxyGenerator(in, out);
+      boardDao = daoProxyGenerator.create(BoardDao.class, "board");
+      greetingDao = daoProxyGenerator.create(BoardDao.class, "greeting");
+      assignmentDao = daoProxyGenerator.create(AssignmentDao.class, "assignment");
+      memberDao = daoProxyGenerator.create(MemberDao.class, "member");
 
     } catch (Exception e) {
       System.out.println("통신 오류!");
