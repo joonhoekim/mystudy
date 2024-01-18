@@ -7,6 +7,8 @@ public class Exam0430 {
 
   public static void main(String[] args) throws Exception {
     // 생성할 파일의 경로 설정
+    File dir = new File("temp/b");
+    dir.mkdir();
     File file = new File("temp/b/test.txt");
     // 디렉토리가 존재하지 않으면 파일을 생성할 수 없다.
     // - 예외 발생!

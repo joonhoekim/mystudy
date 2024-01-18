@@ -22,9 +22,6 @@ import bitcamp.myapp.handler.member.MemberListHandler;
 import bitcamp.myapp.handler.member.MemberModifyHandler;
 import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.util.Prompt;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.net.Socket;
 
 public class ClientApp {
 
@@ -36,10 +33,6 @@ public class ClientApp {
   MemberDao memberDao;
 
   MenuGroup mainMenu;
-
-  Socket socket;
-  DataInputStream in;
-  DataOutputStream out;
 
   ClientApp() {
     prepareNetwork();
@@ -53,24 +46,12 @@ public class ClientApp {
 
   void prepareNetwork() {
     try {
-      this.socket = new Socket("localhost", 8888);
-      System.out.println("서버와 연결되었음!");
+      DaoProxyGenerator daoGenerator = new DaoProxyGenerator("localhost", 8888);
 
-      this.in = new DataInputStream(socket.getInputStream());
-      this.out = new DataOutputStream(socket.getOutputStream());
-
-      // 네트워크 DAO 구현체 준비
-//      boardDao = new BoardDaoImpl("board", in, out);
-//      greetingDao = new BoardDaoImpl("greeting", in, out);
-//      assignmentDao = new AssignmentDaoImpl("assignment", in, out);
-//      memberDao = new MemberDaoImpl("member", in, out);
-
-      // 개별 DAO 구현체를 대체하는 ProxyGenerator 적용
-      DaoProxyGenerator daoProxyGenerator = new DaoProxyGenerator(in, out);
-      boardDao = daoProxyGenerator.create(BoardDao.class, "board");
-      greetingDao = daoProxyGenerator.create(BoardDao.class, "greeting");
-      assignmentDao = daoProxyGenerator.create(AssignmentDao.class, "assignment");
-      memberDao = daoProxyGenerator.create(MemberDao.class, "member");
+      boardDao = daoGenerator.create(BoardDao.class, "board");
+      greetingDao = daoGenerator.create(BoardDao.class, "greeting");
+      assignmentDao = daoGenerator.create(AssignmentDao.class, "assignment");
+      memberDao = daoGenerator.create(MemberDao.class, "member");
 
     } catch (Exception e) {
       System.out.println("통신 오류!");
@@ -116,28 +97,11 @@ public class ClientApp {
     while (true) {
       try {
         mainMenu.execute(prompt);
-
-        //서버와 연결을 끊고 종료하기
         prompt.close();
-        close();
-
         break;
       } catch (Exception e) {
         System.out.println("예외 발생!");
       }
-    }
-  }
-
-  void close() {
-    try (Socket socket = this.socket;
-        DataInputStream in = this.in;
-        DataOutputStream out = this.out;) {
-      out.writeUTF("quit");
-      System.out.println("종료 요청함");
-      System.out.println("서버 응답: " + in.readUTF());
-    } catch (Exception e) {
-      e.printStackTrace();
-      //서버와 연결이 끊어진 경우에 발생한 예외는 따로 처리할 것이 없다.
     }
   }
 

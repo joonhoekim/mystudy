@@ -17,7 +17,15 @@ public class Server0310 {
 
     // 잠깐 멈추기
     // => 대기열이 꽉찼을 때 클라이언트의 접속 요청은 어떻게 되는가?
-    keyboard.nextLine();
+    // keyboard.nextLine();
+    while (true) {
+      if (keyboard.nextLine().equals("quit")) {
+        break;
+      }
+
+      ss.accept();
+      System.out.println("클라연결");
+    }
 
     ss.close();
     System.out.println("서버 종료!");

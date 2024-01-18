@@ -14,6 +14,8 @@ public class Exam0120 {
     // - ".." 으로 경로를 표시한다.
     //
     File currentDir = new File("./src/main/java/../../test/java");
+    System.out.printf("존재여부: %b\n", currentDir.exists()); // 항상 이걸 먼저 확인하자.
+
     System.out.printf("폴더명: %s\n", currentDir.getName());
     System.out.printf("경로: %s\n", currentDir.getPath());
     System.out.printf("절대경로: %s\n", currentDir.getAbsolutePath());

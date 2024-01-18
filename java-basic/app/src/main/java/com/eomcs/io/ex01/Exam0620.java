@@ -9,6 +9,7 @@ public class Exam0620 {
 
   public static void main(String[] args) throws Exception {
 
+    // dir을 제외하고 파일만을 위한 필터를 쓸거면 listFiles, FileFilter를 써!!
     class JavaFilter implements FileFilter {
       @Override
       public boolean accept(File file) {
@@ -32,10 +33,8 @@ public class Exam0620 {
     File[] files = dir.listFiles(javaFilter);
 
     for (File file : files) {
-      System.out.printf("%s %12d %s\n",
-          file.isDirectory() ? "d" : "-",
-              file.length(),
-              file.getName());
+      System.out.printf("%s %12d %s\n", file.isDirectory() ? "d" : "-", file.length(),
+          file.getName());
     }
 
   }

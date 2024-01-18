@@ -6,7 +6,7 @@ import java.io.FileReader;
 public class Exam0130 {
 
   public static void main(String[] args) throws Exception {
-    FileReader in = new FileReader("sample/utf8.txt"); // 41 42 EA B0 80 EA B0 81
+    FileReader in = new FileReader("temp/test1.data"); // 41 42 EA B0 80 EA B0 81
 
     int ch;
 

@@ -28,6 +28,7 @@ public class Client0210 {
       // 버퍼가 꽉차거나 flush()를 호출할 때 출력을 수행한다.
       // 따라서 위 출력 문자열은 서버에 보내지 않는다.
       // - BufferedWriter를 붙이지 않아도 이렇게 동작하기 때문에 주의하라!
+      // 내 설명 추가: byte stream 클래스는 버퍼를 붙이지않으면 바로 간다.
       System.out.println("서버에 데이터를 보냈음!");
 
       String str = in.readLine();

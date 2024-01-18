@@ -21,6 +21,11 @@ public class Server0220 {
     // => 클라이언트가 접속하게 하라!
     // => 최대 몇 개까지 접속 가능한가?
     keyboard.nextLine();
+    // while (true) {
+    // if (!keyboard.nextLine().equals("quit"))
+    // ss.accept();
+    // }
+
 
     ss.close();
     System.out.println("서버 종료!");

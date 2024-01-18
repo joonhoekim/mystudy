@@ -10,17 +10,17 @@ public class Exam0710_04 {
     // 결과 예)
     // /Users/bitcamp/git/test
     // src/
-    //   main/
-    //     java/
-    //       com/
-    //         Hello.java
-    //         Hello2.java
+    // main/
+    // java/
+    // com/
+    // Hello.java
+    // Hello2.java
     // build.gradle
     // settings.gradle
     // Hello.java
     // ...
 
-    File dir = new File(".");
+    File dir = new File("temp");
     System.out.println(dir.getCanonicalPath());
 
     printList(dir);

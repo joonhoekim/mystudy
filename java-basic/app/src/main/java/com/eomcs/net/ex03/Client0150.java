@@ -20,7 +20,7 @@ public class Client0150 {
       keyScan.nextLine();
 
       out.println("ABC가각간");
-      // out.flush();
+      out.flush();
       // byte stream 을 사용할 때는 바로 출력한다.
       // 따라서 flush()를 호출하지 않아도 된다.
       System.out.println("서버에 데이터를 보냈음!");

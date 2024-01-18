@@ -16,10 +16,15 @@ public class Server0210 {
       System.out.println("클라이언트의 연결을 기다리고 있음.");
 
       try (Socket socket = serverSocket.accept(); // blocking : 클라이언트가 대기열에 들어올 때까지
+          // 바이트스트림을 캐릭터스트림으로 어댑팅해주는 것이 InputStreamReader
           BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
           PrintWriter out = new PrintWriter(socket.getOutputStream())) {
 
         System.out.println("클라이언트가 보낸 한 줄의 문자열을 기다리고 있음!");
+        // flush() 메서드를 호출하지 않으니 in.reeadLine() block이 멈추지 않는다.
+        // PrintStream이 아닌 PrintWriter를 연결한 것이 차이다.
+        // CharacterStream들은 자체 버퍼를 가지고 있다.flush()를 해주지 않으면 보내지 않고 버퍼에 보관한다.
+        // 자세한 내용은 client0210보면 된다.
 
         String str = in.readLine();
         System.out.println(str);

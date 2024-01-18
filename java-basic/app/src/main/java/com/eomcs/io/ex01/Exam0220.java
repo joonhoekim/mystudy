@@ -11,8 +11,10 @@ public class Exam0220 {
     // => 파일이나 디렉토리를 생성,삭제,변경
 
     // 존재하지 않는 파일 정보 조회
-    //
+
     File file1 = new File("./src/main/java/Hello100.java");
+    // file1.mkdirs(); // 이러케하면 디렉토리를만드러여
+
     System.out.printf("파일명: %s\n", file1.getName());
     System.out.printf("파일크기: %d\n", file1.length());
     System.out.printf("경로: %s\n", file1.getPath());

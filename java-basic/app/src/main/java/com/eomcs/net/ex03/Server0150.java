@@ -1,4 +1,4 @@
-// 클라이언트와 입출력 테스트 - byte stream: 문자열 주고 받기 
+// 클라이언트와 입출력 테스트 - byte stream: 문자열 주고 받기
 package com.eomcs.net.ex03;
 
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ public class Server0150 {
         // out.flush();
         // byte stream 을 사용할 때는 바로 출력한다.
         // 따라서 flush()를 호출하지 않아도 된다.
-        System.out.println("클라인트에게 데이터를 보냈음.");
+        System.out.println("클라이언트에게 데이터를 보냈음.");
 
       }
       System.out.println("클라이언트와의 연결을 끊었음.");
