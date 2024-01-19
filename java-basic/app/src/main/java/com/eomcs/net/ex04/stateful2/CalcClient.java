@@ -14,17 +14,21 @@ public class CalcClient {
     DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
     while (true) {
-      System.out.print("연산자? ");
-      out.writeUTF(keyScan.nextLine());
+      try {
+        System.out.print("연산자? ");
+        out.writeUTF(keyScan.nextLine());
 
-      System.out.print("값? ");
-      out.writeInt(Integer.parseInt(keyScan.nextLine()));
+        System.out.print("값? ");
+        out.writeInt(Integer.parseInt(keyScan.nextLine()));
 
-      String str = in.nextLine();
-      System.out.println(str);
+        String str = in.nextLine();
+        System.out.println(str);
 
-      if (str.equals("Goodbye!"))
-        break;
+        if (str.equals("Goodbye!"))
+          break;
+      } catch (Exception e) {
+        System.out.println(e);
+      }
     }
 
     in.close();

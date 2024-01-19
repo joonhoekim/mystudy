@@ -14,7 +14,7 @@ public class BufferedInputStream extends DecoratorInputStream {
     super(in); // 수퍼 클래스 생성자를 호출하여 연결된 부품을 보관한다.
   }
 
-  // DecoratorInputStream 에서 상속 받은 메서드를 
+  // DecoratorInputStream 에서 상속 받은 메서드를
   // 이 클래스의 역할에 맞게끔 재정의한다.
   @Override
   public int read() throws IOException {

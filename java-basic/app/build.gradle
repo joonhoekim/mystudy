@@ -55,7 +55,10 @@ repositories {
 
 dependencies {
 
-	// Jackson Databind Libs
+    // Java library for extracting EXIF, IPTC, XMP, ICC and other metadata from image and video files.
+    implementation 'com.drewnoakes:metadata-extractor:2.19.0'
+	
+    // Jackson Databind Libs
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 
 	// JSON Libs

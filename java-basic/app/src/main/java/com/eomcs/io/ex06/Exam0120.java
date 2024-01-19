@@ -6,12 +6,13 @@ import java.io.FileInputStream;
 public class Exam0120 {
 
   public static void main(String[] args) throws Exception {
-    FileInputStream in = new FileInputStream("temp/jls17.pdf");
+    long startTime = System.currentTimeMillis(); // 밀리초
+
+    FileInputStream in = new FileInputStream("temp/jls.pdf");
 
     byte[] buf = new byte[8192]; // 보통 8KB 정도 메모리를 준비한다.
     int len = 0;
 
-    long startTime = System.currentTimeMillis(); // 밀리초
 
     int callCount = 0;
 

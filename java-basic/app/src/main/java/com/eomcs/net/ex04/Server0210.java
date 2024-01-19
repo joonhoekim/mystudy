@@ -23,6 +23,7 @@ public class Server0210 {
           System.out.println("클라이언트가 연결되었음!");
 
           String name = in.readLine();
+          System.out.println(name);
 
           if (name.equals("stop")) {
             out.println("Goodbye!");

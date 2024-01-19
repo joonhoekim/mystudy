@@ -8,6 +8,8 @@ public class DataOutputStream extends DecoratorOutputStream {
     super(out); // 연결할 부품을 수퍼 클래스 생성자를 통해 보관해 둔다.
   }
 
+  Number number;
+
   public void writeUTF(String str) throws Exception {
     // 실제 쓰기 작업은 이 객체와 연결된 부품을 통해 수행한다.
     byte[] bytes = str.getBytes("UTF-8");
