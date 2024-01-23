@@ -6,23 +6,29 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int given = sc.nextInt();
-    int classroom = 0; //per 2days
-    int corridor = 0; //per 3days
-    int bathroom = -1; //per 12days, when we use residue for check, day0 is always bathroom cleaning day.
+    StringBuilder sb = new StringBuilder();
+    String[] croatians2 = {"c=", "c-", "d-", "lj", "nj", "s=", "z="};
+    String croatian3 = "dz=";
+    int toMinus = 0;
 
-    for (int i = 0; i <= given; i++) {
-      if (i % 12 == 0) {
-        bathroom++;
-      } else if (i % 3 == 0) {
-        corridor++;
-      } else if (i % 2 == 0) {
-        classroom++;
+    sb.append(sc.nextLine());
+
+    for (int i = 0; i < sb.length() - 2; i++) {
+      if (sb.substring(i, i + 3).equals(croatian3)) {
+        toMinus += 2;
+        sb.replace(i, i + 3, "xxx");
       }
     }
 
-    System.out.printf("%d %d %d", classroom, corridor, bathroom);
+    for (int i = 0; i < sb.length() - 1; i++) {
+      for (int j = 0; j < croatians2.length; j++) {
+        if (sb.substring(i, i + 2).equals(croatians2[j])) {
+          toMinus += 1;
+        }
+      }
+    }
 
+    System.out.print(sb.length() - toMinus);
 
   }
 }
