@@ -15,14 +15,12 @@ public class Exam0150 {
     // "system" 그룹의 부모 그룹은?
     ThreadGroup grandparentGroup = parentGroup.getParent();
     if (grandparentGroup != null) {
-      System.out.printf("%s 스레드 그룹의 부모: %s\n", 
-          parentGroup.getName(), 
-          grandparentGroup.getName());
+      System.out.printf("%s 스레드 그룹의 부모: %s\n", parentGroup.getName(), grandparentGroup.getName());
     }
   }
 }
 
 // JVM의 스레드 계층도:
-// system(TG)
+// system(TG) TG=ThreadGroup
 // => main(TG)
-// ...=> main(T)
+// ...=> main(T) T=Thread

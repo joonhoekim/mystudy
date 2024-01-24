@@ -19,7 +19,7 @@ public class Exam0180 {
     Thread[] threads = new Thread[10];
     int size = tg.enumerate(threads, false);
     for (int i = 0; i < size; i++) {
-      System.out.println(indent + "  ==> " + threads[i].getName() + "(T)");
+      System.out.println(indent + " ㄴ " + threads[i].getName() + "(T)");
     }
 
     // 현재 스레드 그룹에 소속된 하위 스레드 그룹들 출력하기
@@ -33,12 +33,12 @@ public class Exam0180 {
 
 // JVM의 스레드 계층도: (Oracle JDK 17 기준)
 // system(TG)
-//   ==> Reference Handler(T)
-//   ==> Finalizer(T)
-//   ==> Signal Dispatcher(T)
-//   ==> Attach Listener(T)
-//   ==> Notification Thread(T)
-//   ==> main(TG)
-//         ==> main(T)
-//   ==> InnocuousThreadGroup(TG)
-//         ==> Common-Cleaner(T)
+// ==> Reference Handler(T)
+// ==> Finalizer(T)
+// ==> Signal Dispatcher(T)
+// ==> Attach Listener(T)
+// ==> Notification Thread(T)
+// ==> main(TG)
+// ==> main(T)
+// ==> InnocuousThreadGroup(TG)
+// ==> Common-Cleaner(T)

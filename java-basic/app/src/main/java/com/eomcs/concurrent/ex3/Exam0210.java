@@ -14,7 +14,7 @@ public class Exam0210 {
       public void run() {
         // 별도로 분리해서 병행으로 실행할 코드를 두는 곳!
         for (int i = 0; i < 1000; i++) {
-          System.out.println("===> " + i);
+          System.out.println("*** " + i);
         }
       }
     }
@@ -27,7 +27,7 @@ public class Exam0210 {
 
     // "main" 스레드는 Thread와 상관없이 병행하여 실행한다.
     for (int i = 0; i < 1000; i++) {
-      System.out.println(">>>> " + i);
+      System.out.println("^ " + i);
     }
 
   }
