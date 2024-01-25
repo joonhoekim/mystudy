@@ -4,6 +4,7 @@ import bitcamp.RequestException;
 import bitcamp.myapp.dao.json.AssignmentDaoImpl;
 import bitcamp.myapp.dao.json.BoardDaoImpl;
 import bitcamp.myapp.dao.json.MemberDaoImpl;
+import bitcamp.util.ThreadPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.DataInputStream;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 
 public class ServerApp {
 
+  ThreadPool threadPool = new ThreadPool();
   HashMap<String, Object> daoMap = new HashMap<>();
   Gson gson;
 
@@ -41,37 +43,8 @@ public class ServerApp {
       System.out.println("서버 실행!");
 
       while (true) {
-        //service(serverSocket.accept()); //->독립적으로 처리하고 싶은 부분
-//        RequestProcessor t = new RequestProcessor(serverSocket.accept());
-//        t.start();
-        //위에 보니까 t 그냥 임시변수네?
-//        RequestProcessor r = new RequestProcessor(serverSocket.accept());
-//        Thread t = new Thread(r);
-//        t.start();
-
-//          Socket socket = serverSocket.accept();
-//        new Thread(new Runnable() {
-//
-//          @Override
-//          public void run() {
-//            try {
-//              ServerApp.this.service(socket);
-//            } catch (Exception e) {
-//              System.out.println("클라이언트 요청 처리 중 예외발생함.");
-//              e.printStackTrace();
-//            }
-//          }
-//        }).start();
-        Socket socket = serverSocket.accept(); //블로킹! 여기서 블로킹 안해주면 쓰레드 무한생성된다.
-        //그래서 안으로 넣지 않은 것.
-        new Thread(() -> {
-          try {
-            service(socket);
-          } catch (Exception e) {
-            System.out.println("클라이언트 요청 처리 중 예외발생함.");
-            e.printStackTrace();
-          }
-        }).start();
+        Socket socket = serverSocket.accept();
+        threadPool.get().setWorker(() -> service(socket)); //오져따...
       }
     } catch (Exception e) {
       System.out.println("통신 오류!");
@@ -85,14 +58,14 @@ public class ServerApp {
         DataInputStream in = new DataInputStream(socket.getInputStream());
         DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
 
-      System.out.println("클라이언트와 연결됨!");
+      System.out.printf("[%s]클라이언트와 연결됨!\n", Thread.currentThread().getName());
 
       processRequest(in, out);
 
-      System.out.println("클라이언트 연결 종료!");
+      System.out.printf("[%s]클라이언트와 연결 종료!\n", Thread.currentThread().getName());
 
     } catch (Exception e) {
-      System.out.println("클라이언트 연결 오류!");
+      System.out.printf("[%s]클라이언트와 연결 예외 발생함!\n", Thread.currentThread().getName());
     }
   }
 

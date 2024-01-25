@@ -8,13 +8,15 @@ public class Exam0110 {
 
   public static void main(String[] args) {
     // 스레드풀을 생성한다.
-    // - 최대 3개의 스레드를 생성한다.
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
+    // - 최대 3개의 스레드를 생성한다. (Factory Method)
+    ExecutorService executorService = Executors.newFixedThreadPool(3); // TP 만드는 방법 다양함
+
 
     // 스레드풀에 작업 수행을 요청한다.
     // - 작업은 Runnable 구현체로 작성하여 넘겨준다.
     // - 스레드풀은 스레드를 생성하여 작업을 수행시킨다.
-    executorService.execute(() -> System.out.printf("%s - Hello!\n", Thread.currentThread().getName()));
+    executorService
+        .execute(() -> System.out.printf("%s - Hello!\n", Thread.currentThread().getName()));
 
     System.out.println("main() 종료!");
     // JVM은 main 스레드를 종료하더라도 나머지 스레드가 종료할 때까지 기다린다.

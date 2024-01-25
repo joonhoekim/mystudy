@@ -11,7 +11,7 @@ public class Exam0220 {
       @Override
       public void run() {
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100000000; i++)
+        for (int i = 0; i < 1000000000; i++)
           Math.asin(38.567); // 시간 끌기 용. 왜? 부동소수점 연산은 시간을 많이 소요.
         long endTime = System.currentTimeMillis();
         System.out.printf("%s = %d\n", getName(), endTime - startTime);
@@ -38,6 +38,7 @@ public class Exam0220 {
     System.out.printf("main 스레드 우선 순위: %d\n", Thread.currentThread().getPriority());
 
     System.out.printf("%s 스레드 우선 순위: %d\n", t1.getName(), t1.getPriority());
+    System.out.printf("%s 스레드 우선 순위: %d\n", t2.getName(), t2.getPriority());
 
 
     // t1 스레드 작업 시작
@@ -46,12 +47,9 @@ public class Exam0220 {
 
     // main 스레드 작업 시작
     long startTime = System.currentTimeMillis();
-    for (int i = 0; i < 100000000; i++)
+    for (int i = 0; i < 1000000000; i++)
       Math.asin(38.567); // 부동 소수점 연산을 수행하는 코드를 넣어서 실행 시간을 약간 지연시킨다.
     long endTime = System.currentTimeMillis();
     System.out.printf("main = %d\n", endTime - startTime);
   }
-
 }
-
-
