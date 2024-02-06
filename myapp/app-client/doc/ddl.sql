@@ -60,4 +60,4 @@ insert into members(email,name,password) values('뿌앵쓰@눼이바닷컴','뿌
 
 
 --add column
-ALTER TABLE BOARDS ADD COLUMN category int not null;
+ALTER TABLE BOARDS ADD COLUMN category int not null;f

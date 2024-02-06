@@ -1,34 +1,30 @@
 package algorithm.test;
 
 import java.util.Scanner;
-
 public class Main {
-
+  class InputNumber {
+    int count;
+    int number;
+  }
   public static void main(String[] args) {
+    //배열 1000개 만들어서 쓰는게 구현이 쉽다.
+    //메모리를 N개만큼만 쓰는 것도 구현해보자.
     Scanner sc = new Scanner(System.in);
-    StringBuilder sb = new StringBuilder();
-    String[] croatians2 = {"c=", "c-", "d-", "lj", "nj", "s=", "z="};
-    String croatian3 = "dz=";
-    int toMinus = 0;
+    int n = sc.nextInt();
+    // 객체로 풀어보자.
+    InputNumber[] inputNumbers = new InputNumber[n];
+    for(int i=0;i<n;i++){
+      inputNumbers[i].number=sc.nextInt();
+    }
 
-    sb.append(sc.nextLine());
-
-    for (int i = 0; i < sb.length() - 2; i++) {
-      if (sb.substring(i, i + 3).equals(croatian3)) {
-        toMinus += 2;
-        sb.replace(i, i + 3, "xxx");
+    int max=Integer.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
+      if(inputNumbers[i]>max) {
+        max = inputNumbers.
       }
     }
 
-    for (int i = 0; i < sb.length() - 1; i++) {
-      for (int j = 0; j < croatians2.length; j++) {
-        if (sb.substring(i, i + 2).equals(croatians2[j])) {
-          toMinus += 1;
-        }
-      }
-    }
 
-    System.out.print(sb.length() - toMinus);
 
   }
 }
