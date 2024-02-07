@@ -21,7 +21,7 @@ public class Exam0110 {
     }
 
     try (Connection con = DriverManager.getConnection( //
-        "jdbc:mysql://localhost:3306/studydb?user=study&password=1111");
+        "jdbc:mysql://localhost:3306/studydb", "study", "Bitcamp!@#123");
         Statement stmt = con.createStatement()) {
 
       // SQL 삽입 공격
@@ -36,7 +36,8 @@ public class Exam0110 {
 
       // 위에서 사용자가 입력한 값을 가지고 SQL 문장을 만들면 다음과 같다.
       //
-      // insert into x_board(title, contents) values('aaaa','bbbb'), ('haha', 'hoho'), ('hehe', 'puhul')
+      // insert into x_board(title, contents) values('aaaa','bbbb'), ('haha', 'hoho'), ('hehe',
+      // 'puhul')
       //
 
       System.out.println(count + " 개를 입력하였습니다.");

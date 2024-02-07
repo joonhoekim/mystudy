@@ -4,8 +4,7 @@
 // - 데이터를 저장하고 유지하는 것.
 // - "데이터 퍼시스턴스(persistence)"라 부른다.
 
-// this 로 인스턴스 변수를 사용하는 구문이 하나도 없다. 그러나 차후의 '확장성'을 생각하여,
-// 인스턴스 변수의 사용이 필요할 때를 대비하여 이렇게 작성한다.
+// this 로 인스턴스 변수를 사용하는 구문이 하나도 없다. 그러나 차후의 '확장성'을 생각하여, 인스턴스 변수의 사용이 필요할 때를 대비하여 이렇게 작성한다.
 // 특별한 의미가 없다면 static을 쓰지 않는다는 말이다.
 package com.eomcs.jdbc.ex2;
 
@@ -16,12 +15,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardDao {
+public class BoardDao2 {
+
+  Connection con;
+
+  public BoardDao2(String jdbcUrl, String username, String password) throws Exception {
+    con = DriverManager.getConnection(jdbcUrl, username, password);
+  }
+
   public int delete(int no) throws Exception {
-    try (
-        Connection con = DriverManager
-            .getConnection("jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        Statement stmt = con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
       // 첨부파일 삭제
       stmt.executeUpdate("delete from x_board_file where board_id = " + no);
@@ -32,10 +35,7 @@ public class BoardDao {
   }
 
   public List<Board> findAll() throws Exception {
-    try (
-        Connection con = DriverManager
-            .getConnection("jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        Statement stmt = con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from x_board order by board_id desc")) {
 
       ArrayList<Board> list = new ArrayList<>();
@@ -53,10 +53,7 @@ public class BoardDao {
   }
 
   public int insert(Board board) throws Exception {
-    try (
-        Connection con = DriverManager
-            .getConnection("jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        Statement stmt = con.createStatement();) {
+    try (Statement stmt = con.createStatement();) {
 
       String sql = String.format("insert into x_board(title,contents) values('%s','%s')",
           board.getTitle(), board.getContent());
@@ -66,10 +63,7 @@ public class BoardDao {
   }
 
   public int update(Board board) throws Exception {
-    try (
-        Connection con = DriverManager
-            .getConnection("jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        Statement stmt = con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
       String sql = String.format("update x_board set title='%s', contents='%s' where board_id=%d",
           board.getTitle(), board.getContent(), board.getNo());
@@ -79,10 +73,7 @@ public class BoardDao {
   }
 
   public Board findBy(String no) throws Exception {
-    try (
-        Connection con = DriverManager
-            .getConnection("jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        Statement stmt = con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from x_board where board_id = " + no)) {
 
       if (rs.next()) {
