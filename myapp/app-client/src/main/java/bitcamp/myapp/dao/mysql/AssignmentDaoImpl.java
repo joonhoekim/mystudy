@@ -4,16 +4,16 @@ import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.dao.DaoException;
 import bitcamp.myapp.vo.Assignment;
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AssignmentDaoImpl implements AssignmentDao {
 
   Connection con;
+  private PreparedStatement pstmt;
 
   public AssignmentDaoImpl(Connection con) {
     this.con = con;
@@ -22,13 +22,14 @@ public class AssignmentDaoImpl implements AssignmentDao {
   @Override
   public void add(Assignment assignment) {
     try {
-      Statement stmt = con.createStatement();
-      stmt.executeUpdate(String.format(
-          "INSERT INTO assignments(title,content,deadline) VALUES('%s', '%s', '%s')",
-          assignment.getTitle(),
-          assignment.getContent(),
-          assignment.getDeadline())
+      PreparedStatement pstmt = con.prepareStatement(
+          "INSERT INTO assignments(title,content,deadline) VALUES(?, ?, ?)"
       );
+      pstmt.setString(1, assignment.getTitle());
+      pstmt.setString(2, assignment.getContent());
+      pstmt.setDate(3, assignment.getDeadline());
+
+      pstmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
       throw new DaoException("데이터 쓰기 예외", e);
@@ -39,9 +40,12 @@ public class AssignmentDaoImpl implements AssignmentDao {
   @Override
   public int delete(int no) {
     try {
-      Statement stmt = con.createStatement();
-      return stmt.executeUpdate(String.format(
-          "DELETE FROM assignments WHERE assignment_no = + %d", no));
+      PreparedStatement pstmt = con.prepareStatement(
+          "DELETE FROM assignments WHERE assignment_no = ?"
+      );
+
+      pstmt.setInt(1, no);
+      return pstmt.executeUpdate();
     } catch (Exception e) {
       throw new DaoException("삭제 예외 발생", e);
     }
@@ -49,23 +53,18 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public List<Assignment> findAll() {
-    try {
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(
-          "SELECT * FROM assignments"
-      );
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "SELECT * FROM assignments ORDER BY assignment_no DESC");
+        ResultSet rs = pstmt.executeQuery();) {
+
       ArrayList<Assignment> list = new ArrayList<>();
 
       while (rs.next() == true) {
-        int assignmentNo = rs.getInt("assignment_no");
-        String title = rs.getString("title");
-        String content = rs.getString("content");
-        Date deadline = rs.getDate("deadline");
-
         Assignment assignment = new Assignment();
-        assignment.setTitle(title);
-        assignment.setContent(content);
-        assignment.setDeadline(deadline);
+        assignment.setNo(rs.getInt("assignment_no"));
+        assignment.setTitle(rs.getString("title"));
+        assignment.setContent(rs.getString("content"));
+        assignment.setDeadline(rs.getDate("deadline"));
 
         list.add(assignment);
       }
@@ -77,34 +76,39 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public Assignment findBy(int no) {
-    try {
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(
-          String.format("SELECT * FROM assignments WHERE assignment_no = %d", no)
-      );
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "SELECT * FROM assignments WHERE assignment_no = ?", no);) {
+      pstmt.setInt(1, no);
 
-      if (rs.next() == true) {
-        int assignmentNo = rs.getInt("assignment_no");
-        String title = rs.getString("title");
-        String content = rs.getString("content");
-        Date deadline = rs.getDate("deadline");
+      try (ResultSet rs = pstmt.executeQuery();) {
 
-        Assignment assignment = new Assignment();
-        assignment.setTitle(title);
-        assignment.setContent(content);
-        assignment.setDeadline(deadline);
-
-        return assignment;
-
+        if (rs.next() == true) {
+          Assignment assignment = new Assignment();
+          assignment.setNo(rs.getInt("assignment_no"));
+          assignment.setTitle(rs.getString("title"));
+          assignment.setContent(rs.getString("content"));
+          assignment.setDeadline(rs.getDate("deadline"));
+          return assignment;
+        }
+        return null;
       }
     } catch (Exception e) {
       throw new DaoException("조회 예외 발생", e);
     }
-    return null;
   }
 
   @Override
   public int update(Assignment assignment) {
-    return 0;
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "UPDATE assignments SET title=?, content=?, deadline=? WHERE assignment_no=?")) {
+      pstmt.setString(1, assignment.getTitle());
+      pstmt.setString(2, assignment.getContent());
+      pstmt.setDate(3, assignment.getDeadline());
+      pstmt.setInt(4, assignment.getNo());
+
+      return pstmt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

@@ -4,8 +4,8 @@ import bitcamp.myapp.dao.DaoException;
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,26 +19,25 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public void add(Member member) {
-    try {
-      Statement stmt = con.createStatement();
-      stmt.executeUpdate(String.format(
-          "INSERT INTO members(email,name,password) VALUES('%s','%s','%s')",
-          member.getEmail(), member.getName(), member.getPassword()
-      ));
-
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "INSERT INTO members(email,name,password) VALUES(?,?,?)");) {
+      pstmt.setString(1, member.getEmail());
+      pstmt.setString(2, member.getName());
+      pstmt.setString(3, member.getPassword());
+      pstmt.executeUpdate();
     } catch (Exception e) {
       throw new DaoException("DB쓰기 예외", e);
+
     }
 
   }
 
   @Override
   public int delete(int no) {
-    try {
-      Statement stmt = con.createStatement();
-      return stmt.executeUpdate(String.format(
-          "DELETE FROM members WHERE member_no = %d", no
-      ));
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "DELETE FROM members WHERE member_no = ?");) {
+      pstmt.setInt(1, no);
+      return pstmt.executeUpdate();
     } catch (Exception e) {
       throw new DaoException("삭제 중 예외 발생", e);
     }
@@ -46,11 +45,8 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public List<Member> findAll() {
-    try {
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(String.format(
-          "SELECT * FROM members"
-      ));
+    try (PreparedStatement pstmt = con.prepareStatement("SELECT * FROM members");
+        ResultSet rs = pstmt.executeQuery();) {
       ArrayList<Member> list = new ArrayList<>();
 
       while (rs.next()) {
@@ -72,11 +68,11 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public Member findBy(int no) {
-    try {
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(String.format(
-          "SELECT * FROM members WHERE member_no = %d", no
-      ));
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "SELECT * FROM members WHERE member_no = ?");
+    ) {
+      pstmt.setInt(1, no);
+      ResultSet rs = pstmt.executeQuery();
 
       if (rs.next() == true) {
         Member member = new Member();
@@ -96,11 +92,14 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int update(Member member) {
-    try {
-      Statement stmt = con.createStatement();
-      return stmt.executeUpdate(String.format(
-          "UPDATE members SET email='%s',name='%s',password=sha('%s',256) WHERE member_no = %d",
-          member.getEmail(), member.getName(), member.getPassword(), member.getNo()));
+    try (PreparedStatement pstmt = con.prepareStatement(
+        "UPDATE members SET email=?,name=?,password=sha(?,256) WHERE member_no =?");) {
+      pstmt.setString(1, member.getEmail());
+      pstmt.setString(2, member.getName());
+      pstmt.setString(3, member.getPassword());
+      pstmt.setInt(4, member.getNo());
+
+      return pstmt.executeUpdate();
     } catch (Exception e) {
       throw new DaoException("수정 예외 발생", e);
     }

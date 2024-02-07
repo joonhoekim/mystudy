@@ -34,7 +34,7 @@ where board_no = 3;
 delete from boards where board_no=3; --where 조건이 빠지면 그 테이블을 다 지워버리므로 주의!
 
 --Assignment--------------------------------------------------------------------------------
-create table assignment(
+create table assignments(
   assignment_no int primary key auto_increment,
   title varchar(255) not null,
   content text not null,
