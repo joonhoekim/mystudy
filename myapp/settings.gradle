@@ -15,6 +15,6 @@ rootProject.name = 'myapp'
 //위 rootProject 하위의 include에 포함되지 않은 경로들의 gradle settings들은 전부 무시된다.
 
 include('app-client')
-//include('app-server')
+include('app-server')
 //include('app-common')
 //include('app-api')
