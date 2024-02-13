@@ -3,7 +3,7 @@ package bitcamp.myapp.dao.mysql;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.dao.DaoException;
 import bitcamp.myapp.vo.Board;
-import bitcamp.util.ThreadConnection;
+import bitcamp.util.DBConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,10 +12,11 @@ import java.util.List;
 
 public class BoardDaoImpl implements BoardDao {
 
-  ThreadConnection threadConnection;
+  DBConnectionPool connectionPool;
   int category;
 
-  public BoardDaoImpl(ThreadConnection threadConnection, int category) {
+  public BoardDaoImpl(DBConnectionPool connectionPool, int category) {
+    this.connectionPool = connectionPool;
     this.category = category;
   }
 
@@ -23,8 +24,7 @@ public class BoardDaoImpl implements BoardDao {
   public void add(Board board) {
     Connection con = null;
     try {
-      con = threadConnection.get();
-      con.setAutoCommit(false);
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "insert into boards(title,content,writer,category) values(?,?,?,?)")) {
@@ -35,19 +35,9 @@ public class BoardDaoImpl implements BoardDao {
         pstmt.setInt(4, category);
 
         pstmt.executeUpdate();
-        pstmt.executeUpdate();
-
-        Thread.sleep(10000);
-
-        pstmt.executeUpdate();
       }
-      con.commit();
 
     } catch (Exception e) {
-      try {
-        con.rollback();
-      } catch (Exception e2) {
-      }
       throw new DaoException("데이터 입력 오류", e);
     }
   }
@@ -56,7 +46,7 @@ public class BoardDaoImpl implements BoardDao {
   public int delete(int no) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "delete from boards where board_no=?")) {
@@ -66,11 +56,6 @@ public class BoardDaoImpl implements BoardDao {
 
     } catch (Exception e) {
       throw new DaoException("데이터 삭제 오류", e);
-    } finally {
-      try {
-
-      } catch (Exception e) {
-      }
     }
   }
 
@@ -78,7 +63,7 @@ public class BoardDaoImpl implements BoardDao {
   public List<Board> findAll() {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "select board_no, title, writer, created_date"
@@ -105,11 +90,6 @@ public class BoardDaoImpl implements BoardDao {
 
     } catch (Exception e) {
       throw new DaoException("데이터 가져오기 오류", e);
-    } finally {
-      try {
-
-      } catch (Exception e) {
-      }
     }
   }
 
@@ -117,7 +97,7 @@ public class BoardDaoImpl implements BoardDao {
   public Board findBy(int no) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "select * from boards where board_no=?")) {
@@ -147,7 +127,7 @@ public class BoardDaoImpl implements BoardDao {
   public int update(Board board) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "update boards set title=?, content=?, writer=? where board_no=?")) {

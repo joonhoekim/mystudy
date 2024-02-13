@@ -3,7 +3,7 @@ package bitcamp.myapp.dao.mysql;
 import bitcamp.myapp.dao.DaoException;
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.ThreadConnection;
+import bitcamp.util.DBConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,17 +12,18 @@ import java.util.List;
 
 public class MemberDaoImpl implements MemberDao {
 
-  ThreadConnection threadConnection;
+  DBConnectionPool connectionPool;
 
-  public MemberDaoImpl(ThreadConnection threadConnection) {
-    this.threadConnection = threadConnection;
+  public MemberDaoImpl(DBConnectionPool connectionPool) {
+    this.connectionPool = connectionPool;
   }
 
   @Override
   public void add(Member member) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
+
       try (PreparedStatement pstmt = con.prepareStatement(
           "insert into members(email,name,password) values(?,?,sha2(?,256))")) {
         pstmt.setString(1, member.getEmail());
@@ -39,7 +40,7 @@ public class MemberDaoImpl implements MemberDao {
   public int delete(int no) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "delete from members where member_no=?")) {
@@ -55,7 +56,7 @@ public class MemberDaoImpl implements MemberDao {
   public List<Member> findAll() {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "select member_no, email, name, created_date from members");
@@ -83,7 +84,7 @@ public class MemberDaoImpl implements MemberDao {
   public Member findBy(int no) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "select member_no, email, name, created_date from members where member_no=?")) {
@@ -110,7 +111,7 @@ public class MemberDaoImpl implements MemberDao {
   public int update(Member member) {
     Connection con = null;
     try {
-      con = threadConnection.get();
+      con = connectionPool.getConnection();
 
       try (PreparedStatement pstmt = con.prepareStatement(
           "update members set email=?, name=?, password=sha2(?,256) where member_no=?")) {
