@@ -12,6 +12,4 @@ public abstract class AbstractMenu implements Menu {
   public String getTitle() {
     return this.title;
   }
-
-
 }

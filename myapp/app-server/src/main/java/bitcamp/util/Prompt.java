@@ -16,7 +16,6 @@ public class Prompt implements AutoCloseable {
   private StringWriter stringWriter = new StringWriter();
   private PrintWriter writer = new PrintWriter(stringWriter);
 
-
   public Prompt(DataInputStream in, DataOutputStream out) {
     this.in = in;
     this.out = out;
@@ -26,7 +25,7 @@ public class Prompt implements AutoCloseable {
     try {
       printf(str, args);
       end();
-      return input();
+      return in.readUTF();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -76,33 +75,13 @@ public class Prompt implements AutoCloseable {
     out.writeUTF(content);
   }
 
-  public String input() throws Exception {
-    return in.readUTF();
-  }
-
-  public int inputInt() throws Exception {
-    return Integer.parseInt(this.input());
-  }
-
-  public float inputFloat() throws Exception {
-    return Float.parseFloat(this.input());
-  }
-
-  public boolean inputBoolean() throws Exception {
-    return Boolean.parseBoolean(this.input());
-  }
-
-  public Date inputDate() throws Exception {
-    return Date.valueOf(this.input());
-  }
-
   public void close() throws Exception {
     writer.close();
     stringWriter.close();
   }
 
-  public void pushPath(String menu) {
-    breadcrumb.push(menu);
+  public void pushPath(String path) {
+    breadcrumb.push(path);
   }
 
   public String popPath() {

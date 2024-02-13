@@ -38,7 +38,6 @@ public class ServerApp {
 
   ExecutorService executorService = Executors.newCachedThreadPool();
 
-
   BoardDao boardDao;
   BoardDao greetingDao;
   AssignmentDao assignmentDao;
@@ -59,8 +58,8 @@ public class ServerApp {
   void prepareDatabase() {
     try {
       Connection con = DriverManager.getConnection(
-          //"jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
-          "jdbc:mysql://db-ld26e-kr.vpc-pub-cdb.ntruss.com/studydb", "study", "Bitcamp!@#123");
+          "jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
+      //"jdbc:mysql://db-ld27b-kr.vpc-pub-cdb.ntruss.com/studydb", "study", "Bitcamp!@#123");
 
       boardDao = new BoardDaoImpl(con, 1);
       greetingDao = new BoardDaoImpl(con, 2);
@@ -105,12 +104,10 @@ public class ServerApp {
     greetingMenu.addItem("목록", new BoardListHandler(greetingDao));
 
     mainMenu.addItem("도움말", new HelpHandler());
-    mainMenu.addItem("이 앱에 대하여", new AboutHandler());
-
+    mainMenu.addItem("...대하여", new AboutHandler());
   }
 
   void run() {
-
     try (ServerSocket serverSocket = new ServerSocket(8888)) {
 
       while (true) {

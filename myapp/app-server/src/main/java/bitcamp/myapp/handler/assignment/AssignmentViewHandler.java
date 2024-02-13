@@ -15,17 +15,22 @@ public class AssignmentViewHandler extends AbstractMenuHandler {
 
   @Override
   protected void action(Prompt prompt) {
-    int no = prompt.inputInt("번호? ");
-    Assignment assignment = assignmentDao.findBy(no);
-    if (assignment == null) {
-      prompt.println("과제 번호가 유효하지 않습니다!");
-      return;
-    }
+    try {
+      int no = prompt.inputInt("번호? ");
+      Assignment assignment = assignmentDao.findBy(no);
+      if (assignment == null) {
+        prompt.println("과제 번호가 유효하지 않습니다!");
+        return;
+      }
 
-    prompt.printf("번호: %s\n", assignment.getNo());
-    prompt.printf("과제명: %s\n", assignment.getTitle());
-    prompt.printf("내용: %s\n", assignment.getContent());
-    prompt.printf("제출 마감일: %s\n", assignment.getDeadline());
+      prompt.printf("번호: %s\n", assignment.getNo());
+      prompt.printf("과제명: %s\n", assignment.getTitle());
+      prompt.printf("내용: %s\n", assignment.getContent());
+      prompt.printf("제출 마감일: %s\n", assignment.getDeadline());
+
+    } catch (Exception e) {
+      prompt.println("조회 오류!");
+    }
   }
 
 }

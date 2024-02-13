@@ -31,6 +31,6 @@ public class MemberModifyHandler extends AbstractMenuHandler {
     member.setCreatedDate(old.getCreatedDate());
 
     memberDao.update(member);
-    System.out.println("회원을 변경했습니다.");
+    prompt.println("회원을 변경했습니다.");
   }
 }

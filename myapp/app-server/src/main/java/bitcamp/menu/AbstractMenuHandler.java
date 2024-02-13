@@ -18,6 +18,5 @@ public abstract class AbstractMenuHandler implements MenuHandler {
     prompt.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, title);
   }
 
-
   protected abstract void action(Prompt prompt);
 }
