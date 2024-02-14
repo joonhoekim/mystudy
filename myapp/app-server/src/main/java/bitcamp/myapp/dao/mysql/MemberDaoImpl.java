@@ -13,8 +13,6 @@ import java.util.List;
 public class MemberDaoImpl implements MemberDao {
 
   DBConnectionPool connectionPool;
-  //궁금증: 변수명을 dbConnectionPool 이 아니라 connectionPool 이라고 작성하신 것은 이러한 패턴을 예상하셨기 때문인가요?
-  
 
   public MemberDaoImpl(DBConnectionPool connectionPool) {
     this.connectionPool = connectionPool;
@@ -22,7 +20,6 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public void add(Member member) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "insert into members(email,name,password) values(?,?,sha2(?,256))")) {
@@ -38,7 +35,6 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int delete(int no) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "delete from members where member_no=?")) {
@@ -52,7 +48,6 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public List<Member> findAll() {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "select member_no, email, name, created_date from members");

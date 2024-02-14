@@ -16,7 +16,6 @@ public class AssignmentViewHandler extends AbstractMenuHandler {
   @Override
   protected void action(Prompt prompt) {
     try {
-
       int no = prompt.inputInt("번호? ");
       Assignment assignment = assignmentDao.findBy(no);
       if (assignment == null) {

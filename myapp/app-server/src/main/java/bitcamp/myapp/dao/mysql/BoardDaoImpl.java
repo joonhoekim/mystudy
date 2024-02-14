@@ -22,10 +22,10 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public void add(Board board) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
-            "insert into boards(title,content,writer,category) values(?,?,?,?)")) {
+            "insert into boards(title,content,writer,category) values(?,?,?,?)",
+            PreparedStatement.RETURN_GENERATED_KEYS)) {
 
       pstmt.setString(1, board.getTitle());
       pstmt.setString(2, board.getContent());
@@ -33,6 +33,12 @@ public class BoardDaoImpl implements BoardDao {
       pstmt.setInt(4, category);
 
       pstmt.executeUpdate();
+
+      // 자동 생성된 PK 값을 가져와서 Board 객체에 저장한다.
+      try (ResultSet keyRs = pstmt.getGeneratedKeys()) {
+        keyRs.next();
+        board.setNo(keyRs.getInt(1));
+      }
 
 
     } catch (Exception e) {
@@ -42,12 +48,12 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int delete(int no) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "delete from boards where board_no=?")) {
       pstmt.setInt(1, no);
       return pstmt.executeUpdate();
+
     } catch (Exception e) {
       throw new DaoException("데이터 삭제 오류", e);
     }
@@ -55,11 +61,23 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public List<Board> findAll() {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
-            "select board_no, title, writer, created_date"
-                + " from boards where category=? order by board_no desc")) {
+            "select\n"
+                + "  b.board_no,\n"
+                + "  b.title,\n"
+                + "  b.writer,\n"
+                + "  b.created_date,\n"
+                + "  count(bf.file_no) file_count\n"
+                + "from\n"
+                + "  boards b\n"
+                + "  left outer join board_files bf on b.board_no = bf.board_no\n"
+                + "where\n"
+                + "  category = ?\n"
+                + "group by\n"
+                + "  b.board_no\n"
+                + "order by\n"
+                + "  board_no desc;")) {
 
       pstmt.setInt(1, category);
 
@@ -73,12 +91,12 @@ public class BoardDaoImpl implements BoardDao {
           board.setTitle(rs.getString("title"));
           board.setWriter(rs.getString("writer"));
           board.setCreatedDate(rs.getDate("created_date"));
+          board.setFileCount(rs.getInt("file_count"));
 
           list.add(board);
         }
         return list;
       }
-
 
     } catch (Exception e) {
       throw new DaoException("데이터 가져오기 오류", e);
@@ -87,7 +105,6 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public Board findBy(int no) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "select * from boards where board_no=?")) {
@@ -102,6 +119,7 @@ public class BoardDaoImpl implements BoardDao {
           board.setContent(rs.getString("content"));
           board.setWriter(rs.getString("writer"));
           board.setCreatedDate(rs.getDate("created_date"));
+          //첨부파일들을 여기다가 넣어줘야 한다.
 
           return board;
         }
@@ -114,7 +132,6 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int update(Board board) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "update boards set title=?, content=?, writer=? where board_no=?")) {
@@ -125,6 +142,7 @@ public class BoardDaoImpl implements BoardDao {
       pstmt.setInt(4, board.getNo());
 
       return pstmt.executeUpdate();
+
     } catch (Exception e) {
       throw new DaoException("데이터 변경 오류", e);
     }

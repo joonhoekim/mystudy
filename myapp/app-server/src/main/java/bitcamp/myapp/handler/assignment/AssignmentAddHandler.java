@@ -8,7 +8,6 @@ import bitcamp.util.TransactionManager;
 
 public class AssignmentAddHandler extends AbstractMenuHandler {
 
-  //private DBConnectionPool connectionPool;
   private TransactionManager txManager;
   private AssignmentDao assignmentDao;
 
@@ -36,7 +35,6 @@ public class AssignmentAddHandler extends AbstractMenuHandler {
     } catch (Exception e) {
       prompt.println("과제 입력 중 오류 발생!");
       prompt.println("다시 시도하시기 바랍니다.");
-
     }
   }
 }

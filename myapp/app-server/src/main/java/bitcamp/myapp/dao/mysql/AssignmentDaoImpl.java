@@ -20,8 +20,7 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public void add(Assignment assignment) {
-    try (
-        Connection con = connectionPool.getConnection();
+    try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "insert into assignments(title,content,deadline) values(?,?,?)")) {
 
@@ -30,6 +29,7 @@ public class AssignmentDaoImpl implements AssignmentDao {
       pstmt.setDate(3, assignment.getDeadline());
 
       pstmt.executeUpdate();
+
     } catch (Exception e) {
       throw new DaoException("데이터 입력 오류", e);
     }
@@ -37,7 +37,6 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public int delete(int no) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "delete from assignments where assignment_no=?")) {
@@ -52,7 +51,6 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public List<Assignment> findAll() {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "select assignment_no, title, deadline from assignments order by assignment_no desc");
@@ -77,7 +75,6 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public Assignment findBy(int no) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "select * from assignments where assignment_no=?")) {
@@ -104,7 +101,6 @@ public class AssignmentDaoImpl implements AssignmentDao {
 
   @Override
   public int update(Assignment assignment) {
-
     try (Connection con = connectionPool.getConnection();
         PreparedStatement pstmt = con.prepareStatement(
             "update assignments set title=?, content=?, deadline=? where assignment_no=?")) {

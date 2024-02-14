@@ -17,7 +17,6 @@ public class MemberAddHandler extends AbstractMenuHandler {
   @Override
   protected void action(Prompt prompt) {
     try {
-
       Member member = new Member();
       member.setEmail(prompt.input("이메일? "));
       member.setName(prompt.input("이름? "));
@@ -28,7 +27,6 @@ public class MemberAddHandler extends AbstractMenuHandler {
 
     } catch (Exception e) {
       prompt.println("등록 오류!");
-
     }
   }
 }
