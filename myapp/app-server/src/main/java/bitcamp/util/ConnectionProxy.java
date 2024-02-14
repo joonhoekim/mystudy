@@ -41,8 +41,14 @@ public class ConnectionProxy implements Connection {
       // return this connection to DB Connection Pool  (DBCP)
       connectionPool.returnConnection(this); //프록시를 보낸다.
     }
+    //origianl.close();
+  }
 
-    origianl.close();
+  public void realClose() {
+    try {
+      origianl.close();
+    } catch (Exception e) {
+    }
   }
 
 
@@ -350,4 +356,6 @@ public class ConnectionProxy implements Connection {
   public boolean isWrapperFor(Class<?> iface) throws SQLException {
     return origianl.isWrapperFor(iface);
   }
+
+
 }

@@ -30,6 +30,7 @@ public class BoardListHandler extends AbstractMenuHandler {
             board.getCreatedDate());
       }
     } catch (Exception e) {
+      e.printStackTrace();
       prompt.println("목록 오류!");
 
     }

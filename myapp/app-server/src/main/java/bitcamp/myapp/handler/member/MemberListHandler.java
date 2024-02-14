@@ -30,6 +30,7 @@ public class MemberListHandler extends AbstractMenuHandler {
             member.getCreatedDate());
       }
     } catch (Exception e) {
+      e.printStackTrace();
       prompt.println("목록 오류!");
 
     }

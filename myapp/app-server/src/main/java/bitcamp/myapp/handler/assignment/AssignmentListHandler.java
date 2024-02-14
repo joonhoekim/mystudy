@@ -26,6 +26,7 @@ public class AssignmentListHandler extends AbstractMenuHandler {
             assignment.getDeadline());
       }
     } catch (Exception e) {
+      e.printStackTrace();
       prompt.println("목록 오류!");
     }
   }
