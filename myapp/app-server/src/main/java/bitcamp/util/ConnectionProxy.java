@@ -26,7 +26,7 @@ public class ConnectionProxy implements Connection {
 
   //포함된 객체
   private Connection origianl;
-  private DBConnectionPool connectionPool;
+  private ConnectionPool connectionPool;
 
   public ConnectionProxy(Connection origianl, DBConnectionPool connectionPool) {
     this.origianl = origianl;

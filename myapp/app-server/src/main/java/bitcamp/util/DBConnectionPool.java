@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
-public class DBConnectionPool {
+public class DBConnectionPool implements ConnectionPool {
 
   // 개별 스레드용 DB 커넥션 저장소
   private static final ThreadLocal<Connection> connectionThreadLocal = new ThreadLocal<>();
@@ -37,6 +37,7 @@ public class DBConnectionPool {
         // 새로 Connection을 만든다.
         con = new ConnectionProxy(DriverManager.getConnection(jdbcUrl, username, password), this);
         // 여기서 쌍방참조 나옴
+        // 해소 방법은 중간에 인터페이스 하나 두는 것
         System.out.printf("%s: DB 커넥션 생성\n", Thread.currentThread().getName());
       }
 
