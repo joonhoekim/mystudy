@@ -35,7 +35,8 @@ public class DBConnectionPool {
       } else {
         // 스레드풀에도 놀고 있는 Connection 이 없다면,
         // 새로 Connection을 만든다.
-        con = DriverManager.getConnection(jdbcUrl, username, password);
+        con = new ConnectionProxy(DriverManager.getConnection(jdbcUrl, username, password), this);
+        // 여기서 쌍방참조 나옴
         System.out.printf("%s: DB 커넥션 생성\n", Thread.currentThread().getName());
       }
 
