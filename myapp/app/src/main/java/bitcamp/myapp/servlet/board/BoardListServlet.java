@@ -34,41 +34,43 @@ public class BoardListServlet extends GenericServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html lang='en'>");
     out.println("<head>");
-    out.println("<meta charset='UTF - 8'>");
-    out.println("<title>비트캠프 데브옵스 5기</title>");
+    out.println("  <meta charset='UTF-8'>");
+    out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시글</h1>");
 
-    out.println("<a href=''>새 글</a>");
+    out.println("<a href='/board/form.html'>새 글</a>");
 
     try {
-      out.printf("%-4s\t%-20s\t%10s\t%s\t%s\n", "No", "Title", "Writer", "Date", "Files");
+      out.println("<table border='1'>");
+      out.println("    <thead>");
+      out.println("    <tr> <th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>첨부파일</th> </tr>");
+      out.println("    </thead>");
+      out.println("    <tbody>");
 
-      out.printf("<table>");
-      out.printf("<thead>");
-      out.printf("<tr>");
-      out.printf("<th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>첨부파일</th> </tr>");
-      out.printf("<thead>");
-      out.printf("<tbody>");
       List<Board> list = boardDao.findAll();
 
       for (Board board : list) {
-        out.printf("<tr> <td>%d</td> <td>%s</td> <td>%s</td> <td>%d</td> </tr>\n",
+        out.printf(
+            "<tr> <td>%d</td> <td><a href='/board/view?no=%1$d'>%s</a></td> <td>%s</td> <td>%s</td> <td>%d</td> </tr>\n",
             board.getNo(),
             board.getTitle(),
             board.getWriter().getName(),
             board.getCreatedDate(),
             board.getFileCount());
       }
-      out.printf("  </tbody>");
-      out.printf("</table>");
+
+      out.println("    </tbody>");
+      out.println("</table>");
+
     } catch (Exception e) {
-      out.println("목록 오류!");
-      out.println("<p> 목록 오류! </p>");
+      out.println("<p>목록 오류!</p>");
+      out.println("<pre>");
       e.printStackTrace(out);
       out.println("</pre>");
     }
+
     out.println("</body>");
     out.println("</html>");
   }
