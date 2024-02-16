@@ -11,10 +11,8 @@ plugins {
 }
 
 rootProject.name = 'myapp'
-//include('app') //app 경로 하위의 build.gradle 파일을 참조하라!
-//위 rootProject 하위의 include에 포함되지 않은 경로들의 gradle settings들은 전부 무시된다.
-
-include('app-client')
-include('app-server')
+include('app')
+//include('app-client')
+//include('app-server')
 //include('app-common')
 //include('app-api')
