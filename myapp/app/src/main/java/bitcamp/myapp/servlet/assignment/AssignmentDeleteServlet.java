@@ -1,8 +1,7 @@
-package bitcamp.myapp.servlet.member;
+package bitcamp.myapp.servlet.assignment;
 
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.mysql.MemberDaoImpl;
-import bitcamp.myapp.vo.Member;
+import bitcamp.myapp.dao.AssignmentDao;
+import bitcamp.myapp.dao.mysql.AssignmentDaoImpl;
 import bitcamp.util.DBConnectionPool;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,15 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/add")
-public class MemberAddServlet extends HttpServlet {
+@WebServlet("/assignment/delete")
+public class AssignmentDeleteServlet extends HttpServlet {
 
-  private MemberDao memberDao;
+  private AssignmentDao assignmentDao;
 
-  public MemberAddServlet() {
+  public AssignmentDeleteServlet() {
     DBConnectionPool connectionPool = new DBConnectionPool(
         "jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
-    this.memberDao = new MemberDaoImpl(connectionPool);
+    this.assignmentDao = new AssignmentDaoImpl(connectionPool);
   }
 
   @Override
@@ -37,19 +36,19 @@ public class MemberAddServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>회원</h1>");
+    out.println("<h1>과제</h1>");
 
     try {
-      Member member = new Member();
-      member.setEmail(request.getParameter("email"));
-      member.setName(request.getParameter("name"));
-      member.setPassword(request.getParameter("password"));
+      int no = Integer.parseInt(request.getParameter("no"));
 
-      memberDao.add(member);
-      out.println("<p>회원을 등록했습니다.</p>");
+      if (assignmentDao.delete(no) == 0) {
+        out.println("<p>과제 번호가 유효하지 않습니다.</p>");
+      } else {
+        out.println("<p>과제를 삭제했습니다.</p>");
+      }
 
     } catch (Exception e) {
-      out.println("<p>회원등록 오류!</p>");
+      out.println("<p>삭제 오류!</p>");
       out.println("<pre>");
       e.printStackTrace(out);
       out.println("</pre>");

@@ -2,9 +2,7 @@ package bitcamp.myapp.servlet.member;
 
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.dao.mysql.MemberDaoImpl;
-import bitcamp.myapp.vo.Member;
 import bitcamp.util.DBConnectionPool;
-import bitcamp.util.TransactionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,18 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberDeleteServlet extends HttpServlet {
 
   private MemberDao memberDao;
-  private TransactionManager txManager;
 
   public MemberDeleteServlet() {
     DBConnectionPool connectionPool = new DBConnectionPool(
         "jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
-    txManager = new TransactionManager(connectionPool);
-    memberDao = new MemberDaoImpl(connectionPool);
+    this.memberDao = new MemberDaoImpl(connectionPool);
   }
 
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -43,18 +40,13 @@ public class MemberDeleteServlet extends HttpServlet {
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));
-      Member member = memberDao.findBy(no);
-      if (member == null) {
+
+      if (memberDao.delete(no) == -1) {
         out.println("<p>회원 번호가 유효하지 않습니다.</p>");
-        out.println("</body>");
-        out.println("</html>");
-        return;
       } else {
-        memberDao.delete(no);
-        out.println("<p>회원 탈퇴 완료되었습니다. 이용해주셔서 감사합니다.</p>");
-
-
+        out.println("<p>회원을 삭제했습니다.</p>");
       }
+
     } catch (Exception e) {
       out.println("<p>삭제 오류!</p>");
       out.println("<pre>");
@@ -66,5 +58,3 @@ public class MemberDeleteServlet extends HttpServlet {
     out.println("</html>");
   }
 }
-
-

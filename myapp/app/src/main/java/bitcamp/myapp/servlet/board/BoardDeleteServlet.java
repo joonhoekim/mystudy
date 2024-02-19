@@ -53,7 +53,6 @@ public class BoardDeleteServlet extends HttpServlet {
     }
 
     try {
-
       int no = Integer.parseInt(request.getParameter("no"));
 
       Board board = boardDao.findBy(no);
@@ -62,8 +61,7 @@ public class BoardDeleteServlet extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
         return;
-      } else if ((board.getWriter().getNo() != loginUser.getNo())
-      ) {
+      } else if (board.getWriter().getNo() != loginUser.getNo()) {
         out.println("<p>권한이 없습니다.</p>");
         out.println("</body>");
         out.println("</html>");
@@ -76,7 +74,6 @@ public class BoardDeleteServlet extends HttpServlet {
       out.println("<script>");
       out.println("  location.href = '/board/list'");
       out.println("</script>");
-//      out.println("<p>첨부파일을 삭제했습니다!</p>");
 
     } catch (Exception e) {
       out.println("<p>삭제 오류!</p>");

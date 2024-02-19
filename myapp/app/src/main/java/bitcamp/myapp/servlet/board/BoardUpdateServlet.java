@@ -70,7 +70,6 @@ public class BoardUpdateServlet extends HttpServlet {
 
       board.setTitle(request.getParameter("title"));
       board.setContent(request.getParameter("content"));
-      //board.setWriter(loginUser);
 
       ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
       String[] files = request.getParameterValues("files");
@@ -103,7 +102,7 @@ public class BoardUpdateServlet extends HttpServlet {
         txManager.rollback();
       } catch (Exception e2) {
       }
-      out.println("<p>게시글 변경 오류!</p>");
+      out.println("<p>게시글 등록 오류!</p>");
       out.println("<pre>");
       e.printStackTrace(out);
       out.println("</pre>");

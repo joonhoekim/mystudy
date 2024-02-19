@@ -1,26 +1,27 @@
-package bitcamp.myapp.servlet.member;
+package bitcamp.myapp.servlet.assignment;
 
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.mysql.MemberDaoImpl;
-import bitcamp.myapp.vo.Member;
+import bitcamp.myapp.dao.AssignmentDao;
+import bitcamp.myapp.dao.mysql.AssignmentDaoImpl;
+import bitcamp.myapp.vo.Assignment;
 import bitcamp.util.DBConnectionPool;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/update")
-public class MemberUpdateServlet extends HttpServlet {
+@WebServlet("/assignment/update")
+public class AssignmentUpdateServlet extends HttpServlet {
 
-  private MemberDao memberDao;
+  private AssignmentDao assignmentDao;
 
-  public MemberUpdateServlet() {
+  public AssignmentUpdateServlet() {
     DBConnectionPool connectionPool = new DBConnectionPool(
         "jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
-    this.memberDao = new MemberDaoImpl(connectionPool);
+    this.assignmentDao = new AssignmentDaoImpl(connectionPool);
   }
 
   @Override
@@ -37,31 +38,30 @@ public class MemberUpdateServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>회원</h1>");
+    out.println("<h1>과제</h1>");
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));
 
-      Member old = memberDao.findBy(no);
+      Assignment old = assignmentDao.findBy(no);
       if (old == null) {
-        out.println("<p>회원 번호가 유효하지 않습니다.</p>");
+        out.println("<p>과제 번호가 유효하지 않습니다.</p>");
         out.println("</body>");
         out.println("</html>");
         return;
       }
 
-      Member member = new Member();
-      member.setNo(old.getNo());
-      member.setEmail(request.getParameter("email"));
-      member.setName(request.getParameter("name"));
-      member.setPassword(request.getParameter("password"));
-      member.setCreatedDate(old.getCreatedDate());
+      Assignment assignment = new Assignment();
+      assignment.setNo(old.getNo());
+      assignment.setTitle(request.getParameter("title"));
+      assignment.setContent(request.getParameter("content"));
+      assignment.setDeadline(Date.valueOf(request.getParameter("deadline")));
 
-      memberDao.update(member);
-      out.println("<p>회원을 변경했습니다.</p>");
+      assignmentDao.update(assignment);
+      out.println("<p>과제를 변경했습니다.</p>");
 
     } catch (Exception e) {
-      out.println("<p>회원 변경 오류!</p>");
+      out.println("<p>과제 변경 오류!</p>");
       out.println("<pre>");
       e.printStackTrace(out);
       out.println("</pre>");
@@ -69,5 +69,6 @@ public class MemberUpdateServlet extends HttpServlet {
 
     out.println("</body>");
     out.println("</html>");
+
   }
 }
