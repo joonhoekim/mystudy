@@ -2,11 +2,8 @@ package bitcamp.myapp.servlet.board;
 
 import bitcamp.myapp.dao.AttachedFileDao;
 import bitcamp.myapp.dao.BoardDao;
-import bitcamp.myapp.dao.mysql.AttachedFileDaoImpl;
-import bitcamp.myapp.dao.mysql.BoardDaoImpl;
 import bitcamp.myapp.vo.AttachedFile;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.DBConnectionPool;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,16 +18,20 @@ public class BoardFileDeleteServlet extends HttpServlet {
   private BoardDao boardDao;
   private AttachedFileDao attachedFileDao;
 
-  public BoardFileDeleteServlet() {
-    DBConnectionPool connectionPool = new DBConnectionPool(
-        "jdbc:mysql://localhost/studydb", "study", "Bitcamp!@#123");
-    this.boardDao = new BoardDaoImpl(connectionPool, 1);
-    this.attachedFileDao = new AttachedFileDaoImpl(connectionPool);
+  @Override
+  public void init() {
+    this.boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
+    this.attachedFileDao = (AttachedFileDao) this.getServletContext()
+        .getAttribute("attachedFileDao");
   }
+
 
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
+    int category = Integer.valueOf(request.getParameter("category"));
+    String title = category == 1 ? "게시글" : "가입인사";
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -42,7 +43,7 @@ public class BoardFileDeleteServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>게시글</h1>");
+    out.printf("<h1>%s</h1>\n", title);
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
     if (loginUser == null) {
