@@ -24,12 +24,11 @@ public class BoardUpdateServlet extends HttpServlet {
 
   @Override
   public void init() {
+    txManager = (TransactionManager) this.getServletContext().getAttribute("txManager");
     this.boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
     this.attachedFileDao = (AttachedFileDao) this.getServletContext()
         .getAttribute("attachedFileDao");
-    this.txManager = (TransactionManager) this.getServletContext().getAttribute("txManager");
   }
-
 
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response)

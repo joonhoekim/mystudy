@@ -5,10 +5,10 @@ import bitcamp.myapp.vo.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/auth/login")
 public class LoginServlet extends HttpServlet {
@@ -17,17 +17,12 @@ public class LoginServlet extends HttpServlet {
 
   @Override
   public void init() {
-    //  ServletContext 웹앱저장소 = this.getServletContext();
-    memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
+    this.memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
   }
 
   @Override
-  public void service(ServletRequest request, ServletResponse response)
+  protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    // 서블릿 컨테이너가 service()를 호출할 때 넘겨주는 값을
-    // HttpServletRequest와 HttpServletResponse이다.
-    // 파라미터로 넘어 온 객체를 제대로 사용하고 싶다면 원래 타입으로 형변환하라!
 
     String email = request.getParameter("email");
     String password = request.getParameter("password");
@@ -48,9 +43,7 @@ public class LoginServlet extends HttpServlet {
     try {
       Member member = memberDao.findByEmailAndPassword(email, password);
       if (member != null) {
-        request.setAttribute("loginUser", member);
-        //request.getSession().setAttribute("loginUser", member);
-
+        request.getSession().setAttribute("loginUser", member);
         out.printf("<p>%s 님 환영합니다.</p>\n", member.getName());
       } else {
         out.println("<p>이메일 또는 암호가 맞지 않습니다.</p>");

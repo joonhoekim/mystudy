@@ -18,7 +18,6 @@ public class AssignmentAddServlet extends HttpServlet {
 
   @Override
   public void init() {
-    //  ServletContext 웹앱저장소 = this.getServletContext();
     assignmentDao = (AssignmentDao) this.getServletContext().getAttribute("assignmentDao");
   }
 

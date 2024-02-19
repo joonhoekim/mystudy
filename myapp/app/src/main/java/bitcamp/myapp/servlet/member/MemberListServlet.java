@@ -19,7 +19,6 @@ public class MemberListServlet extends HttpServlet {
   @Override
   public void init() {
     this.memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
-    //this.txManager = (TransactionManager) this.getServletContext().getAttribute("txManager");
   }
 
   @Override

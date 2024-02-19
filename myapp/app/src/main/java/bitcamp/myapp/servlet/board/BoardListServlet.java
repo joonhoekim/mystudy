@@ -21,7 +21,6 @@ public class BoardListServlet extends GenericServlet {
     this.boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
   }
 
-
   @Override
   public void service(ServletRequest servletRequest, ServletResponse servletResponse)
       throws ServletException, IOException {
