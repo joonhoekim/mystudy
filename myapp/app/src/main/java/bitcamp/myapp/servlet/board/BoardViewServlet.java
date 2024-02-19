@@ -60,7 +60,7 @@ public class BoardViewServlet extends HttpServlet {
 
       out.println("<form action='/board/update'>");
       out.println("<div>");
-      out.printf("  번호: <input readonly number='title' type='text' value='%d'>\n", board.getNo());
+      out.printf("  번호: <input readonly name='no' type='text' value='%d'>\n", board.getNo());
       out.println("</div>");
       out.println("<div>");
       out.printf("  제목: <input name='title' type='text' value='%s'>\n", board.getTitle());
