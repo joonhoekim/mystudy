@@ -36,6 +36,9 @@ public class Servlet04 extends GenericServlet {
     //    그냥 다운로드 대화상자를 띄운다.
     res.setContentType("image/jpeg");
 
+    //res.setContentType("plain/text");
+
+
     OutputStream out = res.getOutputStream();
 
     int b;

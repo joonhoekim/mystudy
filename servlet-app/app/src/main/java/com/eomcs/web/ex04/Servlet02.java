@@ -48,6 +48,8 @@ public class Servlet02 extends GenericServlet {
 
     String age = req.getParameter("age");
     String name = req.getParameter("name");
+    System.out.println(age);
+    System.out.println(name);
 
     res.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = res.getWriter();

@@ -25,7 +25,7 @@ import javax.servlet.http.Part;
 //
 // 2) 애노테이션으로 설정하기
 //
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10) //10 MB
 @WebServlet("/ex04/s5")
 public class Servlet05 extends GenericServlet {
 

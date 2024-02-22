@@ -17,8 +17,10 @@ dependencies {
 
     implementation libs.guava
     // Apache의 파일업로드 처리 라이브러리
-    implementation 'commons-fileupload:commons-fileupload:1.4'
+    implementation 'commons-fileupload:commons-fileupload:1.5'
 
+    //for multipart/form-data file upload processing
+    //implementation 'com.liferay:org.apache.commons.fileupload:1.2.2.LIFERAY-PATCHED-1'
     // Thumbnailator 썸네일 생성 라이브러리
     implementation 'net.coobird:thumbnailator:0.4.14'
 }
