@@ -31,13 +31,14 @@ public class BoardUpdateServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
 
     int category = Integer.valueOf(request.getParameter("category"));
     String title = category == 1 ? "게시글" : "가입인사";
 
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -103,7 +104,8 @@ public class BoardUpdateServlet extends HttpServlet {
 
       txManager.commit();
 
-      out.println("<p>변경했습니다.</p>");
+      //out.println("<p>변경했습니다.</p>");
+      response.sendRedirect("/board/list?category=" + category);
 
     } catch (Exception e) {
       try {

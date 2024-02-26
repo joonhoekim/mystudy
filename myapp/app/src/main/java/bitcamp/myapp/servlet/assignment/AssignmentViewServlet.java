@@ -47,7 +47,7 @@ public class AssignmentViewServlet extends HttpServlet {
         return;
       }
 
-      out.println("<form action='/assignment/update'>");
+      out.println("<form action='/assignment/update' method='post'>");
       out.println("<div>");
       out.printf("  번호: <input readonly name='no' type='text' value='%d'>\n", assignment.getNo());
       out.println("</div>");

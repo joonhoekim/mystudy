@@ -24,7 +24,7 @@ public class Servlet03 extends MyHttpServlet2 {
     //
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("doGet() => GET 요청입니다.");
+    out.println("GET 요청입니다.");
   }
 
   // HTTP POST 요청에 응답하고 싶다면
@@ -37,7 +37,7 @@ public class Servlet03 extends MyHttpServlet2 {
     //
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("doPost() => POST 요청입니다.");
+    out.println("POST 요청입니다.");
   }
 }
 

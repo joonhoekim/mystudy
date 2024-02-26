@@ -3,11 +3,13 @@ package com.eomcs.web.ex06;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 // 서블릿이 사용할 값을 DD 설정으로 지정할 수 있다.
 // => web.xml 에 지정하였다.
 @SuppressWarnings("serial")
+//@WebServlet(value = "/ex06/s4", loadOnStartup = 1)
 public class Servlet04 extends HttpServlet {
 
   @Override

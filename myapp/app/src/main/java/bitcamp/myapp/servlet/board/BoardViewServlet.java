@@ -27,13 +27,13 @@ public class BoardViewServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    int category = Integer.valueOf(request.getParameter("category"));
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+    int category = Integer.parseInt(request.getParameter("category"));
     String title = category == 1 ? "게시글" : "가입인사";
 
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -58,8 +58,8 @@ public class BoardViewServlet extends HttpServlet {
 
       List<AttachedFile> files = attachedFileDao.findAllByBoardNo(no);
 
-      out.println("<form action='/board/update'>");
-      out.printf("<input name='category' type='hidden' value='%d'>\n", category);
+      out.println("<form action='/board/update' method='post'>");
+      out.printf("<input name='category' type='hidden' value='%d' method='post'>\n", category);
       out.println("<div>");
       out.printf("  번호: <input readonly name='no' type='text' value='%d'>\n", board.getNo());
       out.println("</div>");
@@ -89,7 +89,8 @@ public class BoardViewServlet extends HttpServlet {
 
       out.println("<div>");
       out.println("  <button>변경</button>");
-      out.printf("  <a href='/board/delete?category=%d&no=%d'>[삭제]</a>\n", category, no);
+      out.printf("  <a href='/board/delete?category=%d&no=%d' method='post'>[삭제]</a>\n", category,
+          no);
       out.println("</div>");
       out.println("</form>");
 

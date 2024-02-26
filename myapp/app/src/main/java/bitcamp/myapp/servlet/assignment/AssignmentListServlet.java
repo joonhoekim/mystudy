@@ -22,7 +22,7 @@ public class AssignmentListServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +37,7 @@ public class AssignmentListServlet extends HttpServlet {
     out.println("<body>");
     out.println("<h1>과제</h1>");
 
-    out.println("<a href='/assignment/form.html'>새 과제</a>");
+    out.println("<a href='/assignment/form.html' method='post'>새 과제</a>");
 
     try {
       out.println("<table border='1'>");

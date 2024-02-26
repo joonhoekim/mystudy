@@ -53,9 +53,10 @@ public class Servlet01 extends HttpServlet {
     //    소용이 없다.
     //
 
+    response.setHeader("Refresh", "3;url=s100");
     // 다음은 일부러 버퍼를 채우는 코드이다.
     // 버퍼가 꽉차면 자동으로 출력하는 것을 확인해보자!
-    for (int i = 0; i < 150; i++) {
+    for (int i = 0; i <100000; i++) {
       // 약 40 바이트씩 100번 출력하면 아직 버퍼에 차지 않았기 때문에
       // 클라이언트로 출력되지 않는다.
       // 따라서 반복문 아래에 있는 응답 헤더 설정이 유효하다.
@@ -68,7 +69,6 @@ public class Servlet01 extends HttpServlet {
       out.println(i + " ===> 1234567890123456789012345678901234567890");
     }
 
-    response.setHeader("Refresh", "3;url=s100");
 
     // 이 service() 메서드의 호출이 끝나면
     // 비로서 응답 프로토콜에 맞춰

@@ -65,6 +65,7 @@ public abstract class MyHttpServlet2 extends GenericServlet {
   //
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
     error(request, response);
   }
 
@@ -86,7 +87,6 @@ public abstract class MyHttpServlet2 extends GenericServlet {
   private void error(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    request.setCharacterEncoding("UTF-8");
     PrintWriter out = response.getWriter();
     out.println("해당 HTTP 요청을 처리할 수 없습니다.");
   }

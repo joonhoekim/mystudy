@@ -2,7 +2,9 @@
 package com.eomcs.web.ex06;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 //
 //@WebServlet(value="/ex06/s1", loadOnStartup=1)
 @SuppressWarnings("serial")
+//@WebServlet(value="/ex06/s1", loadOnStartup = 1)
 public class Servlet01 extends HttpServlet {
 
   @Override
@@ -31,6 +34,11 @@ public class Servlet01 extends HttpServlet {
   protected void service(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     System.out.println("/ex06/s1 => service()");
+    PrintWriter hello = resp.getWriter();
+    //int i = 0;
+    hello.write("hihi" + i++);
   }
+
+  static int i = 0;
 }
 
