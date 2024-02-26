@@ -3,7 +3,6 @@ package bitcamp.myapp.servlet.assignment;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.vo.Assignment;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,28 +23,13 @@ public class AssignmentUpdateServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html lang='en'>");
-    out.println("<head>");
-    out.println("  <meta charset='UTF-8'>");
-    out.println("  <title>비트캠프 데브옵스 5기</title>");
-    out.println("</head>");
-    out.println("<body>");
-
-    request.getRequestDispatcher("/header").include(request, response);
-
-    out.println("<h1>과제</h1>");
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));
 
       Assignment old = assignmentDao.findBy(no);
       if (old == null) {
-        throw new Exception("변경 오류");
+        throw new Exception("과제 번호가 유효하지 않습니다.");
       }
 
       Assignment assignment = new Assignment();
@@ -56,19 +40,11 @@ public class AssignmentUpdateServlet extends HttpServlet {
 
       assignmentDao.update(assignment);
       response.sendRedirect("list");
-      return;
 
     } catch (Exception e) {
-      request.setAttribute("message", "변경 오류");
+      request.setAttribute("message", "변경 오류!");
       request.setAttribute("exception", e);
-      //e.printStackTrace(out);
       request.getRequestDispatcher("/error").forward(request, response);
     }
-
-    request.getRequestDispatcher("/footer").include(request, response);
-
-    out.println("</body>");
-    out.println("</html>");
-
   }
 }

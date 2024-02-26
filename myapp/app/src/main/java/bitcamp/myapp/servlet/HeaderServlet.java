@@ -16,7 +16,6 @@ public class HeaderServlet extends HttpServlet {
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<header>");
@@ -34,6 +33,8 @@ public class HeaderServlet extends HttpServlet {
       out.printf("  <span>%s</span>\n", loginUser.getName());
       out.println("  <a href='/auth/logout'>로그아웃</a>");
     }
+
+    out.println("  <a href='/about.html'>소개</a>");
 
     out.println("</header>");
 

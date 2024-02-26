@@ -24,7 +24,7 @@ public class AssignmentListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -63,9 +63,8 @@ public class AssignmentListServlet extends HttpServlet {
       out.println("</table>");
 
     } catch (Exception e) {
-      request.setAttribute("message", "목록 오류");
+      request.setAttribute("message", "목록 오류!");
       request.setAttribute("exception", e);
-      //e.printStackTrace(out);
       request.getRequestDispatcher("/error").forward(request, response);
     }
 

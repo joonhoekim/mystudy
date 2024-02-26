@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ErrorServlet extends HttpServlet {
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -29,8 +29,9 @@ public class ErrorServlet extends HttpServlet {
     request.getRequestDispatcher("/header").include(request, response);
 
     out.println("<h1>오류!</h1>");
-    String message = (String) request.getAttribute(("message"));
-    if (!message.isEmpty()) {
+    
+    String message = (String) request.getAttribute("message");
+    if (message != null) {
       out.printf("<p>%s</p>\n", message);
     }
 
@@ -45,11 +46,5 @@ public class ErrorServlet extends HttpServlet {
 
     out.println("</body>");
     out.println("</html>");
-  }
-
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    doGet(req, resp);
   }
 }
