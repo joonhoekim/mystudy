@@ -21,7 +21,7 @@ public class MemberUpdateServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     response.setContentType("text/html;charset=UTF-8");
@@ -34,6 +34,9 @@ public class MemberUpdateServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.println("<h1>회원</h1>");
 
     try {
@@ -42,6 +45,9 @@ public class MemberUpdateServlet extends HttpServlet {
       Member old = memberDao.findBy(no);
       if (old == null) {
         out.println("<p>회원 번호가 유효하지 않습니다.</p>");
+
+        request.getRequestDispatcher("/footer").include(request, response);
+
         out.println("</body>");
         out.println("</html>");
         return;
@@ -55,14 +61,16 @@ public class MemberUpdateServlet extends HttpServlet {
       member.setCreatedDate(old.getCreatedDate());
 
       memberDao.update(member);
-      out.println("<p>회원을 변경했습니다.</p>");
+      response.sendRedirect("list");
+      return;
 
     } catch (Exception e) {
-      out.println("<p>회원 변경 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "변경 오류");
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

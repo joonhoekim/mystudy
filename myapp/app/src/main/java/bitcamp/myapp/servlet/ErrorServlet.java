@@ -1,6 +1,5 @@
-package bitcamp.myapp.servlet.member;
+package bitcamp.myapp.servlet;
 
-import bitcamp.myapp.dao.MemberDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,20 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/delete")
-public class MemberDeleteServlet extends HttpServlet {
-
-  private MemberDao memberDao;
-
-  @Override
-  public void init() {
-    this.memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
-  }
+@WebServlet("/error")
+public class ErrorServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -36,28 +28,28 @@ public class MemberDeleteServlet extends HttpServlet {
 
     request.getRequestDispatcher("/header").include(request, response);
 
-    out.println("<h1>회원</h1>");
+    out.println("<h1>오류!</h1>");
+    String message = (String) request.getAttribute(("message"));
+    if (!message.isEmpty()) {
+      out.printf("<p>%s</p>\n", message);
+    }
 
-    try {
-      int no = Integer.parseInt(request.getParameter("no"));
-
-      if (memberDao.delete(no) == -1) {
-        out.println("<p>회원 번호가 유효하지 않습니다.</p>");
-        response.setHeader("Refresh", "1;url=list");
-      } else {
-        response.sendRedirect("list");
-        return;
-      }
-
-    } catch (Exception e) {
-      request.setAttribute("message", "삭제 오류");
-      request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error").forward(request, response);
+    Throwable exception = (Throwable) request.getAttribute("exception");
+    if (exception != null) {
+      out.println("<pre>");
+      exception.printStackTrace(out);
+      out.println("</pre>");
     }
 
     request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    doGet(req, resp);
   }
 }

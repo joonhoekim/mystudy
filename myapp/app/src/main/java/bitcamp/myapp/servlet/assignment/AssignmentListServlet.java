@@ -24,7 +24,7 @@ public class AssignmentListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -35,9 +35,12 @@ public class AssignmentListServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.println("<h1>과제</h1>");
 
-    out.println("<a href='/assignment/form.html' method='post'>새 과제</a>");
+    out.println("<a href='/assignment/add'>새 과제</a>");
 
     try {
       out.println("<table border='1'>");
@@ -60,11 +63,13 @@ public class AssignmentListServlet extends HttpServlet {
       out.println("</table>");
 
     } catch (Exception e) {
-      out.println("<p>목록 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "목록 오류");
+      request.setAttribute("exception", e);
+      //e.printStackTrace(out);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

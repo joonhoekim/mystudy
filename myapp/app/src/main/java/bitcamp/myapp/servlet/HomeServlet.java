@@ -14,9 +14,9 @@ public class HomeServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
 
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -29,8 +29,8 @@ public class HomeServlet extends HttpServlet {
 
     request.getRequestDispatcher("/header").include(request, response);
 
-    out.println("<h1>과제관리시스템</h1>\n");
-    out.println("<p>안녕? 여긴 과제관리 시스템이야</p>");
+    out.println("<h1>과제 관리 시스템</h1>");
+    out.println("<p>환영합니다! 교육 센터 과제 관리 시스템입니다.</p>");
 
     request.getRequestDispatcher("/footer").include(request, response);
 

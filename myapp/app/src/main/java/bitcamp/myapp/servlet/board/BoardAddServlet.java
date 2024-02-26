@@ -34,11 +34,12 @@ public class BoardAddServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
-    
     int category = Integer.valueOf(request.getParameter("category"));
     String title = category == 1 ? "게시글" : "가입인사";
+
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -48,6 +49,9 @@ public class BoardAddServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.printf("<h1>%s</h1>\n", title);
 
     out.printf("<form action='/board/add?category=%d' method='post'>\n", category);
@@ -70,6 +74,8 @@ public class BoardAddServlet extends HttpServlet {
     out.println("</div>");
     out.println("</form>");
 
+    request.getRequestDispatcher("/footer").include(request, response);
+
     out.println("</body>");
     out.println("</html>");
   }
@@ -77,12 +83,13 @@ public class BoardAddServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
 
     int category = Integer.valueOf(request.getParameter("category"));
     String title = category == 1 ? "게시글" : "가입인사";
+
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
     out.println("<html lang='en'>");
@@ -91,11 +98,17 @@ public class BoardAddServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.printf("<h1>%s</h1>\n", title);
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
     if (loginUser == null) {
       out.println("<p>로그인하시기 바랍니다!</p>");
+
+      request.getRequestDispatcher("/footer").include(request, response);
+
       out.println("</body>");
       out.println("</html>");
       return;
@@ -135,8 +148,7 @@ public class BoardAddServlet extends HttpServlet {
 
       txManager.commit();
 
-      //out.println("<p>등록했습니다.</p>");
-      response.sendRedirect(String.format("/board/list?category=%d", category));
+      response.sendRedirect("/board/list?category=" + category);
       return;
 
     } catch (Exception e) {
@@ -144,11 +156,12 @@ public class BoardAddServlet extends HttpServlet {
         txManager.rollback();
       } catch (Exception e2) {
       }
-      out.println("<p>등록 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "등록 오류");
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

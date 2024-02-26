@@ -21,9 +21,9 @@ public class AssignmentViewServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -34,6 +34,9 @@ public class AssignmentViewServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.println("<h1>과제</h1>");
 
     try {
@@ -41,10 +44,7 @@ public class AssignmentViewServlet extends HttpServlet {
 
       Assignment assignment = assignmentDao.findBy(no);
       if (assignment == null) {
-        out.println("<p>과제 번호가 유효하지 않습니다.</p>");
-        out.println("</body>");
-        out.println("</html>");
-        return;
+        throw new Exception("과제 번호가 유효하지 않습니다.");
       }
 
       out.println("<form action='/assignment/update' method='post'>");
@@ -68,11 +68,13 @@ public class AssignmentViewServlet extends HttpServlet {
       out.println("</form>");
 
     } catch (Exception e) {
-      out.println("<p>조회 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "조회 오류");
+      request.setAttribute("exception", e);
+      //e.printStackTrace(out);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

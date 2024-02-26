@@ -24,7 +24,7 @@ public class AssignmentUpdateServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -35,6 +35,9 @@ public class AssignmentUpdateServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.println("<h1>과제</h1>");
 
     try {
@@ -42,10 +45,7 @@ public class AssignmentUpdateServlet extends HttpServlet {
 
       Assignment old = assignmentDao.findBy(no);
       if (old == null) {
-        out.println("<p>과제 번호가 유효하지 않습니다.</p>");
-        out.println("</body>");
-        out.println("</html>");
-        return;
+        throw new Exception("변경 오류");
       }
 
       Assignment assignment = new Assignment();
@@ -55,14 +55,17 @@ public class AssignmentUpdateServlet extends HttpServlet {
       assignment.setDeadline(Date.valueOf(request.getParameter("deadline")));
 
       assignmentDao.update(assignment);
-      out.println("<p>과제를 변경했습니다.</p>");
+      response.sendRedirect("list");
+      return;
 
     } catch (Exception e) {
-      out.println("<p>과제 변경 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "변경 오류");
+      request.setAttribute("exception", e);
+      //e.printStackTrace(out);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

@@ -22,7 +22,7 @@ public class AssignmentAddServlet extends HttpServlet {
   }
 
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
@@ -35,6 +35,51 @@ public class AssignmentAddServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
+    out.println("<h1>과제 관리 시스템</h1>");
+
+    out.println("<h2>과제</h2>");
+
+    out.println("<form action='/assignment/add' method='post'>");
+    out.println("  <div>");
+    out.println("        과제: <input name='title' type='text'>");
+    out.println("  </div>");
+    out.println("  <div>");
+    out.println("        내용: <textarea name='content'></textarea>");
+    out.println("  </div>");
+    out.println("  <div>");
+    out.println("        제출 마감일: <input name='deadline' type='date'>");
+    out.println("  </div>");
+    out.println("  <div>");
+    out.println("    <button>등록</button>");
+    out.println("  </div>");
+    out.println("</form>");
+
+    request.getRequestDispatcher("/footer").include(request, response);
+
+    out.println("</body>");
+    out.println("</html>");
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
+
+    out.println("<!DOCTYPE html>");
+    out.println("<html lang='en'>");
+    out.println("<head>");
+    out.println("  <meta charset='UTF-8'>");
+    out.println("  <title>비트캠프 데브옵스 5기</title>");
+    out.println("</head>");
+    out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.println("<h1>과제</h1>");
 
     try {
@@ -45,19 +90,17 @@ public class AssignmentAddServlet extends HttpServlet {
 
       assignmentDao.add(assignment);
 
-      //out.println("<p>과제를 등록했습니다.</p>");
       response.sendRedirect("/assignment/list");
-      return;
     } catch (Exception e) {
-      out.println("<p>과제 등록 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "과제 등록 오류");
+      request.setAttribute("exception", e);
+      //e.printStackTrace(out);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");
   }
-
-
 }

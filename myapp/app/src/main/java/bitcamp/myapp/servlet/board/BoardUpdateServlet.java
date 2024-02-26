@@ -33,12 +33,11 @@ public class BoardUpdateServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
 
     int category = Integer.valueOf(request.getParameter("category"));
     String title = category == 1 ? "게시글" : "가입인사";
-
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -48,6 +47,9 @@ public class BoardUpdateServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
     out.printf("<h1>%s</h1>\n", title);
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
@@ -64,11 +66,17 @@ public class BoardUpdateServlet extends HttpServlet {
       Board board = boardDao.findBy(no);
       if (board == null) {
         out.println("<p>번호가 유효하지 않습니다.</p>");
+
+        request.getRequestDispatcher("/footer").include(request, response);
+
         out.println("</body>");
         out.println("</html>");
         return;
       } else if (board.getWriter().getNo() != loginUser.getNo()) {
         out.println("<p>권한이 없습니다.</p>");
+
+        request.getRequestDispatcher("/footer").include(request, response);
+
         out.println("</body>");
         out.println("</html>");
         return;
@@ -104,19 +112,20 @@ public class BoardUpdateServlet extends HttpServlet {
 
       txManager.commit();
 
-      //out.println("<p>변경했습니다.</p>");
       response.sendRedirect("/board/list?category=" + category);
+      return;
 
     } catch (Exception e) {
       try {
         txManager.rollback();
       } catch (Exception e2) {
       }
-      out.println("<p>등록 오류!</p>");
-      out.println("<pre>");
-      e.printStackTrace(out);
-      out.println("</pre>");
+      request.setAttribute("message", "변경 오류");
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");

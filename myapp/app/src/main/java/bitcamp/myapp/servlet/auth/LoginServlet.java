@@ -21,46 +21,9 @@ public class LoginServlet extends HttpServlet {
   }
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    resp.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = resp.getWriter();
-
-    out.write("<!DOCTYPE html>");
-    out.write("<html lang='en'>");
-    out.write("<head>");
-    out.write("<meta charset='UTF-8'>");
-    out.write("<title>비트캠프 데브옵스 5기</title>");
-    out.write("</head>");
-    out.write("<body>");
-
-    req.getRequestDispatcher("/header").include(req, resp);
-
-    out.write("<h2>로그인</h2>");
-    out.write("<form action='/auth/login' method='post'>");
-    out.write("<div>");
-    out.write("이메일: <input name='email' type='text'>");
-    out.write("</div>");
-    out.write("<div>");
-    out.write("암호: <input name='password' type='password'>");
-    out.write("</div>");
-    out.write("<button>로그인</button>");
-    out.write("</form>");
-
-    req.getRequestDispatcher("/footer").include(req, resp);
-
-    out.write("</body>");
-    out.write("</html>");
-
-  }
-
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
-
+    request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
@@ -71,8 +34,49 @@ public class LoginServlet extends HttpServlet {
     out.println("  <title>비트캠프 데브옵스 5기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>과제 관리 시스템</h1>");
-    out.println("<h2>로그인</h2>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
+    out.println("<h1>로그인</h1>");
+
+    out.println("<form action='/auth/login' method='post'>");
+    out.println("<div>");
+    out.println("    이메일: <input name='email' type='text'>");
+    out.println("</div>");
+    out.println("<div>");
+    out.println("      암호: <input name='password' type='password'>");
+    out.println("</div>");
+    out.println("<button>로그인</button>");
+    out.println("</form>");
+
+    request.getRequestDispatcher("/footer").include(request, response);
+
+    out.println("</body>");
+    out.println("</html>");
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
+
+    out.println("<!DOCTYPE html>");
+    out.println("<html lang='en'>");
+    out.println("<head>");
+    out.println("  <meta charset='UTF-8'>");
+    out.println("  <title>비트캠프 데브옵스 5기</title>");
+    out.println("</head>");
+    out.println("<body>");
+
+    request.getRequestDispatcher("/header").include(request, response);
+
+    out.println("<h1>로그인</h1>");
 
     try {
       Member member = memberDao.findByEmailAndPassword(email, password);
@@ -83,14 +87,13 @@ public class LoginServlet extends HttpServlet {
       } else {
         out.println("<p>이메일 또는 암호가 맞지 않습니다.</p>");
         response.setHeader("Refresh", "1;url=/auth/login");
-
       }
     } catch (Exception e) {
-      out.println("<p>로그인 오류!</p>");
-      out.println("<pre>");
+      request.getRequestDispatcher("/error").forward(request, response);
       e.printStackTrace(out);
-      out.println("</pre>");
     }
+
+    request.getRequestDispatcher("/footer").include(request, response);
 
     out.println("</body>");
     out.println("</html>");
