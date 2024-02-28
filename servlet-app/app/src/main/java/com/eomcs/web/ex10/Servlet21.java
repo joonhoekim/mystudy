@@ -54,7 +54,9 @@ public class Servlet21 extends HttpServlet {
     c2.setPath("/web/ex10/a");
 
     Cookie c3 = new Cookie("v3", "ccc");
-    c3.setPath("/web");
+    //c3.setPath("/web");
+
+    c3.setPath("/");
 
     // 어~ 왜 쿠키의 경로를 적을 때 웹 애플리케이션 루트(컨텍스트 루트)까지 적나요?
     // => 쿠키 경로는 서블릿 컨테이너가 사용하는 경로가 아니다.

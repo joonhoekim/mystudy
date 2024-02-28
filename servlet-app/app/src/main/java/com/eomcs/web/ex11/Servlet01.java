@@ -75,10 +75,10 @@ public class Servlet01 extends HttpServlet {
     //    - 서버는 새 세션을 만들어 리턴한다.
     //
     // 새로 세션을 만들면, 무조건 응답할 때 새 세션의 아이디를 쿠키로 보낸다.
-    //
+//    //
     HttpSession session = request.getSession();
-
-    // 세션에 데이터 보관하기
+//
+//    // 세션에 데이터 보관하기
     session.setAttribute("v1", "aaa");
 
     response.setContentType("text/plain;charset=UTF-8");

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 //    원래의 타입으로 변환처리한 service() 메서드가 오버로딩 되어 있다.
 // => HTTP 프로토콜을 다루려면 GenericServlet을 상속 받지 말고 
 //    HttpServlet을 상속 받아 서블릿 클래스를 만들라!
-// 
+//
 @WebServlet("/ex01/s3")
 public class Servlet03 extends HttpServlet {
 

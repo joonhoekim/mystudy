@@ -17,6 +17,6 @@ public class Servlet01 extends HttpServlet {
 
     resp.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = resp.getWriter();
-    out.println("안녕하세요!");
+    out.println("안녕하세요! ex12-s1");
   }
 }

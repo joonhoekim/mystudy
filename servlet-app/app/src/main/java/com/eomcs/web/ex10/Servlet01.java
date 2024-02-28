@@ -4,6 +4,7 @@ package com.eomcs.web.ex10;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -66,7 +67,7 @@ public class Servlet01 extends HttpServlet {
     Cookie c4 = new Cookie("name2", "홍길동");
     // 프로토콜 예 => Set-Cookie: name2=홍길동
 
-    Cookie c5 = new Cookie("name3", URLEncoder.encode("홍길동", "UTF-8"));
+    Cookie c5 = new Cookie("name3", URLEncoder.encode("홍길동", StandardCharsets.UTF_8));
     // 프로토콜 예 => Set-Cookie: name3=%ED%99%8D%EA%B8%B8%EB%8F%99
 
     // 쿠키를 응답 헤더에 포함시키기
