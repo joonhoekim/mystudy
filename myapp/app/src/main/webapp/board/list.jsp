@@ -10,20 +10,21 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>과제</h1>
-
-<a href='/assignment/add'>새 과제</a>
+<h1>${boardName}</h1>
+<a href='/board/add?category=${category}'>새 글</a>
 <table border='1'>
   <thead>
-    <tr> <th>번호</th> <th>과제</th> <th>제출마감일</th> </tr>
+    <tr> <th>번호</th> <th>제목</th> <th>작성자</th> <th>등록일</th> <th>첨부파일</th> </tr>
   </thead>
   <tbody>
 
-<c:forEach items="${list}" var="assignment">
+<c:forEach items="${list}" var="board">
     <tr>
-      <td>${assignment.no}</td>
-      <td><a href='/assignment/view?no=${assignment.no}'>${assignment.title}</a></td>
-      <td>${assignment.deadline}</td>
+      <td>${board.no}</td>
+      <td><a href='/board/view?category=${category}&no=${board.no}'>${board.title}</a></td>
+      <td>${board.writer.name}</td>
+      <td>${board.createdDate}</td>
+      <td>${board.fileCount}</td>
     </tr>
 </c:forEach>
 

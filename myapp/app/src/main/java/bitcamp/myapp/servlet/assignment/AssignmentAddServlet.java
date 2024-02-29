@@ -23,9 +23,7 @@ public class AssignmentAddServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     request.getRequestDispatcher("/assignment/form.jsp").forward(request, response);
-
   }
 
   @Override

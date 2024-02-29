@@ -1,9 +1,7 @@
 package bitcamp.myapp.servlet.assignment;
 
 import bitcamp.myapp.dao.AssignmentDao;
-import bitcamp.myapp.vo.Assignment;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,13 +21,10 @@ public class AssignmentListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    //response.setContentType("text/html;charset=UTF-8");
-
     try {
-      List<Assignment> list = assignmentDao.findAll();
-      request.setAttribute("list", list);
+      request.setAttribute("list", assignmentDao.findAll());
       request.getRequestDispatcher("/assignment/list.jsp").forward(request, response);
+
     } catch (Exception e) {
       request.setAttribute("message", "목록 오류!");
       request.setAttribute("exception", e);

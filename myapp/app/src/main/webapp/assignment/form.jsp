@@ -1,10 +1,9 @@
-<%@ page language = "java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
-
-<!DOCTYPE = html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<!DOCTYPE html>
 <html lang='en'>
-<head>
-<meta charset='UTF-8'>
-<title>비트캠프 데브옵스 5기</title>
+  <head>
+  <meta charset='UTF-8'>
+  <title>비트캠프 데브옵스 5기</title>
 </head>
 <body>
 
@@ -30,5 +29,6 @@
 </form>
 
 <jsp:include page="/footer.jsp"></jsp:include>
+
 </body>
 </html>
