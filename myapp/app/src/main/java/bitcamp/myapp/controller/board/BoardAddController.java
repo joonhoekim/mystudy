@@ -1,61 +1,47 @@
-package bitcamp.myapp.servlet.board;
+package bitcamp.myapp.controller.board;
 
+import bitcamp.myapp.controller.PageController;
 import bitcamp.myapp.dao.AttachedFileDao;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.AttachedFile;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.TransactionManager;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("/board/add")
-public class BoardAddServlet extends HttpServlet {
+public class BoardAddController implements PageController {
 
   private TransactionManager txManager;
   private BoardDao boardDao;
   private AttachedFileDao attachedFileDao;
   private String uploadDir;
 
-  @Override
-  public void init() {
-    txManager = (TransactionManager) this.getServletContext().getAttribute("txManager");
-    this.boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
-    this.attachedFileDao = (AttachedFileDao) this.getServletContext()
-        .getAttribute("attachedFileDao");
-    uploadDir = this.getServletContext().getRealPath("/upload/board");
+  public BoardAddController(TransactionManager txManager, BoardDao boardDao,
+      AttachedFileDao attachedFileDao, String uploadDir) {
+    this.txManager = txManager;
+    this.boardDao = boardDao;
+    this.attachedFileDao = attachedFileDao;
+    this.uploadDir = uploadDir;
   }
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     int category = Integer.valueOf(request.getParameter("category"));
-    request.setAttribute("boardName", category == 1 ? "게시글" : "가입인사");
+    String boardName = category == 1 ? "게시글" : "가입인사";
+    request.setAttribute("boardName", boardName);
     request.setAttribute("category", category);
-    request.setAttribute("viewUrl", "/board/form.jsp");
-  }
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    String boardName = "";
+    if (request.getMethod().equals("GET")) {
+      return "/board/form.jsp";
+    }
 
     try {
-      int category = Integer.valueOf(request.getParameter("category"));
-      boardName = category == 1 ? "게시글" : "가입인사";
-
       Member loginUser = (Member) request.getSession().getAttribute("loginUser");
       if (loginUser == null) {
         throw new Exception("로그인하시기 바랍니다!");
@@ -93,15 +79,14 @@ public class BoardAddServlet extends HttpServlet {
       }
 
       txManager.commit();
-
-      request.setAttribute("viewUrl", "redirect:list?category=" + category);
+      return "redirect:list?category=" + category;
 
     } catch (Exception e) {
       try {
         txManager.rollback();
       } catch (Exception e2) {
       }
-      request.setAttribute("exception", e);
+      throw e;
     }
   }
 }
