@@ -30,6 +30,10 @@ java {
     }
 }
 
+compileJava {
+    options.compilerArgs << '-parameters'
+}
+
 application {
     mainClass = 'bitcamp.myapp.App'
 }

@@ -1,12 +1,9 @@
 package bitcamp.myapp.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 public class HomeController {
 
   @RequestMapping("/home")
-  public String home(HttpServletRequest request, HttpServletResponse response)
+  public String home() //파라미터없어도되는경우
       throws Exception {
     return "/home.jsp";
   }
