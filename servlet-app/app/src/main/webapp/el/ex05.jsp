@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1>EL - 배열에서 값 꺼내기</h1>
+<%//EL은 로컬 변수 사용 불가능함. %>
 <%
 pageContext.setAttribute("names", new String[]{"홍길동","임꺽정","유관순"});
 %>

@@ -7,7 +7,7 @@
     import="java.util.List,java.util.Map,java.util.Set"
     trimDirectiveWhitespaces="true"
     buffer="8kb"
-    autoFlush="false"%>
+    autoFlush="true"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.Statement"%>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 <body>
 <h1>지시문(directive element)</h1>
 <%
-for (int i = 0; i < 1000; i++) {
+for (int i = 0; i <20000; i++) {
   out.print(". "); 
 }
 %>

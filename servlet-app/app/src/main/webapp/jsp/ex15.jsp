@@ -13,6 +13,7 @@
 <h1>JSP 액션 태그 - jsp:useBean (계속)</h1>
 
 <%-- id로 지정된 객체를 찾지 못하면 예외가 발생한다. --%>
+
 <jsp:useBean id="list" type="java.util.List<String>" scope="page"/>
 <%-- 자바코드로 표현해보면,
   java.util.List<String> list = 
