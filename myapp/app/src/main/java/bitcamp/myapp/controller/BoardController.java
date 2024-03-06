@@ -19,14 +19,16 @@ public class BoardController {
   private TransactionManager txManager;
   private BoardDao boardDao;
   private AttachedFileDao attachedFileDao;
-  private String uploadDir;
+  private String uploadDir = System.getProperty("board.upload.dir");
 
-  public BoardController(TransactionManager txManager, BoardDao boardDao,
-      AttachedFileDao attachedFileDao, String uploadDir) {
+  public BoardController(
+      TransactionManager txManager,
+      BoardDao boardDao,
+      AttachedFileDao attachedFileDao) {
+
     this.txManager = txManager;
     this.boardDao = boardDao;
     this.attachedFileDao = attachedFileDao;
-    this.uploadDir = uploadDir;
   }
 
   @RequestMapping("/board/form")
@@ -72,7 +74,6 @@ public class BoardController {
       txManager.startTransaction();
 
       boardDao.add(board);
-
       if (attachedFiles.size() > 0) {
         for (AttachedFile attachedFile : attachedFiles) {
           attachedFile.setBoardNo(board.getNo());
@@ -96,9 +97,10 @@ public class BoardController {
   public String list(
       @RequestParam("category") int category,
       Map<String, Object> map) throws Exception {
+
     map.put("boardName", category == 1 ? "게시글" : "가입인사");
-    map.put("list", boardDao.findAll(category));
     map.put("category", category);
+    map.put("list", boardDao.findAll(category));
     return "/board/list.jsp";
   }
 
@@ -107,6 +109,7 @@ public class BoardController {
       @RequestParam("category") int category,
       @RequestParam("no") int no,
       Map<String, Object> map) throws Exception {
+
     Board board = boardDao.findBy(no);
     if (board == null) {
       throw new Exception("번호가 유효하지 않습니다.");
@@ -135,7 +138,7 @@ public class BoardController {
       }
 
       Board old = boardDao.findBy(board.getNo());
-      if (board == null) {
+      if (old == null) {
         throw new Exception("번호가 유효하지 않습니다.");
 
       } else if (old.getWriter().getNo() != loginUser.getNo()) {
@@ -145,7 +148,7 @@ public class BoardController {
       ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
       if (board.getCategory() == 1) {
         for (Part file : files) {
-          if (!file.getName().equals("files") || file.getSize() == 0) {
+          if (file.getSize() == 0) {
             continue;
           }
           String filename = UUID.randomUUID().toString();
@@ -220,8 +223,7 @@ public class BoardController {
   public String fileDelete(
       @RequestParam("category") int category,
       @RequestParam("no") int fileNo,
-      HttpSession session
-  ) throws Exception {
+      HttpSession session) throws Exception {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
     if (loginUser == null) {
