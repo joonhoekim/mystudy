@@ -10,12 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BoardDaoImpl implements BoardDao {
 
   DBConnectionPool connectionPool;
 
   public BoardDaoImpl(DBConnectionPool connectionPool) {
+    System.out.println(getClass() + "생성되었습니다.");
     this.connectionPool = connectionPool;
   }
 

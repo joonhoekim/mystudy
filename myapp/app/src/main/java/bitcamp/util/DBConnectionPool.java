@@ -15,6 +15,7 @@ public class DBConnectionPool implements ConnectionPool {
   private String password;
 
   public DBConnectionPool(String jdbcUrl, String username, String password) {
+    System.out.println(getClass() + "생성되었습니다.");
     this.jdbcUrl = jdbcUrl;
     this.username = username;
     this.password = password;

@@ -1,4 +1,4 @@
-// 클래스에 제네릭(generic) 적용하기 :  Object를 이용한 다형적 변수 사용할 때 형변환이 불편한다.
+// 클래스에 제네릭(generic) 적용하기 : Object를 이용한 다형적 변수 사용할 때 형변환이 불편한다.
 package com.eomcs.generic.ex01;
 
 import java.util.Date;
@@ -16,6 +16,7 @@ class ObjectBox {
     this.value = value;
   }
 }
+
 
 public class Exam0220 {
 
@@ -56,12 +57,12 @@ public class Exam0220 {
     // ObjectBox 의 이점
     // - 이전 방식에 비해 객체의 타입 별로 Box 클래스를 구분해서 쓰지 않으니 코딩이 편하다.
     // - 이렇게 ObjectBox 클래스의 인스턴스 변수를 Object로 선언하니
-    //   다양한 객체를 보관할 수는 있다.
+    // 다양한 객체를 보관할 수는 있다.
     //
     // ObjectBox 의 단점
     // - MemberBox나 StringBox, IntegerBox 처럼 특정 타입의 객체로 제한할 수 없다.
     // - 또한 값을 꺼낼 때 원래의 타입으로 바꾸기 위해 형변환(type casting) 해야 하는 불편함이 있다.
-    //   그렇다고 이전처럼 각 타입 별로 Box 클래스를 정의하는 것은 바람직하지 않다.
+    // 그렇다고 이전처럼 각 타입 별로 Box 클래스를 정의하는 것은 바람직하지 않다.
     //
     // 이런 문제점을 해결하기 위해 나온 문법이 "제네릭(Generic)"이다.
     // 제네릭 문법을 이용하면 한 개의 클래스가 다양한 타입의 객체를 제한적으로 다룰 수 있다.

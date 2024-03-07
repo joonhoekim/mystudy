@@ -3,13 +3,6 @@ package bitcamp.myapp.servlet;
 import bitcamp.myapp.controller.CookieValue;
 import bitcamp.myapp.controller.RequestMapping;
 import bitcamp.myapp.controller.RequestParam;
-import bitcamp.myapp.dao.AssignmentDao;
-import bitcamp.myapp.dao.AttachedFileDao;
-import bitcamp.myapp.dao.BoardDao;
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.util.Component;
-import bitcamp.util.TransactionManager;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -23,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -35,13 +27,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet(urlPatterns = "/app/*", loadOnStartup = 1)
 public class DispatcherServlet extends HttpServlet {
 
   private Map<String, RequestHandler> requestHandlerMap = new HashMap<>();
-  private List<Object> controllers = new ArrayList<>();
+  private ApplicationContext applicationContext;
+
 
   @Override
   public void init() throws ServletException {
@@ -49,21 +44,19 @@ public class DispatcherServlet extends HttpServlet {
       System.setProperty("board.upload.dir", this.getServletContext().getRealPath("/upload/board"));
       System.setProperty("member.upload.dir", this.getServletContext().getRealPath("/upload"));
 
-      ServletContext ctx = this.getServletContext();
-      TransactionManager txManager = (TransactionManager) ctx.getAttribute("txManager");
-      BoardDao boardDao = (BoardDao) ctx.getAttribute("boardDao");
-      MemberDao memberDao = (MemberDao) ctx.getAttribute("memberDao");
-      AssignmentDao assignmentDao = (AssignmentDao) ctx.getAttribute("assignmentDao");
-      AttachedFileDao attachedFileDao = (AttachedFileDao) ctx.getAttribute("attachedFileDao");
+      ApplicationContext parent = (ApplicationContext) this.getServletContext()
+          .getAttribute("applicationContext");
+      applicationContext = new ClassPathXmlApplicationContext(
+          new String[]{"config/app-servlet.xml"}, parent); //질문, 여기서도 상대경로/절대경로 똑같이 적용되나?
 
-//      controllers.add(new HomeController());
-//      controllers.add(new AssignmentController(assignmentDao));
-//      controllers.add(new AuthController(memberDao));
-//      controllers.add(new BoardController(txManager, boardDao, attachedFileDao));
-//      controllers.add(new MemberController(memberDao));
+      String[] beanNames = applicationContext.getBeanDefinitionNames();
+      ArrayList<Object> beans = new ArrayList<>();
+      for (String beanName : beanNames) {
+        beans.add(applicationContext.getBean(beanName));
+      }
+      prepareRequestHandlers(beans);
 
-      preparePageControllers();
-      prepareRequestHandlers(controllers);
+      // prepareRequestHandlers(applicationContext.getBeans());
 
     } catch (Exception e) {
       throw new ServletException(e);
@@ -114,37 +107,7 @@ public class DispatcherServlet extends HttpServlet {
     }
   }
 
-  private void preparePageControllers() throws Exception {
-    File classpath = new File("./build/classes/java/main");
-    System.out.println(classpath.getCanonicalPath());
-    findComponents(classpath, "");
-  }
-
-  private void findComponents(File dir, String packageName) throws Exception {
-    File[] files = dir.listFiles(file ->
-        file.isDirectory() || (file.isFile()
-            && !file.getName().contains("$")
-            && file.getName().endsWith(".class")));
-
-    if (packageName.length() > 0) {
-      packageName += ".";
-    }
-    for (File file : files) {
-      if (file.isFile()) {
-        Class<?> clazz = Class.forName(packageName + file.getName().replace(".class", ""));
-        Component compAnno = clazz.getAnnotation(Component.class);
-        if (compAnno != null) {
-          Constructor<?> constructor = clazz.getConstructor();
-          controllers.add(constructor.newInstance());
-          System.out.println(clazz.getName() + " 객체 생성!");
-        }
-      } else {
-        findComponents(file, packageName + file.getName());
-      }
-    }
-  }
-
-  private void prepareRequestHandlers(List<Object> controllers) {
+  private void prepareRequestHandlers(Collection<Object> controllers) {
     for (Object controller : controllers) {
       Method[] methods = controller.getClass().getDeclaredMethods();
       for (Method m : methods) {

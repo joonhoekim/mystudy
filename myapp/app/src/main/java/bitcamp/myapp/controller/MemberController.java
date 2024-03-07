@@ -6,18 +6,21 @@ import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.Part;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberController {
 
   private MemberDao memberDao;
   private String uploadDir = System.getProperty("member.upload.dir");
 
   public MemberController(MemberDao memberDao) {
+    System.out.println(getClass() + "생성되었습니다.");
     this.memberDao = memberDao;
   }
 
   @RequestMapping("/member/form")
-  public String add() throws Exception {
+  public String form() throws Exception {
     return "/member/form.jsp";
   }
 

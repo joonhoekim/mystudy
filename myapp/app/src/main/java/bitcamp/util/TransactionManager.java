@@ -1,12 +1,16 @@
 package bitcamp.util;
 
 import java.sql.Connection;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TransactionManager {
 
   ConnectionPool connectionPool;
 
   public TransactionManager(ConnectionPool connectionPool) {
+
+    System.out.println(getClass() + "생성되었습니다.");
     this.connectionPool = connectionPool;
   }
 

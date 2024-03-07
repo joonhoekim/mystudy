@@ -6,12 +6,15 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuthController {
 
   MemberDao memberDao;
 
   public AuthController(MemberDao memberDao) {
+    System.out.println(getClass() + "생성되었습니다.");
     this.memberDao = memberDao;
   }
 
