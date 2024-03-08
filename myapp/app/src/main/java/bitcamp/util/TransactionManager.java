@@ -9,8 +9,7 @@ public class TransactionManager {
   ConnectionPool connectionPool;
 
   public TransactionManager(ConnectionPool connectionPool) {
-
-    System.out.println(getClass() + "생성되었습니다.");
+    System.out.println("TransactionManager() 호출됨!");
     this.connectionPool = connectionPool;
   }
 

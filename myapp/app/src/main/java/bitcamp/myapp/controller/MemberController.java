@@ -6,16 +6,18 @@ import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 import javax.servlet.http.Part;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Component
+@Controller
 public class MemberController {
 
   private MemberDao memberDao;
   private String uploadDir = System.getProperty("member.upload.dir");
 
   public MemberController(MemberDao memberDao) {
-    System.out.println(getClass() + "생성되었습니다.");
+    System.out.println("MemberController() 호출됨!");
     this.memberDao = memberDao;
   }
 

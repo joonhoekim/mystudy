@@ -17,7 +17,7 @@ public class MemberDaoImpl implements MemberDao {
   DBConnectionPool connectionPool;
 
   public MemberDaoImpl(DBConnectionPool connectionPool) {
-    System.out.println(getClass() + "생성되었습니다.");
+    System.out.println("MemberDaoImpl() 호출됨!");
     this.connectionPool = connectionPool;
   }
 

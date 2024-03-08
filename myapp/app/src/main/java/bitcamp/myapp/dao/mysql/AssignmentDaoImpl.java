@@ -17,9 +17,7 @@ public class AssignmentDaoImpl implements AssignmentDao {
   DBConnectionPool connectionPool;
 
   public AssignmentDaoImpl(DBConnectionPool connectionPool) {
-
-    System.out.println(getClass() + "생성되었습니다.");
-
+    System.out.println("AssignmentDaoImpl() 호출됨!");
     this.connectionPool = connectionPool;
   }
 
