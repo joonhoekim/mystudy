@@ -11,7 +11,10 @@
         http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+  <!--  스프링 WebMVC에서 디스패처 서블릿이 멀티파트 파라미터를 사용할 객체를 xml에서 준비한다. (최신 스프링은 이렇게 세팅 안해도 된다)-->
+  <bean class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
+    id="multipartResolver"></bean>
   <context:component-scan base-package="bitcamp.myapp.controller"/>
-  <mvc:annotation-driven/>
 
+  <mvc:annotation-driven/>
 </beans>
