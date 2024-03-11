@@ -13,9 +13,11 @@
             <map>
                 <entry>
                     <key><value>sunroof</value></key> 
+                    <!-- 키 안에 또 value 태그를 작성해야 한다니... 불편해서 축약형을 더 많이 쓴다.-->
                     <value>true</value>
                 </entry>
                 <entry key="auto" value="true"/>
+                <!-- 위처럼 key value 둘 다 한 태그 안에 넣는 것이 축약형이다. -->
                 <entry key="spareTire">
                     <!-- 객체를 바로 만들어 넣고 싶다면 bean 태그를 사용하라! -->
                     <bean class="com.eomcs.spring.ioc.ex05.c.Tire" p:maker="비트타이"/>

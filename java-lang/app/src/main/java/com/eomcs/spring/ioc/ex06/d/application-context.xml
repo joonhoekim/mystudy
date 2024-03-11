@@ -19,6 +19,8 @@
             } else {
                 objPool.put("c1", carFactory);
             }
+            
+            //내부적으로 위처럼 돌아간다.
      -->
     
 </beans>

@@ -8,12 +8,13 @@
     <!-- 의존 객체 주입할 때 태그를 선언하는 순서를 따지지 않는다. 
          셋터를 호출할 때 해당 객체가 없으면 
          즉시 해당 객체를 찾아 생성한다.
+         (Spring framwork에서 그러한 처리를 해 줬기 때문이다)
     -->
     
 
     <bean id="c1" class="com.eomcs.spring.ioc.ex04.Car">
         <property name="model" value="티코A"/>
-        <property name="engine" ref="e1"/>
+        <property name="engine" ref="e1"/> <!-- 여기서 e1 은 아직 정의되지 않았다. 스프링은 없으면 먼저 아래를 찾아보도록 개발됐다.-->
         <property name="maker" value="비트자동차"/>
         <property name="cc" value="890"/>
     </bean>

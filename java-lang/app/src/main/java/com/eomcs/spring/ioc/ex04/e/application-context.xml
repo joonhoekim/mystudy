@@ -44,7 +44,7 @@
         </property>
     </bean>
     
-    <!-- 프로퍼티 설정 중에 만든 객체를 다른 객체에 주입할 수 없다.-->
+    <!-- 프로퍼티 설정 중에 만든 객체를 다른 객체에 주입할 수 없다.(내 생각: 마치 로컬 변수 같다..)-->
     <!--
     <bean id="c3" class="com.eomcs.spring.ioc.ex04.Car">
         <property name="model" value="소나타"/>

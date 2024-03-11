@@ -26,7 +26,7 @@
     </bean>
     
     <bean id="c2" class="com.eomcs.spring.ioc.ex05.b.Car">
-        <!-- List 프로퍼티 값 설정하기 : 배열과 똑같다.-->
+        <!-- List 프로퍼티 값 설정하기 : 배열과 똑같다. (클래스에 배열로 선언하건, 리스트로 선언하건 맞는걸로 들어간다... -->
         <property name="tires">
             <list> 
                 <bean class="com.eomcs.spring.ioc.ex05.b.Tire" 

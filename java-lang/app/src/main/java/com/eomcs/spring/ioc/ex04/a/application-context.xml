@@ -49,6 +49,8 @@
          설정하는 방법:
          p:프로퍼티명="값"
           -->
+          
+    <!-- 순서 상관 없음. 명세에도 언급이 없음. -->
     <bean id="c4" class="com.eomcs.spring.ioc.ex04.Car"
           p:model="티코4" p:maker="비트자동차" p:cc="890"/>
           
