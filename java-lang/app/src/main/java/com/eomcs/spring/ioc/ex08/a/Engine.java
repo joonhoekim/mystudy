@@ -13,21 +13,28 @@ public class Engine {
   public String toString() {
     return "Engine [maker=" + maker + ", valve=" + valve + ", cylinder=" + cylinder + "]";
   }
+
   public String getMaker() {
     return maker;
   }
+
   public void setMaker(String maker) {
+    System.out.println(getClass() + " - setMaker 호출");
     this.maker = maker;
   }
+
   public int getValve() {
     return valve;
   }
+
   public void setValve(int valve) {
     this.valve = valve;
   }
+
   public int getCylinder() {
     return cylinder;
   }
+
   public void setCylinder(int cylinder) {
     this.cylinder = cylinder;
   }

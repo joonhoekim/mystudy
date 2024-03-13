@@ -8,7 +8,6 @@ import com.eomcs.spring.ioc.SpringUtils;
 public class Exam01 {
 
   public static void main(String[] args) {
-
     // @Autowired와 @Qualifier를 묶어서 사용하는 대신에
     // 자바 언어 확장 명세서 'JSR-250'에 정의된 @Resource를 사용할 수 있다.
     // 단 이 애노테이션을 사용하려면

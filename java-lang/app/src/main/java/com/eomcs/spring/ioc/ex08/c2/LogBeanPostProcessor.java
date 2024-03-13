@@ -18,9 +18,8 @@ public class LogBeanPostProcessor implements BeanPostProcessor {
 
   @Override
   public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-    System.out.printf("===> %s:%s\n",
-        beanName,
-        bean.getClass().getName());
+    // 객체가 만들어질 때 로그를 남김
+    System.out.printf("===> %s:%s\n", beanName, bean.getClass().getName());
     return null;
   }
 }
