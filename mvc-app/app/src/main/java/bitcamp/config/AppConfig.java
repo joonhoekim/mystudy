@@ -1,0 +1,15 @@
+package bitcamp.config;
+
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Component;
+
+@ComponentScan(
+    value="bitcamp.web",
+    excludeFilters = @Filter(type= FilterType.REGEX, pattern = "bitcamp.web.admin.*")
+)
+public class AppConfig {
+
+}
