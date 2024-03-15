@@ -4,41 +4,215 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57854caa-e56b-4284-a340-178705ee6154" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/jh.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/AdminConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/MyInitializer1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/RootConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/dao/BoardDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/vo/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/admin/BoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/app/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/listener/WebInitListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/webapp/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/resources/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+    <list default="true" id="57854caa-e56b-4284-a340-178705ee6154" name="Changes" comment="JavaConfig">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller01_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller01_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller01_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller02_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller02_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller03_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller03_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller03_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller03_4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_6.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_7.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_8.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller04_9.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller05_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller05_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Controller05_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/Engine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/app1/GlobalControllerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/App1WebApplicationInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/App2WebApplicationInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/bitcamp/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/AdminConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/App2Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/MyInitializer1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/RootConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/config/App1Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/dao/BoardDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/vo/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/admin/BoardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/app/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/web/listener/WebInitListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../servlet-app/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/HelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/HelloServlet2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/HelloServlet3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex01/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex01/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex01/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex01/Servlet04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Filter01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Filter02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Listener01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Listener02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex02/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex03/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex03/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex03/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex03/Servlet04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet06_2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex04/Servlet08.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/MyHttpServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/MyHttpServlet2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex05/Servlet04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Filter01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Filter02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Filter03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Servlet04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex06/Servlet05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet11_error.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet11_minus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex07/Servlet11_plus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex08/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex08/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex08/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex08/Servlet100.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex09/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex09/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex09/Servlet11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex09/Servlet12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet21.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet22.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet23.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex10/Servlet24.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet12.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet13.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet14.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet21.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet22.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet31.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet32.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex11/Servlet33.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex12/Listener01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex12/Servlet01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex12/Servlet02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/ex12/Servlet03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/vo/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/java/com/eomcs/web/vo/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/resources/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../servlet-app/app/src/main/resources/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/WEB-INF/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex01.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex02.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex03.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex04.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex05.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex06.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex07.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex08.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/el/ex09.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test02.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test03.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test04.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test05.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test06.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test06_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test07.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex04/test08.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex05/test01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex05/test02.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex05/test03.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/ex05/test04.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/index2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/index3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex01.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex02.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex03.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex04.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex05.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex06.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex07.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex08.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex08_footer.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex08_header.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex09.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex10.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex11.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex12.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex13.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex14.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex15.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex16.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex17.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex18.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex19.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex19_footer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex19_header.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex20.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jsp/ex20_error.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex01.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex02.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex03.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex04.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex05.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex06.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex07.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex08.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex09.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex10.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex10_sub.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex11.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex12.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/jstl/ex13.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/photo.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/test/ex01.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/test/proxy.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/test/test01.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/test/test01.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/126db8a4-c85b-4a82-a60e-bae4f59486da" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/1744f395-2e7b-445a-98db-5ed997980159" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/3c55b6f9-37b5-420b-af97-b3f6a5d31c10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/5fd75d95-09a5-4413-b578-8b2f7c622cad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/9690c138-7f08-4331-864e-f33135fcd2a3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/b73667ed-6970-4520-8cff-e6640c0294ff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/d4859660-ec76-4f6a-a3fc-0e48fc1e34ad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/dc77b11d-ec76-4a8e-ad69-062eaaff727e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/main/webapp/upload/e99ed0f1-23c2-4f5a-9030-fc69d848ea45" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/test/java/com/eomcs/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../servlet-app/app/src/test/resources/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../servlet-app/app/src/test/resources/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,8 +262,25 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;joonhoekim&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="17cd9958-1973-4416-99bc-099508419381" />
+        <option name="url" value="https://github.com/joonhoekim/mystudy" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/src/main/webapp/WEB-INF/app-servlet.xml" root0="FORCE_HIGHLIGHTING" />
@@ -108,23 +299,25 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.mvc-app [run].executor": "Run",
-    "Gradle.mvc-app:app [:app:App.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jh/git/mystudy/mvc-app/app/src/main/webapp/config",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.mvc-app [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mvc-app:app [:app:App.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jh/git/mystudy/mvc-app/app/src/main/webapp/config&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jh\git\mystudy\mvc-app\app\src\main\webapp\config" />
@@ -184,6 +377,20 @@
       <option name="presentableId" value="Default" />
       <updated>1710298731940</updated>
     </task>
+    <task id="LOCAL-00001" summary="JavaConfig">
+      <option name="closed" value="true" />
+      <created>1710395182753</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710395182753</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="JavaConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="JavaConfig" />
   </component>
 </project>

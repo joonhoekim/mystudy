@@ -7,25 +7,21 @@ repositories {
 }
 
 dependencies {
+    // 임베디드 Tomcat 서버
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.85'
+
     // JSTL 라이브러리
     implementation 'javax.servlet:jstl:1.2'
 
-    //user added
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.85'
+    // Spring WebMVC 프레임워크 라이브러리
+    implementation 'org.springframework:spring-webmvc:5.3.32'
 
-    //generated implementation
+    // log4j 2.x 라이브러리
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+
     testImplementation libs.junit.jupiter
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
     implementation libs.guava
-    // Apache의 파일업로드 처리 라이브러리
-    implementation 'commons-fileupload:commons-fileupload:1.5'
-
-    //for multipart/form-data file upload processing
-    //implementation 'com.liferay:org.apache.commons.fileupload:1.2.2.LIFERAY-PATCHED-1'
-    // Thumbnailator 썸네일 생성 라이브러리
-    implementation 'net.coobird:thumbnailator:0.4.14'
 }
 
 java {
@@ -35,7 +31,7 @@ java {
 }
 
 application {
-    mainClass = 'com.eomcs.App'
+    mainClass = 'bitcamp.App'
 }
 
 tasks.named('test') {
