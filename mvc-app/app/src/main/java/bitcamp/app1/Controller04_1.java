@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-@RequestMapping("/c04_1")
+@Controller //컨트롤러로 객체 생성됨
+@RequestMapping("/c04_1") //베이스주소
 public class Controller04_1 {
 
   // 프론트 컨트롤러(DispatcherServlet)로부터 받고 싶은 값이 있다면
@@ -36,15 +36,15 @@ public class Controller04_1 {
       // ServletContext sc,
       // ServletContext는 파라미터로 받을 수 없다. 예외 발생!
       // 의존 객체로 주입 받아야 한다.
-      ServletRequest request,
+      ServletRequest request, //HttpServletRequest나 ServletRequest나 같음
       ServletResponse response,
       HttpServletRequest request2,
       HttpServletResponse response2,
       HttpSession session,
       Map<String, Object> map, // JSP에 전달할 값을 담는 임시 보관소
-      Model model, // Map과 같다. 둘 중 한 개만 받으면 된다.
+      Model model, // Map과 같다. 둘 중 한 개만 받으면 된다. Model을 더 많이 쓴다. 제네릭보다 간단하기 작성이 간단하고 코드가 간결하여 읽기 쉬워서
       PrintWriter out // 클라이언트에게 콘텐트를 보낼 때 사용할 출력 스트림
-      ) {
+  ) {
 
     out.printf("ServletContext: %b\n", sc != null);
     out.printf("ServletRequest: %b\n", request != null);

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-@RequestMapping("/c04_2")
+@Controller //with @Controller, make Page Controller instance. MVC Container store those instances.
+@RequestMapping("/c04_2") //mapping base location with @RequestMapping.
 public class Controller04_2 {
 
   // 클라이언트가 보낸 파라미터 값을 바로 받을 수 있다.
@@ -20,7 +20,7 @@ public class Controller04_2 {
   //    그리고 클라이언트가 보낸 파라미터 이름을 지정한다.
   // 테스트:
   // => http://localhost:9999/eomcs-spring-webmvc/app1/c04_2/h1?name=kim
-  @GetMapping("h1")
+  @GetMapping("h1") //set sub location. /dispatcherServletBaseLocation/PageControllerBase/Sub/..
   @ResponseBody
   public void handler1(
       PrintWriter out,
@@ -30,7 +30,7 @@ public class Controller04_2 {
       @RequestParam("name") String name3, // value 이름을 생략할 수 있다.
       /* @RequestParam("name") */ String name // 요청 파라미터 이름과 메서드 파라미터(아규먼트)의 이름이 같다면
       // 애노테이션을 생략해도 된다.
-      ) {
+  ) {
 
     out.printf("name=%s\n", request.getParameter("name"));
     out.printf("name=%s\n", name1);
@@ -57,7 +57,7 @@ public class Controller04_2 {
 
       @RequestParam(value = "name4", defaultValue = "ohora") String name4
       // 기본 값을 지정하면 파라미터 값이 없어도 된다.
-      ) {
+  ) {
 
     out.printf("name1=%s\n", name1);
     out.printf("name2=%s\n", name2);

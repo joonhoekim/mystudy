@@ -24,9 +24,6 @@ public class Controller03_4 {
   // => 자바스크립트를 사용하여 개발자가 임의의 형식으로 값을 보낼 수 있다.
   //
   // 클라이언트가 POST로 요청할 때 보내는 데이터의 유형에 따라 호출될 메서드를 구분할 때 사용한다.
-
-  int a = Integer.parseInt(123, 2);
-
   // 다음 메서드는 application/x-www-form-urlencoded 형식의 데이터를 소비한다.
   // => 즉 클라이언트의 HTTP 요청에서 Content-Type 헤더의 값이 위와 같을 때
   //    이 메서드를 호출하라는 의미다.

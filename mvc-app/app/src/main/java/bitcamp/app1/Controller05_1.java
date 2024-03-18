@@ -114,8 +114,9 @@ public class Controller05_1 {
         "<html><body><h1>abc가각간<h1></body></html>",
         headers,
         HttpStatus.OK // 응답 상태 코드를 설정할 수 있다.
-        );
-
+    );
+    HttpStatus status;
+    status = HttpStatus.PROXY_AUTHENTICATION_REQUIRED; //이런 방식으로 쓸 수도 있다.
     return entity;
   }
 }
