@@ -14,7 +14,7 @@ public class Controller05_3 {
   // 1) 요청 파라미터 값을 낱개로 입력 받기
   // 테스트
   //   http://.../app2/c05_3/h1?no=1&title=ok&writer=kim&viewCount=100
-  @RequestMapping(value="h1", produces="text/plain;charset=UTF-8")
+  @RequestMapping(value = "h1", produces = "text/plain;charset=UTF-8")
   public Object handler1(
       int no,
       String title,
@@ -27,7 +27,7 @@ public class Controller05_3 {
   // 2) 요청 파라미터 값을 객체로 입력 받기
   // 테스트
   //   http://.../app2/c05_3/h2?no=1&title=ok&writer=kim&viewCount=100
-  @RequestMapping(value="h2", produces="text/plain;charset=UTF-8")
+  @RequestMapping(value = "h2", produces = "text/plain;charset=UTF-8")
   public Object handler2(Board board) {
     return board.toString();
   }
@@ -35,10 +35,11 @@ public class Controller05_3 {
   // 3) JSON 형식의 요청 파라미터 값을 통째로 문자열로 받기
   // 테스트
   //   http://.../html/app2/c05_3.html
-  @RequestMapping(value="h3", produces="text/plain;charset=UTF-8")
+  @RequestMapping(value = "h3", produces = "text/plain;charset=UTF-8")
   public Object handler3(@RequestBody String content) throws Exception {
     System.out.println(content);
-    System.out.println(URLDecoder.decode(content, "UTF-8"));
+    System.out.println(
+        URLDecoder.decode(content, "UTF-8")); //한글 깨지는 경우라면 charset을 명시하도록 URLDecoder을 사용하라
     return "OK!";
   }
 
@@ -49,8 +50,8 @@ public class Controller05_3 {
   //    그래야 스프링의 DispatcherServlet에서 찾는다.
   // 테스트
   //   http://.../html/app2/c05_3.html
-  @RequestMapping(value="h4", produces="text/plain;charset=UTF-8")
-  public Object handler4(@RequestBody Map<String,Object> content) throws Exception {
+  @RequestMapping(value = "h4", produces = "text/plain;charset=UTF-8")
+  public Object handler4(@RequestBody Map<String, Object> content) throws Exception {
     System.out.println(content);
     return "OK!";
   }
@@ -62,7 +63,7 @@ public class Controller05_3 {
   //
   // 테스트
   //   http://.../html/app2/c05_3.html
-  @RequestMapping(value="h5", produces="text/plain;charset=UTF-8")
+  @RequestMapping(value = "h5", produces = "text/plain;charset=UTF-8")
   public Object handler5(@RequestBody Board content) throws Exception {
     System.out.println(content);
 

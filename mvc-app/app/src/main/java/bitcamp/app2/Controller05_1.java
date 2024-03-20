@@ -41,6 +41,11 @@ public class Controller05_1 {
   @GetMapping("h1")
   public void handler1(Model model) {
     model.addAttribute("list", this.list);
+
+    //return "c05_1/h1";
+    //위 내용이 생략된 것이나 마찬가지 (없으면 저것)
+    //그 다음에 JavaConfig 따라서 "/WEB-INF/jsp/c05_1/h1.jsp" 으로 접두사/접미사 합쳐짐
+    //그렇게 JSP URL을 가리키게 된다.
   }
 
   // 2) Google Gson 라이브러리를 사용하여 JSON 형식의 콘텐트 출력하기
@@ -50,7 +55,7 @@ public class Controller05_1 {
   // => 이클립스에서 프로젝트를 리프래시 한다.
   // 테스트:
   //   http://.../app2/c05_1/h2
-  @GetMapping(value="h2", produces="text/plain;charset=UTF-8")
+  @GetMapping(value = "h2", produces = "text/plain;charset=UTF-8")
   @ResponseBody
   public String handler2() {
     return new Gson().toJson(this.list);

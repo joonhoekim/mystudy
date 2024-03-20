@@ -84,7 +84,7 @@ public class Board {
     return createdDate;
   }
 
-  //@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
