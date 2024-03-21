@@ -29,8 +29,7 @@ public class MemberController {
   }
 
   @GetMapping("form")
-  public String form() throws Exception {
-    return "/member/form.jsp";
+  public void form() throws Exception {
   }
 
   @PostMapping("add")
@@ -45,20 +44,17 @@ public class MemberController {
   }
 
   @GetMapping("list")
-  public String list(Model model) throws Exception {
+  public void list(Model model) throws Exception {
     model.addAttribute("list", memberDao.findAll());
-    return "/member/list.jsp";
   }
 
   @GetMapping("view")
-  public String view(int no, Model model) throws Exception {
-
+  public void view(int no, Model model) throws Exception {
     Member member = memberDao.findBy(no);
     if (member == null) {
       throw new Exception("회원 번호가 유효하지 않습니다.");
     }
     model.addAttribute("member", member);
-    return "/member/view.jsp";
   }
 
   @PostMapping("update")

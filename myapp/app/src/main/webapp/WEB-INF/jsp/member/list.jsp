@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang='en'>
   <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
 
-<jsp:include page="/header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include>
 
 <h1>회원</h1>
 <a href='/app/member/form'>새 회원</a>
@@ -31,13 +32,13 @@
   </c:choose>
         <a href='/app/member/view?no=${member.no}'>${member.name}</a></td>
         <td>${member.email}</td>
-        <td>${member.createdDate}</td>
+        <td><fmt:formatDate value="${member.createdDate}" pattern="yyyy-MM-dd"/></td>
       </tr>
 </c:forEach>
     </tbody>
 </table>
 
-<jsp:include page="/footer.jsp"></jsp:include>
+<jsp:include page="../footer.jsp"></jsp:include>
 
 </body>
 </html>
