@@ -31,6 +31,8 @@ dependencies {
     implementation 'org.springframework:spring-webmvc:5.3.32'
     implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
 
+    //spring 버전에 맞춰야 해서 낮은 버전으로 쓴다.
+    implementation 'org.mybatis:mybatis-spring:2.1.2'
     // 파일 업로드 처리
     //implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 

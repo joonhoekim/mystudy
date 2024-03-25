@@ -9,9 +9,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@ComponentScan(value = {
-    "bitcamp.myapp.controller"
-})
+@ComponentScan({"bitcamp.myapp.controller"})
 public class AppConfig {
 
   private final Log log = LogFactory.getLog(this.getClass());

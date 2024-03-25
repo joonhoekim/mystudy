@@ -5,10 +5,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
 public class HomeController {
 
-  private final Log log = LogFactory.getLog(this.getClass());
+  private static final Log log = LogFactory.getLog(HomeController.class);
 
   public HomeController() {
     log.debug("HomeController() 호출됨!");
