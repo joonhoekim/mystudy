@@ -8,11 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AboutController {
 
-  private final Log log = LogFactory.getLog(this.getClass());
-
-  public AboutController() {
-    log.debug("AboutController() 호출됨!");
-  }
+  private static final Log log = LogFactory.getLog(AboutController.class);
 
   @GetMapping("/about")
   public void about() {

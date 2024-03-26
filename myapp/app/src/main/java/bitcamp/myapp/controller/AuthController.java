@@ -20,13 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auth")
 public class AuthController {
 
-  private final Log log = LogFactory.getLog(AuthController.class);
+  private static final Log log = LogFactory.getLog(AuthController.class);
   private final MemberService memberService;
-
-  public AuthController(MemberService memberService) {
-    log.debug("AuthController() 호출됨!");
-    this.memberService = memberService;
-  }
 
   @GetMapping("form")
   public void form(@CookieValue(required = false) String email, Model model) {
@@ -34,7 +29,8 @@ public class AuthController {
   }
 
   @PostMapping("login")
-  public String login(String email,
+  public String login(
+      String email,
       String password,
       String saveEmail,
       HttpServletResponse response,
