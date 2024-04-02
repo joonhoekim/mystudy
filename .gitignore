@@ -561,3 +561,4 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,eclipse,intellij,java,c++,c,node,gradle,maven
 # Ignore Gradle build output directory
 build
+myapp/app/src/main/resources/config/ncp-secret.properties
