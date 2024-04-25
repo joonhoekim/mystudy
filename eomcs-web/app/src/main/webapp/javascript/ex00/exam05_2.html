@@ -7,12 +7,12 @@
 <body>
   <h1>요점 정리 - 5.HTML 태그와 DOM 트리 객체 응용</h1>
   <form>
-    <button id="btnAddName" type="button">추가</button><br>
     <div id="inputNameContainer">
 	    <div class="inputName">
 	      <span class="name">이름1</span>: <input type="text" name="name1"><br>
 	    </div>
     </div>
+    <button id="btnAddName" type="button">추가</button><br>
     <button id="btn1">확인</button>
   </form>
 
@@ -30,8 +30,6 @@ btnAddName.onclick = function() {
 	e.querySelector("input").name = "name" + inputNameIndex;
   e.querySelector("input").value = "";
 	inputNameContainer.appendChild(e);
-  document.body.style.background = 'red'; // 배경을 붉은색으로 변경하기
-  setTimeout(() => document.body.style.background = '', 3000); // 원상태로 복구하기
 };
 
 </script>
