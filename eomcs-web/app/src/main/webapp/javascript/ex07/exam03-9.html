@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ex07</title>
+  </head>
+  <body>
+    <div id="header"></div>
+    <h1>AJAX - jQuery 사용하기</h1>
+    <form>
+      <div id="news">
+        <button class="btn">추가</button>
+      </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+  "use strict"
+$('.btn').click(function(event){
+  console.log(event.target.innerHTML);
+  $('<p>').html('okok').appendTo("#news");
+});
+
+
+</script>
+
+  </body>
+</html>

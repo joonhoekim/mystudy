@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>ex03</title>
-</head>
-<body>
-<h1>함수 - 애로우(arrow) 함수를 아규먼트로 전달하기</h1>
-<script>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex03</title>
+	</head>
+	<body>
+		<h1>함수 - 애로우(arrow) 함수를 아규먼트로 전달하기</h1>
+		<script>
 "use strict"
 
 // 배열의 forEach() 사용하기
@@ -36,6 +36,8 @@ function myFunc2(value, index) {
 }
 console.log("----------------------");
 
+//실무는 아래와 같은 방식으로, 한번만 쓸 것이라면 아규먼트 안에 넣는다.
+//오히려 그게 실수를 줄이는 방식이고 js답게 쓰는 방법이기에 그렇다.
 arr.forEach(function(value, index) {
 	console.log("--->", value, index);
 });
@@ -45,5 +47,5 @@ arr.forEach((value, index) => console.log(">>>>>", value, index));
 
 </script>
 
-</body>
+	</body>
 </html>

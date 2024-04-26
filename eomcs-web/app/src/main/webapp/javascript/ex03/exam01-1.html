@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>ex03</title>
-</head>
-<body>
-<h1>함수 - 정의</h1>
-<script>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex03</title>
+	</head>
+	<body>
+		<h1>함수 - 정의</h1>
+		<script>
 // 자바스크립트 함수 정의
 // 문법:
 //     function 함수명(파라미터, 파라미터, ...) {함수몸체}
@@ -26,7 +26,15 @@ console.log("---------------------");
 //     함수명(객체주소, 아규먼트, 아규먼트, ...);
 //
 f1.call();
+console.log("---------------------");
+
+function f2(name) {
+	console.log(name , "님 반갑습니다.")
+}
+
+f2("hong");
+f2.call(null, "hello"); //모듈을 만드는 경우에 간혹 이런 것이 사용되는 경우가 있다.
 
 </script>
-</body>
+	</body>
 </html>
