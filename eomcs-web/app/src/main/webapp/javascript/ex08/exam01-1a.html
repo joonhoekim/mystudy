@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>비동기작업</title>
-  </head>
-  <body>
-    <h1>Promise - 생성자와 작업 함수(executor)</h1>
-    <script>
+<head>
+<meta charset="UTF-8">
+<title>비동기작업</title>
+</head>
+<body>
+<h1>Promise - 생성자와 작업 함수(executor)</h1>
+<script>
 // Primise 문법
 // - 시간이 오래 걸리는 비동기 작업들을 순서대로 묶어서 실행하고 싶을 때 사용한다.
 // 
@@ -22,7 +22,6 @@
 // - 어떤 이유로 작업 수행을 거절(reject)했다는 통지를 받으면, 
 //   reject 상태일 때 호출하기로 약속한 함수를 실행한다.
 //
-// 아래처럼 쓰는 건 Promise 문법의 목적을 이해하지 못하고 쓴 것(공부용)
 let executor = (resolve, reject) => {
   // 시간이 오래 걸리는 동기 작업 수행
   var xhr = new XMLHttpRequest();
@@ -42,5 +41,5 @@ console.log("끝!");
 // - 즉 executor에 비동기 작업이 없다면 Promise를 사용하는 이점이 없다.
 // 
 </script>
-  </body>
+</body>
 </html>

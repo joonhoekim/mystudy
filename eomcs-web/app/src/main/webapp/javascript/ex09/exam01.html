@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>ex07</title>
-</head>
-<body>
-<h1>XMLHttpRequest 사용하기</h1>
-<table border="1">
-<thead>
-    <tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+  <head>
+    <meta charset="UTF-8">
+    <title>ex07</title>
+  </head>
+  <body>
+    <h1>XMLHttpRequest 사용하기</h1>
+    <table border="1">
+      <thead>
+        <tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
 
-<script>
+    <script>
 "use strict"
 var tbody = document.querySelector("tbody");
 
-var xhr = new XMLHttpRequest();
+setTimeout(() => {
+    var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
         var arr = JSON.parse(xhr.responseText);
@@ -34,13 +35,10 @@ xhr.onreadystatechange = () => {
 };
 xhr.open("GET", "http://localhost:3000/boards", true);
 xhr.send();
+}, 2000)
+
 
 
 </script>
-</body>
+  </body>
 </html>
-
-
-
-
-
