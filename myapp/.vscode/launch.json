@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-App<app>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "bitcamp.myapp.App",
+      "projectName": "app",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

@@ -21,11 +21,11 @@
 var tbody = document.querySelector("tbody");
 
 axios.get('http://localhost:3000/boards')
-.then(function () {
-  console.log('then');
+.then(function (res) {
+  console.log('then', res);
 })
-.catch(function () {
-  console.log('catch');
+.catch(function (err) {
+  console.log('catch', err);
 })
 .finally(function() {
   console.log('finally');

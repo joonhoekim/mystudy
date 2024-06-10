@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ex07</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>XMLHttpRequest 사용하기</h1>
+    <table border="1">
+      <thead>
+        <tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <script>
+"use strict"
+var tbody = document.querySelector("tbody");
+var get = axios({
+  method: 'get',
+  url: 'http://localhost:3000/boards',
+  params: {
+    name: "kim",
+    age: 20
+  },
+  responseType: 'json'
+})
+.then(function(res) {
+  console.log('then');
+  console.log(get);
+  console.log(res);
+
+  for (var b of res.data) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + b.no + "</td>" + 
+        "<td>" + b.title + "</td>" + 
+        "<td>" + b.writer + "</td>" +
+        "<td>" + b.viewCnt + "</td>";
+    tbody.appendChild(tr);
+  }
+});
+
+axios.get('http://localhost:3000/boards')
+.then(function(p) {
+  console.log('then', p);
+})
+
+console.log(get);
+
+// setTimeout(() => {
+//     var xhr = new XMLHttpRequest();
+// xhr.onreadystatechange = () => {
+//     if (xhr.readyState == 4 && xhr.status == 200) {
+//         var arr = JSON.parse(xhr.responseText);
+//         for (var b of arr) {
+//             var tr = document.createElement("tr");
+//             tr.innerHTML = "<td>" + b.no + "</td>" + 
+//                 "<td>" + b.title + "</td>" + 
+//                 "<td>" + b.writer + "</td>" +
+//                 "<td>" + b.viewCnt + "</td>";
+//             tbody.appendChild(tr);
+//         }
+//     }
+// };
+// xhr.open("GET", "http://localhost:3000/boards", true);
+// xhr.send();
+// }, 2000)
+
+
+
+</script>
+  </body>
+</html>
